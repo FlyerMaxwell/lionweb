@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="lionweb:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="lion-web.war">
+      <element id="artifact" artifact-name="lionweb:war exploded" />
+    </root>
+  </artifact>
+</component>
