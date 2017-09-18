@@ -5,9 +5,14 @@
   <artifactId>lion-web</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>lion-web Maven Webapp</name>
+  <name>lion-web</name>
   <url>http://maven.apache.org</url>
   <dependencies>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+      <version>4.3.11.RELEASE</version>
+    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
