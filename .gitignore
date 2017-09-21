@@ -1,7 +1,7 @@
 #idea
-.iml
+*.iml
 #logs
-.log
+*.log
 .idea/
 *.swp
 
