@@ -2,10 +2,10 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.lion</groupId>
-  <artifactId>lion-web</artifactId>
+  <artifactId>lionweb</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>lion-web</name>
+  <name>lionweb</name>
   <url>http://maven.apache.org</url>
   <properties>
     <spring.version>4.3.11.RELEASE</spring.version>
@@ -46,6 +46,6 @@
     </dependency>
   </dependencies>
   <build>
-    <finalName>lion-web</finalName>
+    <finalName>lionweb</finalName>
   </build>
 </project>
