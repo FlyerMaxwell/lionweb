@@ -16,6 +16,12 @@
     <load-on-startup>1</load-on-startup>
   </servlet>
 
+  <!--欢迎页面配置-->
+  <welcome-file-list>
+    <!--默认配置为index.jsp/htm/html，使用默认配置时此部分可省略,默认配置jsp文件要在WEB-INF根目录下-->
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+
   <!-- 以.htm结尾的都被mvc拦截 -->
   <servlet-mapping>
     <servlet-name>SpringMVC</servlet-name>

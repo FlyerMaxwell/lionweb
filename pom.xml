@@ -9,6 +9,8 @@
   <url>http://maven.apache.org</url>
   <properties>
     <spring.version>4.3.11.RELEASE</spring.version>
+    <mybatis.version>3.4.5</mybatis.version>
+    <mysql.version>6.0.6</mysql.version>
   </properties>
   <dependencies>
     <!--spring-mvc-->
@@ -38,12 +40,42 @@
       <version>${spring.version}</version>
     </dependency>
     <!--spring-mvc end-->
+
+    <!--Junit单元测试-->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+
+    <!--slf4j日志-->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.7.25</version>
+    </dependency>
+
+    <!--mybatis核心包-->
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis</artifactId>
+      <version>${mybatis.version}</version>
+    </dependency>
+    <!--mybatis spring包-->
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis-spring</artifactId>
+      <version>1.3.1</version>
+    </dependency>
+    <!--mysql驱动包-->
+    <!-- mysql驱动包 -->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>${mysql.version}</version>
+    </dependency>
+
   </dependencies>
   <build>
     <finalName>lionweb</finalName>
