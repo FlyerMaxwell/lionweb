@@ -1,4 +1,4 @@
-package com.lion.web.service;
+package com.lion.service;
 
 /**
  * @author DJ

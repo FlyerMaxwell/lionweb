@@ -41,6 +41,13 @@
     </dependency>
     <!--spring-mvc end-->
 
+    <!--<jsp标准标签库>-->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
+    </dependency>
+
     <!--Junit单元测试-->
     <dependency>
       <groupId>junit</groupId>

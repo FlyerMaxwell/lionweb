@@ -5,12 +5,23 @@
         http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
   <display-name>LION</display-name>
-  <!-- 加载springmvc -->
+
+  <!--加载Spring容器-->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:spring-mybatis.xml</param-value>
+  </context-param>
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+
+  <!-- 配置SpringMVC DispatcherServlet 前端控制器 -->
   <servlet>
     <servlet-name>SpringMVC</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
     <init-param>
       <param-name>contextConfigLocation</param-name>
+      <!--配置文件位置和文件名，默认为/WEB-INF/spring-servlet.xml-->
       <param-value>classpath:spring-context.xml</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
@@ -18,13 +29,20 @@
 
   <!--欢迎页面配置-->
   <welcome-file-list>
-    <!--默认配置为index.jsp/htm/html，使用默认配置时此部分可省略,默认配置jsp文件要在WEB-INF根目录下-->
-    <welcome-file>index.jsp</welcome-file>
+    <!--默认配置为index.jsp/htm/html，使用默认配置时此部分可省略,默认配置jsp文件要在webapp根目录下-->
+    <!--无内容时表示根路径不由服务器处理，交由DispatcherServlet处理-->
+    <welcome-file></welcome-file>
   </welcome-file-list>
 
-  <!-- 以.htm结尾的都被mvc拦截 -->
+  <!--<以.htm结尾的都被mvc拦截>-->
+  <!--<servlet-mapping>-->
+    <!--<servlet-name>SpringMVC</servlet-name>-->
+    <!--<url-pattern>*.htm</url-pattern>-->
+  <!--</servlet-mapping>-->
+
+  <!--RESTful风格-->
   <servlet-mapping>
     <servlet-name>SpringMVC</servlet-name>
-    <url-pattern>*.htm</url-pattern>
+    <url-pattern>/</url-pattern>
   </servlet-mapping>
 </web-app>
