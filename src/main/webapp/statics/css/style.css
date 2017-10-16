@@ -22,10 +22,10 @@ body {
 }
 #header a.logo {
     display: block;
-    height: 197px;
+    height: 124px;
     margin: 0 auto 22px;
     padding: 0;
-    width: 315px;
+    width: 400px;
 }
 #header a.logo img {
     border: 0;
@@ -41,7 +41,7 @@ body {
 #header ul li {
     float: left;
     list-style: none;
-    margin: 0 0 0 60px;
+    margin: 0 0 0 66px;
 ;
     padding: 0;
 }
@@ -49,7 +49,7 @@ body {
     margin: 0 0 0 15px;
 }
 #header ul li a {
-    color: #588181;
+    color: #FF8000;
     display: block;
     height: 37px;
     line-height: 40px;
@@ -60,7 +60,7 @@ body {
     text-transform: uppercase;
 }
 #header ul li a:hover {
-    color: #254c4c;
+    color: #FF6100;
 }
 #header ul li.selected {
     background: url(../images/bg-menu.png) no-repeat top center;
@@ -675,7 +675,7 @@ body {
     width: 960px;
 }
 #footer div p {
-    color: #767676;
+    color: #FF8000;
     float: left;
     font-size: 11px;
     line-height: 27px;

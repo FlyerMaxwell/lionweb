@@ -51,7 +51,7 @@
     });
 </script>
 
-<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';color:#000000">
+<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';color:#FF8000">
     <h1>LION</h1>
 </div>
 </body>
