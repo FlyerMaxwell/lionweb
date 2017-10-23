@@ -14,6 +14,7 @@
     <!-- 自动扫描 -->
     <context:annotation-config/>
     <context:component-scan base-package="com.lion.controller"/>
+
     <!--首页处理跳转到index.jsp页面-->
     <!--<mvc:view-controller path="/" view-name="index"/>-->
     <!--<首页处理跳转到/index控制器>-->
@@ -30,6 +31,12 @@
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
         <property name="prefix" value="/WEB-INF/views/" />
         <property name="suffix" value=".jsp"></property>
+    </bean>
+
+    <!--multipart文件上传解析器-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!--最大上传文件大小5G（5*1024*1024）-->
+        <property name="maxUploadSize" value="5242880"/>
     </bean>
 
 </beans>

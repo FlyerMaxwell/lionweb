@@ -1,4 +1,9 @@
 /*Website Template by # */
+:root{
+    --color1:#0066CC;
+    --color2:#5599FF;
+    --color3:#0066;
+}
 
 @font-face {
     font-family: 'Conv_Ubuntu-Light';
@@ -6,7 +11,7 @@
     src: url('../fonts/Ubuntu-Light.woff') format('woff'), url('../fonts/Ubuntu-Light.ttf') format('truetype'), url('../fonts/Ubuntu-Light.svg') format('svg');
 }
 body {
-    background: url(../../../images/bg-body.jpg) repeat;
+    /*background: url(../../../images/bg-body.jpg) repeat;*/
     font-family: 'Conv_Ubuntu-Light';
     font-size: 14px;
     font-weight: normal;
@@ -15,8 +20,22 @@ body {
     min-width: 960px;
     padding: 0;
 }
+
+#nav{
+    float:right;
+}
+
+#nav li{
+
+    color:var(--color1);
+}
+
+#sidebar dl{
+    color:var(--color1);
+    font-size: 60px
+}
 #header {
-    background: url(../../../images/bg-header.jpg) repeat-x;
+    /*background: url(../../../images/bg-header.jpg) repeat-x;*/
     margin: 0;
     padding: 18px 0 0;
 }
@@ -49,7 +68,7 @@ body {
     margin: 0 0 0 15px;
 }
 #header ul li a {
-    color: #FF8000;
+    color: var(--color1);
     display: block;
     height: 37px;
     line-height: 40px;
@@ -60,7 +79,7 @@ body {
     text-transform: uppercase;
 }
 #header ul li a:hover {
-    color: #FF6100;
+    color: #1E90FF;
 }
 #header ul li.selected {
     background: url(../images/bg-menu.png) no-repeat top center;
@@ -69,8 +88,8 @@ body {
     background: 	url(../images/dots.png) repeat-x left bottom;
 }
 #section {
-    background: url(../images/chemist.png) no-repeat center top;
-    border-bottom: 2px solid #ffe600;
+    /*background: url(../images/chemist.png) no-repeat center top;*/
+    border-bottom: 2px solid #1E90FF;
     height: 571px;
     margin: 0 0 2px;
     padding: 0;
@@ -81,14 +100,14 @@ body {
     width: 960px;
 }
 #section div div {
-    background: url(../images/bg-heading.png) repeat;
+    /*background: url(../images/bg-heading.png) repeat;*/
     height: 161px;
     margin: 0 0 0 10px;
     padding: 33px 22px 33px 18px;
     width: 411px;
 }
 #section div div h1 {
-    color: #94acb3;
+    color: #1E90FF;
     font-size: 30px;
     font-weight: normal;
     letter-spacing: 3px;
@@ -127,6 +146,7 @@ body {
     padding: 0 10px;
     width: 460px;
 }
+
 #featured div .article h2 {
     color: #588181;
     font-size: 24px;
@@ -213,7 +233,7 @@ body {
     display: block;
 }
 #body {
-    background: url(../images/bg-content.jpg) repeat;
+    /*background: url(../images/bg-content.jpg) repeat;*/
     margin: 0 auto;
     min-height: 1100px;
     overflow: hidden;
@@ -314,6 +334,21 @@ body {
     padding: 0;
     text-indent: 30px;
 }
+#bode .content ul a.add{
+    background: url(../images/button-submit.png) no-repeat 0 0;
+    border: 0;
+    cursor: pointer;
+    display: block;
+    height: 38px;
+    margin: 5px 0 0 130px;
+    padding: 0;
+    width: 142px;
+}
+
+#bode .content ul a .add:hover{
+    background-position: 0 -43px;
+}
+
 #body .content p {
     color: #767676;
     line-height: 30px;
@@ -664,7 +699,7 @@ body {
     text-decoration: underline;
 }
 #footer {
-    border-top: 2px solid #ffe600;
+    border-top: 2px solid #1E90FF;
     margin: 2px 0 0;
     padding: 16px 0;
 }
@@ -675,7 +710,7 @@ body {
     width: 960px;
 }
 #footer div p {
-    color: #FF8000;
+    color: #1E90FF;
     float: left;
     font-size: 11px;
     line-height: 27px;

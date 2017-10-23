@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lion.dao.ext.PublicationDao">
+    <resultMap id="BaseResultMap" type="com.lion.entity.Publication" extends="com.lion.dao.gen.PublicationMapper.BaseResultMap">
+    </resultMap>
+    <sql id="Base_Column_List">
+    pub_id, user_name, author_name, status, create_time, update_time, title, authors, organization,
+    image_url, text_url, ppt_url, video_url
+    </sql>
+    <select id="selectAllPublication" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from t_publication
+        where user_name = #{*}
+    </select>
+</mapper>

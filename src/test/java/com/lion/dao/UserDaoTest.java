@@ -11,8 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @date 2017/10/16.
  */
 public class UserDaoTest extends BaseDaoTest{
-//    @Autowired
-//    UserDao userDao;
+    @Autowired
+    UserDao userDao;
 
     @Test
     @DatabaseSetup(value="/dbUnitData/user_test.xml")

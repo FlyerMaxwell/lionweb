@@ -1,9 +1,19 @@
+//由mybatis-generator生成并手动修改而成
 package com.lion.entity;
 
 import java.util.Date;
 
 public class User {
-    private Integer userId;
+
+    // 0代表管理员,  1代表普通用户
+    private static final int USER_ADMIN = 0;
+    private static final int USER_NORMAL = 1;
+    // 0代表用户未被锁定, 1代表用户锁定
+    private static final int USER_UNLOCK = 0;
+    private static final int USER_LOCK = 1;
+
+    //用户属性（与数据库字段对应）
+    private Long userId;
 
     private String userName;
 
@@ -13,7 +23,7 @@ public class User {
 
     private String userSex;
 
-    private Integer userPhone;
+    private String userPhone;
 
     private Date createTime;
 
@@ -25,11 +35,11 @@ public class User {
 
     private String lastIp;
 
-    public Integer getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -65,11 +75,11 @@ public class User {
         this.userSex = userSex == null ? null : userSex.trim();
     }
 
-    public Integer getUserPhone() {
+    public String getUserPhone() {
         return userPhone;
     }
 
-    public void setUserPhone(Integer userPhone) {
+    public void setUserPhone(String userPhone) {
         this.userPhone = userPhone;
     }
 
@@ -112,4 +122,21 @@ public class User {
     public void setLastIp(String lastIp) {
         this.lastIp = lastIp == null ? null : lastIp.trim();
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", userName=" + userName +
+                ", password=" + password +
+                ", userEmail=" + userEmail +
+                ", userPhone=" + userPhone +
+                ", userSex=" + userSex +
+                ", createTime=" + createTime +
+                ", userType=" + userType +
+                ", userState=" + userState +
+                ", lastLoginTime=" + lastLoginTime +
+                ", lastIp=" + lastIp + "}";
+    }
+
 }

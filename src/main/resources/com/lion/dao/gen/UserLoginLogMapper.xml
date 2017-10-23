@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lion.dao.gen.UserLoginLogMapper">
+  <resultMap id="BaseResultMap" type="com.lion.entity.UserLoginLog">
+    <id column="login_log_id" jdbcType="BIGINT" property="loginLogId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="login_ip" jdbcType="VARCHAR" property="loginIp" />
+    <result column="login_datetime" jdbcType="TIMESTAMP" property="loginDatetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    login_log_id, user_name, login_ip, login_datetime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_login_log
+    where login_log_id = #{loginLogId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_login_log
+    where login_log_id = #{loginLogId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.lion.entity.UserLoginLog">
+    insert into t_login_log (login_log_id, user_name, login_ip, 
+      login_datetime)
+    values (#{loginLogId,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{loginIp,jdbcType=VARCHAR}, 
+      #{loginDatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lion.entity.UserLoginLog">
+    insert into t_login_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="loginLogId != null">
+        login_log_id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="loginIp != null">
+        login_ip,
+      </if>
+      <if test="loginDatetime != null">
+        login_datetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="loginLogId != null">
+        #{loginLogId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginIp != null">
+        #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="loginDatetime != null">
+        #{loginDatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lion.entity.UserLoginLog">
+    update t_login_log
+    <set>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginIp != null">
+        login_ip = #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="loginDatetime != null">
+        login_datetime = #{loginDatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where login_log_id = #{loginLogId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lion.entity.UserLoginLog">
+    update t_login_log
+    set user_name = #{userName,jdbcType=VARCHAR},
+      login_ip = #{loginIp,jdbcType=VARCHAR},
+      login_datetime = #{loginDatetime,jdbcType=TIMESTAMP}
+    where login_log_id = #{loginLogId,jdbcType=BIGINT}
+  </update>
+</mapper>

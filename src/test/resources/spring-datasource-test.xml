@@ -27,7 +27,7 @@
         <property name="password" value=""/>
     </bean>
 
-    <bean id="carSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    <bean id="lionSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <!--TODO 上一层路径中的mapper同时导入？-->
         <property name="mapperLocations" value="classpath*:com/lion/dao/*/*.xml"/>
@@ -43,7 +43,7 @@
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.lion.dao.ext"/>
-        <property name="sqlSessionFactoryBeanName" value="carSqlSessionFactory"/>
+        <property name="sqlSessionFactoryBeanName" value="lionSqlSessionFactory"/>
     </bean>
 
     <!-- 初始化数据表结构 -->
