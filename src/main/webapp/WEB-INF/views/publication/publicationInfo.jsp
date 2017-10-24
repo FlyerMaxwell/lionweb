@@ -23,8 +23,31 @@
         <ul>
             <a href="/publication/addPublication" class="add">New Publication</a>
         </ul>
-
+        <div>
+            <table width="1000px" border="0" id="list">
+                <c:choose>
+                    <c:when test="${empty publications}">
+                        <div align="left">
+                            <span>No Publication!</span>
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+                        <c:forEach items="${publications}" var="publication">
+                            <tr height="100px">
+                                <td width="20%">
+                                    <img src="/statics/images/button-submit.png">
+                                </td>
+                                <td width="80">
+                                    ${publication.title}
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </c:otherwise>
+                </c:choose>
+            </table>
+        </div>
     </div>
 </div>
+<jsp:include page="../footer.jsp" flush="true"></jsp:include>
 </body>
 </html>

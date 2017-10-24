@@ -6,6 +6,8 @@ import com.lion.service.PublicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author DJ
  * @date 2017/10/21.
@@ -15,7 +17,7 @@ public class PublicationServiceImpl implements PublicationService{
     @Autowired
     PublicationDao publicationDao;
 
-    public Publication listAllPublication(){
+    public List<Publication> listAllPublication(){
         return publicationDao.selectAllPublication();
     }
 

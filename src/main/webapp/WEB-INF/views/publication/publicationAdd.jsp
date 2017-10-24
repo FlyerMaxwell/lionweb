@@ -21,8 +21,8 @@
     <jsp:include page="../sideMenu.jsp" flush="true"></jsp:include>
     <div class="content">
         <img src="images/telephone.jpg" alt="">
-        <h2>send us a message</h2>
-        <form action="/publication/addPublicationInfo">
+        <h2>Add New Publication</h2>
+        <form method="POST" action="/publication/addPublicationInfo" enctype="multipart/form-data">
             <label for="title"> <span>Title *</span>
                 <input type="text" name="title" id="title">
             </label>
@@ -49,26 +49,6 @@
     </div>
 
 </div>
-<div id="footer">
-    <div>
-        <p>
-            <span>2023 &copy; Illumelabs Diagnostic Center.</span><a href="#" >Terms of Service</a> | <a href="#" >Privacy Policy</a>
-        </p>
-        <ul>
-            <li id="facebook">
-                <a href="#">facebook</a>
-            </li>
-            <li id="twitter">
-                <a href="#">twitter</a>
-            </li>
-            <li id="googleplus">
-                <a href="#">googleplus</a>
-            </li>
-            <li id="rss">
-                <a href="#" >rss</a>
-            </li>
-        </ul>
-    </div>
-</div>
+<jsp:include page="../footer.jsp" flush="true"></jsp:include>
 </body>
 </html>

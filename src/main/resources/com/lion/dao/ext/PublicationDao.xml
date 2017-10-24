@@ -7,10 +7,9 @@
     pub_id, user_name, author_name, status, create_time, update_time, title, authors, organization,
     image_url, text_url, ppt_url, video_url
     </sql>
-    <select id="selectAllPublication" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <select id="selectAllPublication" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
         from t_publication
-        where user_name = #{*}
     </select>
 </mapper>

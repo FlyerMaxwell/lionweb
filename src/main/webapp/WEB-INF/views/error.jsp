@@ -13,6 +13,8 @@
     <title>LION</title>
     <link rel="stylesheet" href="/statics/css/style.css" type="text/css">
 </head>
+<body>
+<jsp:include page="header.jsp" flush="true"></jsp:include>
 
 <div id="section">
     <div>
@@ -22,5 +24,6 @@
         </div>
     </div>
 </div>
+<jsp:include page="footer.jsp" flush="true"></jsp:include>
 </body>
 </html>
