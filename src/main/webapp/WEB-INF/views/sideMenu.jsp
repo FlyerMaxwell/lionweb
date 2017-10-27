@@ -8,16 +8,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="sidebar">
-    <h3>${username}'s Profile</h3>
+    <h3>My Profile</h3>
     <ul>
         <li>
-            <a href="/user/userProfile">My Info</a>
+            <a href="/user/userInfo">My Info</a>
         </li>
         <li>
-            <a href="/user/userProfile">My Project</a>
+            <a href="/project/userProfile">My Project</a>
         </li>
         <li>
-            <a href="/publication">My Publication</a>
+            <a href="/publication/userProfile?username=${username}">My Publication</a>
         </li>
     </ul>
 </div>

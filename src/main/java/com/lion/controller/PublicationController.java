@@ -1,13 +1,15 @@
 package com.lion.controller;
 
 import com.lion.entity.Publication;
+import com.lion.entity.User;
 import com.lion.service.PublicationService;
-import com.lion.util.FileUpload;
+import com.lion.service.UserService;
+import com.lion.util.FileHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -26,6 +28,9 @@ public class PublicationController {
     @Autowired
     PublicationService publicationService;
 
+    @Autowired
+    UserService userService;
+
     //显示publication主页面
     @RequestMapping(value = "")
     public String publicationPage(HttpServletRequest request){
@@ -33,57 +38,116 @@ public class PublicationController {
         request.setAttribute("publications",publications);
         return "publication/publicationInfo";
     }
+
+    //用户个人publication页面
+    @RequestMapping(value ="userProfile",method = RequestMethod.GET)
+    public String userPublication(String username, HttpServletRequest request){
+        List<Publication> publications=publicationService.listPublicationByUsername(username);
+        request.setAttribute("publications",publications);
+        User user=userService.getUserByUserName(username);
+        request.setAttribute("user",user);
+        return "publication/userPublication";
+    }
+
     //显示publication添加页面
     @RequestMapping(value = "addPublication")
     public String addPublication(String username,HttpServletRequest request){
-        Publication publication=new Publication();
-        publication.setAuthorName("username");
-        request.setAttribute("publication",publication);
+        request.setAttribute("username",username);
         return "publication/publicationAdd";
     }
     //提交新publication
     @RequestMapping(value = "addPublicationInfo",method = RequestMethod.POST)
-    public String addPublicationInfo(Publication publication, MultipartFile image,MultipartFile text,MultipartFile ppt,HttpServletRequest request,RedirectAttributes redirectAttributes,ModelMap modelmap) throws IOException{
-        String filePath1= FileUpload.uploadFile(image,request);
-        String filePath2= FileUpload.uploadFile(text,request);
-        String filePath3= FileUpload.uploadFile(ppt,request);
-        ImageEntity
+    public String addPublicationInfo(String username,
+                                     @RequestParam(value="title") String title,
+                                     @RequestParam(value="authors") String authors,
+                                     @RequestParam(value="organization") String organization,
+                                     @RequestParam(value = "image",required = false) MultipartFile image,
+                                     @RequestParam(value = "text", required = false) MultipartFile text,
+                                     @RequestParam(value = "slide", required = false) MultipartFile slide,
+                                     HttpServletRequest request,
+                                     RedirectAttributes redirectAttributes) throws IOException{
+        Publication publication=new Publication();
+        publication.setUserName(username);
+        //TODO AuthorName管理员用户的处理
+        publication.setAuthorName(username);
+        String basePath="D:/lion/publication";
+        System.out.println("userProfile username:"+publication.getUserName());
+        publication.setTitle(title);
+        publication.setAuthors(authors);
+        publication.setOrganization(organization);
+        if(image!=null&&!image.isEmpty()){
+            String filePath1= FileHandler.uploadFile(basePath+"/image",image,request);
+            publication.setImageUrl(filePath1);
+        }
+        if(text!=null&&!text.isEmpty()){
+            String filePath2= FileHandler.uploadFile(basePath+"/text",text,request);
+            publication.setTextUrl(filePath2);
+        }
+        if(slide!=null&&!slide.isEmpty()){
+            String filePath3= FileHandler.uploadFile(basePath+"/slide",slide,request);
+            publication.setSlideUrl(filePath3);
+        }
 
         publicationService.addNewPublication(publication);
-        //redirectAttributes.addAttribute(publication.getAuthorName());
-        return "redirect:/publication";
+        redirectAttributes.addAttribute("username",publication.getUserName());
+        return "redirect:/publication/userProfile";
     }
-
-//    @RequestMapping(value = "addIndent",method = RequestMethod.POST)
-//    public String addIndent(String commodityName,MultipartFile imagetop,MultipartFile imagetwo,MultipartFile imagethree,int price,String description,double discount,HttpServletRequest request,ModelMap modelMap ) throws IOException {
-//        CommodityEntity commodityEntity = new CommodityEntity();
-//        ImageEntity imageEntity = new ImageEntity();
-//        String filePath1 = FileUpload.uploadFile(imagetop, request);
-//        String filePath2 = FileUpload.uploadFile(imagetwo, request);
-//        String filePath3 = FileUpload.uploadFile(imagethree, request);
-//        filePath1 = filePath1+";"+filePath2+";"+filePath3;
-//        imageEntity.setImg(filePath1);
-//        imageRepository.saveAndFlush(imageEntity);
-//        imageEntity =  imageRepository.findByImg(filePath1);
-//        commodityEntity.setCommodityname(commodityName);
-//        commodityEntity.setPrice(price);
-//        commodityEntity.setDescription(description);
-//        commodityEntity.setImageByImageId(imageEntity);
-//        commodityEntity.setDiscount(discount);
-//        commodityRepository.saveAndFlush(commodityEntity);
-//        List<CommodityEntity> commodityEntities = commodityRepository.findAll();
-//        modelMap.addAttribute("commodityEntities",commodityEntities);
-//        return "cate";
-//    }
 
     //编辑publication
     @RequestMapping (value = "editPublication",method = RequestMethod.GET)
-    public String editPublication(String username,HttpServletRequest request){
+    public String editPublication(String username,Long id,HttpServletRequest request){
+        Publication publication=publicationService.getPublicationById(id);
+        request.setAttribute("username",username);
+        request.setAttribute("publication",publication);
         return "publication/publicationEdit";
     }
     //提交编辑后的publication
     @RequestMapping(value = "editPublicationInfo",method = RequestMethod.POST)
-    public String editPublicationInfo(String username,HttpServletRequest request){
-        return "redirect:/publication";
+    public String editPublicationInfo(String username,Long id,
+                                      @RequestParam(value="title") String title,
+                                      @RequestParam(value="authors") String authors,
+                                      @RequestParam(value="organization") String organization,
+                                      @RequestParam(value = "image",required = false) MultipartFile image,
+                                      @RequestParam(value = "text", required = false) MultipartFile text,
+                                      @RequestParam(value = "slide", required = false) MultipartFile slide,
+                                      HttpServletRequest request,
+                                      RedirectAttributes redirectAttributes) throws IOException {
+        Publication publication=publicationService.getPublicationById(id);
+        String basePath="D:/lion/publication";
+        System.out.println("userProfile username:"+publication.getUserName());
+        publication.setTitle(title);
+        publication.setAuthors(authors);
+        publication.setOrganization(organization);
+        if(image!=null&&!image.isEmpty()){
+            FileHandler.deleteFile(publication.getImageUrl());
+            String filePath1= FileHandler.uploadFile(basePath+"/image",image,request);
+            publication.setImageUrl(filePath1);
+        }
+        if(text!=null&&!text.isEmpty()){
+            FileHandler.deleteFile(publication.getTextUrl());
+            String filePath2= FileHandler.uploadFile(basePath+"/text",text,request);
+            publication.setTextUrl(filePath2);
+        }
+        if(slide!=null&&!slide.isEmpty()){
+            FileHandler.deleteFile(publication.getSlideUrl());
+            String filePath3= FileHandler.uploadFile(basePath+"/slide",slide,request);
+            publication.setSlideUrl(filePath3);
+        }
+
+        publicationService.editPublication(publication);
+        redirectAttributes.addAttribute("username",publication.getUserName());
+        return "redirect:/publication/userProfile";
+    }
+    //删除publication
+    @RequestMapping(value="deletePublicationInfo",method = RequestMethod.GET)
+    public String deletePublicationInfo(String username,Long id,RedirectAttributes redirectAttributes){
+        Publication publication=publicationService.getPublicationById(id);
+        FileHandler.deleteFile(publication.getImageUrl());
+        FileHandler.deleteFile(publication.getTextUrl());
+        FileHandler.deleteFile(publication.getSlideUrl());
+        FileHandler.deleteFile(publication.getVideoUrl());
+        publicationService.deletePublication(id);
+        redirectAttributes.addAttribute("username",username);
+        return "redirect:/publication/userProfile";
     }
 }

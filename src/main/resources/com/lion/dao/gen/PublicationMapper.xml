@@ -13,12 +13,12 @@
         <result column="organization" jdbcType="VARCHAR" property="organization"/>
         <result column="image_url" jdbcType="VARCHAR" property="imageUrl"/>
         <result column="text_url" jdbcType="VARCHAR" property="textUrl"/>
-        <result column="ppt_url" jdbcType="VARCHAR" property="pptUrl"/>
+        <result column="slide_url" jdbcType="VARCHAR" property="slideUrl"/>
         <result column="video_url" jdbcType="VARCHAR" property="videoUrl"/>
     </resultMap>
     <sql id="Base_Column_List">
     pub_id, user_name, author_name, status, create_time, update_time, title, authors, 
-    organization,image_url, text_url, ppt_url, video_url
+    organization,image_url, text_url, slide_url, video_url
   </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
@@ -34,12 +34,12 @@
     insert into t_publication (pub_id, user_name, author_name, 
       status, create_time, update_time, 
       title, authors, organization,image_url,
-      text_url, ppt_url, video_url
+      text_url, slide_url, video_url
       )
     values (#{pubId,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{authorName,jdbcType=VARCHAR}, 
       #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{title,jdbcType=VARCHAR}, #{authors,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR},
-      #{imageUrl,jdbcType=VARCHAR}, #{textUrl,jdbcType=VARCHAR}, #{pptUrl,jdbcType=VARCHAR}, #{videoUrl,jdbcType=VARCHAR}
+      #{imageUrl,jdbcType=VARCHAR}, #{textUrl,jdbcType=VARCHAR}, #{slideUrl,jdbcType=VARCHAR}, #{videoUrl,jdbcType=VARCHAR}
       )
   </insert>
     <insert id="insertSelective" parameterType="com.lion.entity.Publication">
@@ -78,8 +78,8 @@
             <if test="textUrl != null">
                 text_url,
             </if>
-            <if test="pptUrl != null">
-                ppt_url,
+            <if test="slideUrl != null">
+                slide_url,
             </if>
             <if test="videoUrl != null">
                 video_url,
@@ -119,8 +119,8 @@
             <if test="textUrl != null">
                 #{textUrl,jdbcType=VARCHAR},
             </if>
-            <if test="pptUrl != null">
-                #{pptUrl,jdbcType=VARCHAR},
+            <if test="slideUrl != null">
+                #{slideUrl,jdbcType=VARCHAR},
             </if>
             <if test="videoUrl != null">
                 #{videoUrl,jdbcType=VARCHAR},
@@ -160,8 +160,8 @@
             <if test="textUrl != null">
                 text_url = #{textUrl,jdbcType=VARCHAR},
             </if>
-            <if test="pptUrl != null">
-                ppt_url = #{pptUrl,jdbcType=VARCHAR},
+            <if test="slideUrl != null">
+                slide_url = #{slideUrl,jdbcType=VARCHAR},
             </if>
             <if test="videoUrl != null">
                 video_url = #{videoUrl,jdbcType=VARCHAR},
@@ -181,7 +181,7 @@
       organization = #{organization,jdbcType=VARCHAR},
       image_url = #{imageUrl,jdbcType=VARCHAR},
       text_url = #{textUrl,jdbcType=VARCHAR},
-      ppt_url = #{pptUrl,jdbcType=VARCHAR},
+      slide_url = #{slideUrl,jdbcType=VARCHAR},
       video_url = #{videoUrl,jdbcType=VARCHAR}
     where pub_id = #{pubId,jdbcType=BIGINT}
   </update>

@@ -20,7 +20,7 @@
 <div id="body">
     <jsp:include page="../sideMenu.jsp" flush="true"></jsp:include>
 </div>
-
+<jsp:include page="../footer.jsp" flush="true"></jsp:include>
 </body>
 
 </html>

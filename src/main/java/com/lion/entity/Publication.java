@@ -25,7 +25,7 @@ public class Publication {
 
     private String textUrl;
 
-    private String pptUrl;
+    private String slideUrl;
 
     private String videoUrl;
 
@@ -117,12 +117,12 @@ public class Publication {
         this.textUrl = textUrl == null ? null : textUrl.trim();
     }
 
-    public String getPptUrl() {
-        return pptUrl;
+    public String getSlideUrl() {
+        return slideUrl;
     }
 
-    public void setPptUrl(String pptUrl) {
-        this.pptUrl = pptUrl == null ? null : pptUrl.trim();
+    public void setSlideUrl(String slideUrl) {
+        this.slideUrl = slideUrl == null ? null : slideUrl.trim();
     }
 
     public String getVideoUrl() {

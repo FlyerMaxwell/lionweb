@@ -1,66 +1,82 @@
-@import url(http://fonts.useso.com/css?family=Source+Sans+Pro:200,300);
-* {
-  box-sizing: border-box;
+:root{
+  --color1:#0066CC;
+  --color2:#5599FF;
+  --color3:#0066;
+}
+@font-face {
+  font-family: 'Conv_Ubuntu-Light';
+  src: url('../fonts/Ubuntu-Light.eot');
+  src: url('../fonts/Ubuntu-Light.woff') format('woff'), url('../fonts/Ubuntu-Light.ttf') format('truetype'), url('../fonts/Ubuntu-Light.svg') format('svg');
+}
+#header {
+  /*background: url(../../../images/bg-header.jpg) repeat-x;*/
   margin: 0;
+  padding: 18px 0 0;
+}
+#header a.logo {
+  display: block;
+  height: 124px;
+  margin: 0 auto 22px;
   padding: 0;
-  font-weight: 300;
+  width: 400px;
+}
+#header a.logo img {
+  border: 0;
+  display: block;
 }
 body {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Conv_Ubuntu-Light';
   color: white;
   font-weight: 300;
 }
 body ::-webkit-input-placeholder {
   /* WebKit browsers */
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Conv_Ubuntu-Light';
   color: white;
   font-weight: 300;
 }
 body :-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Conv_Ubuntu-Light';
   color: white;
   opacity: 1;
   font-weight: 300;
 }
 body ::-moz-placeholder {
   /* Mozilla Firefox 19+ */
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Conv_Ubuntu-Light';
   color: white;
   opacity: 1;
   font-weight: 300;
 }
 body :-ms-input-placeholder {
   /* Internet Explorer 10+ */
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Conv_Ubuntu-Light';
   color: white;
   font-weight: 300;
 }
+
 .wrapper {
-  background: #1E90FF;
-  background: -webkit-linear-gradient(top left, #1E90FF 0%, #ffe600 100%);
-  background: linear-gradient(to bottom right, #1E90FF 0%, #ffe600 100%);
+  background: var(--color2);
+  background: -webkit-linear-gradient(top left, var(--color1) 0%, var(--color1) 100%);
+  background: linear-gradient(to bottom right, var(--color1) 0%, var(--color1) 100%);
   opacity: 0.8;
   position: absolute;
   top: 50%;
-  left: 0;
+  left: 0%;
+  /*此处考虑调整为与logo保持一致*/
   width: 100%;
-  height: 400px;
-  margin-top: -200px;
+  height: 330px;
+  margin-top: -130px;
   overflow: hidden;
 
 }
 
-.wrapper.form-success .container h1 {
-  -webkit-transform: translateY(85px);
-      -ms-transform: translateY(85px);
-          transform: translateY(85px);
-}
 .container {
   max-width: 600px;
   margin: 0 auto;
-  padding: 80px 0;
-  height: 400px;
+  padding: 30px 0;
+  height: 330px;
   text-align: center;
 }
 .container h1 {

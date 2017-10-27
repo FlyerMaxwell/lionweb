@@ -14,12 +14,12 @@
             <a class="mdl-navigation__link mdl-color-text--pink-400"
                href="/user/userProfile?username=${username}">${username}|</a>
             <c:if test="${username == 'admin'}">
-                <a class="mdl-navigation__link mdl-color-text--black" href="/admin/manageCenter">登入管理后台|</a>
+                <a class="mdl-navigation__link mdl-color-text--black" href="/admin/manageCenter">Admin Gate|</a>
             </c:if>
-            <a class="mdl-navigation__link mdl-color-text--black" href="/user/loginOut">注销</a>
+            <a class="mdl-navigation__link mdl-color-text--black" href="/user/loginOut">Log out</a>
         </c:when>
         <c:when test="${username == null}">
-            <a class="mdl-navigation__link mdl-color-text--pink-400" href="/user">登录</a>
+            <a class="mdl-navigation__link mdl-color-text--pink-400" href="/user">Log in</a>
         </c:when>
     </c:choose>
 </div>

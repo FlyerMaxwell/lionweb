@@ -21,7 +21,23 @@ public class PublicationServiceImpl implements PublicationService{
         return publicationDao.selectAllPublication();
     }
 
+    public List<Publication> listPublicationByUsername(String username) {
+        return publicationDao.selectPublicationByUsername(username);
+    }
+
     public int addNewPublication(Publication publication) {
         return publicationDao.insertSelective(publication);
+    }
+
+    public int editPublication(Publication publication) {
+        return publicationDao.updateByPrimaryKeySelective(publication);
+    }
+
+    public int deletePublication(Long id) {
+        return publicationDao.deleteByPrimaryKey(id);
+    }
+
+    public Publication getPublicationById(Long id) {
+        return publicationDao.selectByPrimaryKey(id);
     }
 }

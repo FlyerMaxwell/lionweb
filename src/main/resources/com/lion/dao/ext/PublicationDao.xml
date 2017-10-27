@@ -5,11 +5,17 @@
     </resultMap>
     <sql id="Base_Column_List">
     pub_id, user_name, author_name, status, create_time, update_time, title, authors, organization,
-    image_url, text_url, ppt_url, video_url
+    image_url, text_url, slide_url, video_url
     </sql>
     <select id="selectAllPublication" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
         from t_publication
+    </select>
+    <select id="selectPublicationByUsername" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM t_publication
+        WHERE user_name=#{username}
     </select>
 </mapper>

@@ -14,10 +14,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>登录</title>
+    <title>LION</title>
     <link rel="stylesheet" type="text/css" href="/statics/css/styles.css">
 </head>
 <body>
+<div id="header">
+    <a href="<%=request.getContextPath() %>/index" class="logo"><img src="/statics/images/logo.png" alt=""></a>
+</div>
 <div class="htmleaf-container">
     <div class="wrapper">
         <div class="container">
@@ -46,16 +49,6 @@
 </div>
 
 <script src="/statics/js/jquery-2.1.1.min.js" type="text/javascript"></script>
-<%--<script>--%>
-    <%--$('#login-button').click(function (event) {--%>
-        <%--event.preventDefault();--%>
-        <%--$('form').fadeOut(500);--%>
-        <%--$('.wrapper').addClass('form-success');--%>
-    <%--});--%>
-<%--</script>--%>
 
-<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';color:#1E90FF">
-    <h1>LION</h1>
-</div>
 </body>
 </html>

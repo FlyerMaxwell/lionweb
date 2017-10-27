@@ -13,5 +13,13 @@ import java.util.List;
 public interface PublicationService {
     List<Publication> listAllPublication();
 
+    List<Publication> listPublicationByUsername(String username);
+
     int addNewPublication(Publication publication);
+
+    int editPublication(Publication publication);
+
+    int deletePublication(Long id);
+
+    Publication getPublicationById(Long id);
 }

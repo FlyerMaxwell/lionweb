@@ -18,9 +18,13 @@
 <body>
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
 <div id="body">
+    <jsp:include page="../sideMenu.jsp" flush="true"></jsp:include>
     <div class="content">
+        <ul>
+            <a href="/publication/addPublication?username=${user.userName}" class="add">New Publication</a>
+        </ul>
         <div>
-            <table width="1000px" border="0" id="list">
+            <table width="100%" border="0" id="list">
                 <c:choose>
                     <c:when test="${empty publications}">
                         <div align="left">
@@ -29,13 +33,24 @@
                     </c:when>
                     <c:otherwise>
                         <c:forEach items="${publications}" var="publication">
-                            <tr height="100px">
+                            <tr height="100px" width="100%">
                                 <td width="20%">
                                     <img src="/statics/images/button-submit.png">
                                 </td>
-                                <td width="80">
-                                    ${publication.title}
+                                <td width="20%">
+                                        ${publication.title}
                                 </td>
+
+                                <%--编辑操作--%>
+                                <td width="7%">
+                                    <a href="/publication/editPublication?username=${user.userName}&id=${publication.pubId}">edit</a>
+                                </td>
+                                <%--管理员可进行删除操作--%>
+                                <c:if test="${user.userType == 0}">
+                                    <td width="7%">
+                                        <a href="/publication/deletePublicationInfo?username=${user.userName}&id=${publication.pubId}">delete</a>
+                                    </td>
+                                </c:if>
                             </tr>
                         </c:forEach>
                     </c:otherwise>

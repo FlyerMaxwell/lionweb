@@ -22,15 +22,15 @@
     <div class="content">
         <img src="images/telephone.jpg" alt="">
         <h2>Add New Publication</h2>
-        <form method="POST" action="/publication/addPublicationInfo" enctype="multipart/form-data">
+        <form method="POST" action="/publication/addPublicationInfo?username=${username}" enctype="multipart/form-data">
             <label for="title"> <span>Title *</span>
                 <input type="text" name="title" id="title">
             </label>
             <label for="authors"> <span>Authors*</span>
                 <input type="text" name="authors" id="authors">
             </label>
-            <label for="publication"> <span>Publication*</span>
-                <input type="text" name="publication" id="publication">
+            <label for="organization"> <span>Organization*</span>
+                <input type="text" name="organization" id="organization">
             </label>
             <label for="image"> <span>Image*</span>
 
@@ -42,6 +42,12 @@
 
                 <a href="javascript:;" class="file">
                     <input type="file" name="text" id="text" >
+                </a>
+            </label>
+            <label for="slide"> <span>slide</span>
+
+                <a href="javascript:;" class="file">
+                    <input type="file" name="slide" id="slide" >
                 </a>
             </label>
             <input type="submit" value="" id="submit">

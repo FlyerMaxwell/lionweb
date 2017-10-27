@@ -2,6 +2,7 @@ package com.lion.dao.ext;
 
 import com.lion.dao.gen.PublicationMapper;
 import com.lion.entity.Publication;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,4 +14,7 @@ import java.util.List;
 @Repository
 public interface PublicationDao extends PublicationMapper{
     List<Publication> selectAllPublication();
+
+    List<Publication> selectPublicationByUsername(@Param("username") String username);
+
 }
