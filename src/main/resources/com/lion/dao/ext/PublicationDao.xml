@@ -4,18 +4,33 @@
     <resultMap id="BaseResultMap" type="com.lion.entity.Publication" extends="com.lion.dao.gen.PublicationMapper.BaseResultMap">
     </resultMap>
     <sql id="Base_Column_List">
-    pub_id, user_name, author_name, status, create_time, update_time, title, authors, organization,
-    image_url, text_url, slide_url, video_url
+    id, user_name, status, create_time, update_time, title, authors, description,
+    organization, image_url, text_url, slide_url, video_url, last_modifier, last_ip
     </sql>
     <select id="selectAllPublication" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
         from t_publication
     </select>
-    <select id="selectPublicationByUsername" resultMap="BaseResultMap">
+    <select id="selectPublicationByUserId" parameterType="java.lang.Long" resultMap="BaseResultMap">
         SELECT
-        <include refid="Base_Column_List" />
-        FROM t_publication
-        WHERE user_name=#{username}
+        pub.id as id,
+        pub.user_name as userName,
+        pub.status as status,
+        pub.create_time as createTime,
+        pub.update_time as updateTime,
+        pub.title as title,
+        pub.authors as authors,
+        pub.description as description,
+        pub.organization as organization,
+        pub.image_url as imageUrl,
+        pub.text_url as textUrl,
+        pub.slide_url as slideUrl,
+        pub.video_url as videoUrl,
+        pub.last_modifier as lastModifier,
+        pub.last_ip as lastIp
+        FROM t_publication pub
+        LEFT JOIN t_publication_user pu ON pub.id=pu.pub_id
+        WHERE pu.user_id=#{userId}
     </select>
 </mapper>

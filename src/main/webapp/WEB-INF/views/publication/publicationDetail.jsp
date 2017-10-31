@@ -7,8 +7,7 @@
     <link rel="stylesheet" href="/statics/css/style.css" type="text/css">
 </head>
 <body>
-<jsp:include page="header.jsp" flush="true"></jsp:include>
-
-<jsp:include page="footer.jsp" flush="true"></jsp:include>
+<jsp:include page="../header.jsp" flush="true"></jsp:include>
+<jsp:include page="../footer.jsp" flush="true"></jsp:include>
 </body>
 </html>

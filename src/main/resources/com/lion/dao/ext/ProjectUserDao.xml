@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lion.dao.ext.ProjectUserDao">
+    <resultMap id="BaseResultMap" type="com.lion.entity.ProjectUser" extends="com.lion.dao.gen.ProjectUserMapper.BaseResultMap">
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    id, pro_id, user_id, create_time, update_time, last_modifier, last_ip
+    </sql>
+
+    <select id="selectUserIdByProId" parameterType="java.lang.Long" resultType="java.lang.Long">
+        SELECT
+        user_id
+        FROM t_project_user
+        WHERE pro_id=#{proId}
+    </select>
+
+    <delete id="deleteRecordById" parameterType="map">
+        DELETE FROM t_project_user
+        WHERE user_id=#{userId,jdbcType=BIGINT}
+        AND pro_id=#{proId,jdbcType=BIGINT}
+    </delete>
+
+
+</mapper>

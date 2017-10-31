@@ -15,6 +15,6 @@ import java.util.List;
 public interface PublicationDao extends PublicationMapper{
     List<Publication> selectAllPublication();
 
-    List<Publication> selectPublicationByUsername(@Param("username") String username);
+    List<Publication> selectPublicationByUserId(@Param("userId") Long userId);
 
 }

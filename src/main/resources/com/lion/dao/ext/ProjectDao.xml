@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lion.dao.ext.ProjectDao">
+    <resultMap id="BaseResultMap" type="com.lion.entity.Project" extends="com.lion.dao.gen.ProjectMapper.BaseResultMap">
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, user_name, status, create_time, update_time, title, authors, description, organization,
+    image_url, text_url, slide_url, video_url, last_modifier, last_ip
+    </sql>
+
+    <select id="selectAllProject" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from t_project
+    </select>
+
+    <select id="selectProjectByUserId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        SELECT
+        pro.id as id,
+        pro.user_name as userName,
+        pro.status as status,
+        pro.create_time as createTime,
+        pro.update_time as updateTime,
+        pro.title as title,
+        pro.authors as authors,
+        pro.description as description,
+        pro.organization as organization,
+        pro.image_url as imageUrl,
+        pro.text_url as textUrl,
+        pro.slide_url as slideUrl,
+        pro.video_url as videoUrl,
+        pro.last_modifier as lastModifier,
+        pro.last_ip as lastIp
+        FROM t_project pro
+        LEFT JOIN t_project_user pu ON pro.id=pu.pro_id
+        WHERE pu.user_id=#{useId}
+    </select>
+
+
+</mapper>

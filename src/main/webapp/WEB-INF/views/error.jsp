@@ -19,8 +19,7 @@
 <div id="section">
     <div>
         <div>
-            <h1>Login Fail!</h1>
-
+            <h1>${Msg}</h1>
         </div>
     </div>
 </div>

@@ -8,20 +8,24 @@ public class User {
     // 0代表管理员,  1代表普通用户
     private static final int USER_ADMIN = 0;
     private static final int USER_NORMAL = 1;
-    // 0代表用户未被锁定, 1代表用户锁定
+    // 0代表用户未被锁定, 1代表用户锁定(毕业或其他情况不再出现在author选择列表中）
     private static final int USER_UNLOCK = 0;
     private static final int USER_LOCK = 1;
 
     //用户属性（与数据库字段对应）
-    private Long userId;
+    private Long id;
 
     private String userName;
+
+    private Long adminId;
+
+    private String adminName;
 
     private String password;
 
     private String userEmail;
 
-    private String userSex;
+    private Integer userSex;
 
     private String userPhone;
 
@@ -35,12 +39,12 @@ public class User {
 
     private String lastIp;
 
-    public Long getUserId() {
-        return userId;
+    public Long getId() {
+        return id;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getUserName() {
@@ -49,6 +53,22 @@ public class User {
 
     public void setUserName(String userName) {
         this.userName = userName == null ? null : userName.trim();
+    }
+
+    public Long getAdminId() {
+        return adminId;
+    }
+
+    public void setAdminId(Long adminId) {
+        this.adminId = adminId;
+    }
+
+    public String getAdminName() {
+        return adminName;
+    }
+
+    public void setAdminName(String adminName) {
+        this.adminName = adminName;
     }
 
     public String getPassword() {
@@ -67,12 +87,12 @@ public class User {
         this.userEmail = userEmail == null ? null : userEmail.trim();
     }
 
-    public String getUserSex() {
+    public Integer getUserSex() {
         return userSex;
     }
 
-    public void setUserSex(String userSex) {
-        this.userSex = userSex == null ? null : userSex.trim();
+    public void setUserSex(Integer userSex) {
+        this.userSex = userSex;
     }
 
     public String getUserPhone() {
@@ -126,7 +146,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "userId=" + userId +
+                "userId=" + id +
                 ", userName=" + userName +
                 ", password=" + password +
                 ", userEmail=" + userEmail +
@@ -138,5 +158,4 @@ public class User {
                 ", lastLoginTime=" + lastLoginTime +
                 ", lastIp=" + lastIp + "}";
     }
-
 }

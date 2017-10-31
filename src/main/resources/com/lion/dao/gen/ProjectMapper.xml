@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lion.dao.gen.ProjectMapper">
+  <resultMap id="BaseResultMap" type="com.lion.entity.Project">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="authors" jdbcType="VARCHAR" property="authors" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="organization" jdbcType="VARCHAR" property="organization" />
+    <result column="image_url" jdbcType="VARCHAR" property="imageUrl" />
+    <result column="text_url" jdbcType="VARCHAR" property="textUrl" />
+    <result column="slide_url" jdbcType="VARCHAR" property="slideUrl" />
+    <result column="video_url" jdbcType="VARCHAR" property="videoUrl" />
+    <result column="last_modifier" jdbcType="VARCHAR" property="lastModifier" />
+    <result column="last_ip" jdbcType="VARCHAR" property="lastIp" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_name, status, create_time, update_time, title, authors, description, organization, 
+    image_url, text_url, slide_url, video_url, last_modifier, last_ip
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_project
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_project
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.lion.entity.Project">
+    insert into t_project (id, user_name, status, 
+      create_time, update_time, title, 
+      authors, description, organization, 
+      image_url, text_url, slide_url, 
+      video_url, last_modifier, last_ip
+      )
+    values (#{id,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{title,jdbcType=VARCHAR}, 
+      #{authors,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR}, 
+      #{imageUrl,jdbcType=VARCHAR}, #{textUrl,jdbcType=VARCHAR}, #{slideUrl,jdbcType=VARCHAR}, 
+      #{videoUrl,jdbcType=VARCHAR}, #{lastModifier,jdbcType=VARCHAR}, #{lastIp,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lion.entity.Project">
+    insert into t_project
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="authors != null">
+        authors,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="organization != null">
+        organization,
+      </if>
+      <if test="imageUrl != null">
+        image_url,
+      </if>
+      <if test="textUrl != null">
+        text_url,
+      </if>
+      <if test="slideUrl != null">
+        slide_url,
+      </if>
+      <if test="videoUrl != null">
+        video_url,
+      </if>
+      <if test="lastModifier != null">
+        last_modifier,
+      </if>
+      <if test="lastIp != null">
+        last_ip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="authors != null">
+        #{authors,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="organization != null">
+        #{organization,jdbcType=VARCHAR},
+      </if>
+      <if test="imageUrl != null">
+        #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="textUrl != null">
+        #{textUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="slideUrl != null">
+        #{slideUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="videoUrl != null">
+        #{videoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifier != null">
+        #{lastModifier,jdbcType=VARCHAR},
+      </if>
+      <if test="lastIp != null">
+        #{lastIp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lion.entity.Project">
+    update t_project
+    <set>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="authors != null">
+        authors = #{authors,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="organization != null">
+        organization = #{organization,jdbcType=VARCHAR},
+      </if>
+      <if test="imageUrl != null">
+        image_url = #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="textUrl != null">
+        text_url = #{textUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="slideUrl != null">
+        slide_url = #{slideUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="videoUrl != null">
+        video_url = #{videoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifier != null">
+        last_modifier = #{lastModifier,jdbcType=VARCHAR},
+      </if>
+      <if test="lastIp != null">
+        last_ip = #{lastIp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lion.entity.Project">
+    update t_project
+    set user_name = #{userName,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      title = #{title,jdbcType=VARCHAR},
+      authors = #{authors,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      organization = #{organization,jdbcType=VARCHAR},
+      image_url = #{imageUrl,jdbcType=VARCHAR},
+      text_url = #{textUrl,jdbcType=VARCHAR},
+      slide_url = #{slideUrl,jdbcType=VARCHAR},
+      video_url = #{videoUrl,jdbcType=VARCHAR},
+      last_modifier = #{lastModifier,jdbcType=VARCHAR},
+      last_ip = #{lastIp,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

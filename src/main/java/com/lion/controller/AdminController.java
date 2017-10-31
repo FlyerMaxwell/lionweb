@@ -4,14 +4,17 @@ import com.lion.entity.User;
 import com.lion.entity.UserLoginLog;
 import com.lion.service.UserLoginLogService;
 import com.lion.service.UserService;
+import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author DJ
@@ -27,47 +30,68 @@ public class AdminController {
     @Autowired
     UserLoginLogService userLoginLogService;
 
-    @RequestMapping(value = "addUser",method = RequestMethod.POST)
-    public String addUser(User newUser, HttpServletRequest request){
-        User user=newUser;
-        if(user!=null){
+    @RequestMapping(value="memberInfo",method = RequestMethod.GET)
+    public String memberInfo(String admin,HttpServletRequest request){
+        List<User> users=userService.listAllUser();
+        request.setAttribute("users",users);
+        request.setAttribute("admin",admin);
+        return "admin/memberInfo";
+    }
+
+    @RequestMapping(value="memberAdd",method = RequestMethod.GET)
+    public String memberAdd(String admin,HttpServletRequest request){
+        request.setAttribute("admin",admin);
+        return "admin/memberAdd";
+    }
+
+    @RequestMapping(value="memberAddInfo",method = RequestMethod.POST)
+    public String memberAddInfo(String adminName, String userName, String userEmail,
+                                Integer userSex, String userPhone, Integer userType,
+                                Integer userState, HttpServletRequest request,
+                                RedirectAttributes redirectAttributes){
+        User newUser=new User();
+        User admin=userService.getUserByUserName(adminName);
+        newUser.setUserName(userName);
+        newUser.setAdminId(admin.getAdminId());
+        newUser.setAdminName(adminName);
+        newUser.setUserEmail(userEmail);
+        newUser.setUserSex(userSex);
+        newUser.setUserPhone(userPhone);
+        newUser.setUserType(userType);
+        newUser.setUserState(userState);
+        if(newUser!=null) {
             try{
-                String userName=user.getUserName();
                 String ip=request.getRemoteAddr();
 
-                //判断用户名是否已注册,未注册则进入后续流程
-                if(userService.getUserByUserName(userName)==null) {
-
+                //判断用户名是否已注册，未注册则进入后续流程
+                if(userService.getUserByUserName(newUser.getUserName())==null){
                     //添加用户
-                    user.setLastIp(ip);
-                    Timestamp createTime = new Timestamp(new Date().getTime());
-                    user.setCreateTime(createTime); //字段default值为now()有类似功能
-                    user.setLastLoginTime(createTime);
-                    userService.addUser(user);
+                    newUser.setLastIp(ip);
+                    Timestamp createTime=new Timestamp(new Date().getTime());
+                    newUser.setCreateTime(createTime);
+                    newUser.setLastLoginTime(createTime);
+                    userService.addUser(newUser);
 
-                    //添加登录日志
-                    UserLoginLog userLoginLog = new UserLoginLog();
+                    //添加用户登录日志
+                    UserLoginLog userLoginLog=new UserLoginLog();
                     userLoginLog.setUserName(userName);
-                    userLoginLog.setLoginIp(ip);
                     userLoginLog.setLoginDatetime(createTime);
+                    userLoginLog.setLoginIp(ip);
                     userLoginLogService.addUserLoginLog(userLoginLog);
 
-                    //注册成功跳转到主界面
-                    request.setAttribute("username", userName);
-                    return "redirect:/index";
-
+                    redirectAttributes.addAttribute("admin",adminName);
+                    return "redirect:/admin/memberInfo";
                 }else{
-                    request.setAttribute("Msg","用户名已被占用!");
+                    request.setAttribute("Msg","Username has been registered!");
                     return "error";
                 }
             }catch (Exception e){
                 e.printStackTrace();
-                request.setAttribute("Msg","发生未知错误！");
+                request.setAttribute("Msg","Unknown Error!");
                 return "error";
             }
         }
-        request.setAttribute("Msg","未传入有效用户信息");
+        request.setAttribute("Msg","Null User Info!");
         return "error";
     }
-
 }

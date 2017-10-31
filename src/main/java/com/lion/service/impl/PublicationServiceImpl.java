@@ -21,8 +21,8 @@ public class PublicationServiceImpl implements PublicationService{
         return publicationDao.selectAllPublication();
     }
 
-    public List<Publication> listPublicationByUsername(String username) {
-        return publicationDao.selectPublicationByUsername(username);
+    public List<Publication> listPublicationByUserId(Long id) {
+        return publicationDao.selectPublicationByUserId(id);
     }
 
     public int addNewPublication(Publication publication) {

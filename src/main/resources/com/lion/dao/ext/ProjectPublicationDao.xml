@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lion.dao.ext.ProjectPublicationDao">
+    <resultMap id="BaseResultMap" type="com.lion.entity.ProjectPublication" extends="com.lion.dao.gen.ProjectPublicationMapper.BaseResultMap">
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    id, pro_id, pub_id, create_time, update_time, last_modifier, last_ip
+    </sql>
+
+    <select id="selectPubIdByProId" parameterType="java.lang.Long" resultType="java.lang.Long">
+        SELECT
+        pub_id
+        FROM t_project_publication
+        WHERE pro_id=#{proId}
+    </select>
+
+    <delete id="deleteRecordById" parameterType="map">
+        DELETE FROM t_project_publication
+        WHERE pub_id=#{pubId,jdbcType=BIGINT}
+        AND pro_id=#{proId,jdbcType=BIGINT}
+    </delete>
+
+
+
+
+</mapper>

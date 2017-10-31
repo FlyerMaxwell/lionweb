@@ -4,7 +4,7 @@ USE db_forum;
 #用户信息表
 DROP TABLE IF EXISTS `t_user`;
 CREATE TABLE `t_user`(
-`user_id` BIGINT(20) NOT NULL AUTO_INCREMENT COMMENT '用户id',
+`id` BIGINT(20) NOT NULL AUTO_INCREMENT COMMENT '用户id',
 `user_name` VARCHAR(30) NOT NULL UNIQUE COMMENT '用户名',
 `password` VARCHAR(30) NOT NULL DEFAULT '' COMMENT '密码',
 `user_email` VARCHAR(30) NOT NULL UNIQUE COMMENT '用户邮箱',
@@ -15,7 +15,7 @@ CREATE TABLE `t_user`(
 `user_state` INT(2) NOT NULL DEFAULT '0' COMMENT '用户状态 0:正常 1:冻结',
 `last_login_time` DATETIME DEFAULT NULL COMMENT '用户最后登入时间',
 `last_ip` VARCHAR(20) DEFAULT NULL COMMENT '用户最后登入ip',
-PRIMARY KEY (`user_id`)
+PRIMARY KEY (`id`)
 )ENGINE=InnoDB  DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
 
 #用户登录日志表

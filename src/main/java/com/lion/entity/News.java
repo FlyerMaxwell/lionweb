@@ -2,7 +2,7 @@ package com.lion.entity;
 
 import java.util.Date;
 
-public class Publication {
+public class News {
     private Long id;
 
     private String userName;
@@ -15,19 +15,11 @@ public class Publication {
 
     private String title;
 
-    private String authors;
-
     private String description;
-
-    private String organization;
 
     private String imageUrl;
 
     private String textUrl;
-
-    private String slideUrl;
-
-    private String videoUrl;
 
     private String lastModifier;
 
@@ -81,20 +73,12 @@ public class Publication {
         this.title = title == null ? null : title.trim();
     }
 
-    public String getAuthors() {
-        return authors;
+    public String getDescription() {
+        return description;
     }
 
-    public void setAuthors(String authors) {
-        this.authors = authors == null ? null : authors.trim();
-    }
-
-    public String getOrganization() {
-        return organization;
-    }
-
-    public void setOrganization(String organization) {
-        this.organization = organization;
+    public void setDescription(String description) {
+        this.description = description == null ? null : description.trim();
     }
 
     public String getImageUrl() {
@@ -113,28 +97,12 @@ public class Publication {
         this.textUrl = textUrl == null ? null : textUrl.trim();
     }
 
-    public String getSlideUrl() {
-        return slideUrl;
-    }
-
-    public void setSlideUrl(String slideUrl) {
-        this.slideUrl = slideUrl == null ? null : slideUrl.trim();
-    }
-
-    public String getVideoUrl() {
-        return videoUrl;
-    }
-
-    public void setVideoUrl(String videoUrl) {
-        this.videoUrl = videoUrl == null ? null : videoUrl.trim();
-    }
-
     public String getLastModifier() {
         return lastModifier;
     }
 
     public void setLastModifier(String lastModifier) {
-        this.lastModifier = lastModifier;
+        this.lastModifier = lastModifier == null ? null : lastModifier.trim();
     }
 
     public String getLastIp() {
@@ -142,14 +110,6 @@ public class Publication {
     }
 
     public void setLastIp(String lastIp) {
-        this.lastIp = lastIp;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+        this.lastIp = lastIp == null ? null : lastIp.trim();
     }
 }

@@ -22,7 +22,7 @@
     <div class="content">
         <img src="images/telephone.jpg" alt="">
         <h2>Edit Publication</h2>
-        <form method="POST" action="/publication/editPublicationInfo?username=${username}&id=${publication.pubId}" enctype="multipart/form-data">
+        <form method="POST" action="/publication/editPublicationInfo?username=${username}&id=${publication.id}" enctype="multipart/form-data">
             <label for="title"> <span>Title *</span>
                 <input type="text" name="title" id="title" value="${publication.title}">
             </label>

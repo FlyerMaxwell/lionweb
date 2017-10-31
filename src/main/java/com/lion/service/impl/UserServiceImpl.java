@@ -6,6 +6,8 @@ import com.lion.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author DJ
  * @date 2017/9/26.
@@ -17,6 +19,10 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
 
+
+    public List<User> listAllUser() {
+        return userDao.selectAllUser();
+    }
 
     public User getUserByUserName(String name) {
         return userDao.selectByUserName(name);

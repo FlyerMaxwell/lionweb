@@ -13,7 +13,7 @@ import java.util.List;
 public interface PublicationService {
     List<Publication> listAllPublication();
 
-    List<Publication> listPublicationByUsername(String username);
+    List<Publication> listPublicationByUserId(Long id);
 
     int addNewPublication(Publication publication);
 

@@ -2,7 +2,7 @@ package com.lion.entity;
 
 import java.util.Date;
 
-public class Publication {
+public class Project {
     private Long id;
 
     private String userName;
@@ -89,12 +89,20 @@ public class Publication {
         this.authors = authors == null ? null : authors.trim();
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description == null ? null : description.trim();
+    }
+
     public String getOrganization() {
         return organization;
     }
 
     public void setOrganization(String organization) {
-        this.organization = organization;
+        this.organization = organization == null ? null : organization.trim();
     }
 
     public String getImageUrl() {
@@ -134,7 +142,7 @@ public class Publication {
     }
 
     public void setLastModifier(String lastModifier) {
-        this.lastModifier = lastModifier;
+        this.lastModifier = lastModifier == null ? null : lastModifier.trim();
     }
 
     public String getLastIp() {
@@ -142,14 +150,6 @@ public class Publication {
     }
 
     public void setLastIp(String lastIp) {
-        this.lastIp = lastIp;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+        this.lastIp = lastIp == null ? null : lastIp.trim();
     }
 }

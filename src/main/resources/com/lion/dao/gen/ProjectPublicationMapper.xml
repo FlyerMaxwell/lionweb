@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lion.dao.gen.ProjectPublicationMapper">
+  <resultMap id="BaseResultMap" type="com.lion.entity.ProjectPublication">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="pro_id" jdbcType="BIGINT" property="proId" />
+    <result column="pub_id" jdbcType="BIGINT" property="pubId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="last_modifier" jdbcType="VARCHAR" property="lastModifier" />
+    <result column="last_ip" jdbcType="VARCHAR" property="lastIp" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, pro_id, pub_id, create_time, update_time, last_modifier, last_ip
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_project_publication
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_project_publication
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.lion.entity.ProjectPublication">
+    insert into t_project_publication (id, pro_id, pub_id, 
+      create_time, update_time, last_modifier, 
+      last_ip)
+    values (#{id,jdbcType=BIGINT}, #{proId,jdbcType=BIGINT}, #{pubId,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{lastModifier,jdbcType=VARCHAR}, 
+      #{lastIp,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lion.entity.ProjectPublication">
+    insert into t_project_publication
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="proId != null">
+        pro_id,
+      </if>
+      <if test="pubId != null">
+        pub_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="lastModifier != null">
+        last_modifier,
+      </if>
+      <if test="lastIp != null">
+        last_ip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="proId != null">
+        #{proId,jdbcType=BIGINT},
+      </if>
+      <if test="pubId != null">
+        #{pubId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifier != null">
+        #{lastModifier,jdbcType=VARCHAR},
+      </if>
+      <if test="lastIp != null">
+        #{lastIp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lion.entity.ProjectPublication">
+    update t_project_publication
+    <set>
+      <if test="proId != null">
+        pro_id = #{proId,jdbcType=BIGINT},
+      </if>
+      <if test="pubId != null">
+        pub_id = #{pubId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifier != null">
+        last_modifier = #{lastModifier,jdbcType=VARCHAR},
+      </if>
+      <if test="lastIp != null">
+        last_ip = #{lastIp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lion.entity.ProjectPublication">
+    update t_project_publication
+    set pro_id = #{proId,jdbcType=BIGINT},
+      pub_id = #{pubId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      last_modifier = #{lastModifier,jdbcType=VARCHAR},
+      last_ip = #{lastIp,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

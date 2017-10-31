@@ -2,57 +2,60 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lion.dao.gen.PublicationMapper">
     <resultMap id="BaseResultMap" type="com.lion.entity.Publication">
-        <id column="pub_id" jdbcType="BIGINT" property="pubId"/>
+        <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="user_name" jdbcType="VARCHAR" property="userName"/>
-        <result column="author_name" jdbcType="VARCHAR" property="authorName"/>
         <result column="status" jdbcType="INTEGER" property="status"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
         <result column="title" jdbcType="VARCHAR" property="title"/>
         <result column="authors" jdbcType="VARCHAR" property="authors"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
         <result column="organization" jdbcType="VARCHAR" property="organization"/>
         <result column="image_url" jdbcType="VARCHAR" property="imageUrl"/>
         <result column="text_url" jdbcType="VARCHAR" property="textUrl"/>
         <result column="slide_url" jdbcType="VARCHAR" property="slideUrl"/>
         <result column="video_url" jdbcType="VARCHAR" property="videoUrl"/>
+        <result column="last_modifier" jdbcType="VARCHAR" property="lastModifier"/>
+        <result column="last_ip" jdbcType="VARCHAR" property="lastIp"/>
     </resultMap>
     <sql id="Base_Column_List">
-    pub_id, user_name, author_name, status, create_time, update_time, title, authors, 
-    organization,image_url, text_url, slide_url, video_url
+    id, user_name, status, create_time, update_time, title, authors, description,
+    organization,image_url, text_url, slide_url, video_url,last_modifier,last_ip
   </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from t_publication
-        where pub_id = #{pubId,jdbcType=BIGINT}
+        where id = #{id,jdbcType=BIGINT}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from t_publication
-    where pub_id = #{pubId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
   </delete>
     <insert id="insert" parameterType="com.lion.entity.Publication">
-    insert into t_publication (pub_id, user_name, author_name, 
+    insert into t_publication (id, user_name,
       status, create_time, update_time, 
-      title, authors, organization,image_url,
-      text_url, slide_url, video_url
+      title, authors, description, organization,
+      image_url, text_url, slide_url, video_url,
+      last_modifier,last_ip
       )
-    values (#{pubId,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{authorName,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR},
       #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{title,jdbcType=VARCHAR}, #{authors,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR},
-      #{imageUrl,jdbcType=VARCHAR}, #{textUrl,jdbcType=VARCHAR}, #{slideUrl,jdbcType=VARCHAR}, #{videoUrl,jdbcType=VARCHAR}
+      #{title,jdbcType=VARCHAR}, #{authors,jdbcType=VARCHAR},
+      #{description,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR},
+      #{imageUrl,jdbcType=VARCHAR}, #{textUrl,jdbcType=VARCHAR}, #{slideUrl,jdbcType=VARCHAR}, #{videoUrl,jdbcType=VARCHAR},
+      #{lastModifier,jdbcType=VARCHAR}, #{lastIp,jdbcType=VARCHAR}
       )
   </insert>
-    <insert id="insertSelective" parameterType="com.lion.entity.Publication">
+    <!--将生成的主键返回到传回的对象中-->
+    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.lion.entity.Publication">
         insert into t_publication
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="pubId != null">
-                pub_id,
+            <if test="id != null">
+                id,
             </if>
             <if test="userName != null">
                 user_name,
-            </if>
-            <if test="authorName != null">
-                author_name,
             </if>
             <if test="status != null">
                 status,
@@ -69,6 +72,9 @@
             <if test="authors != null">
                 authors,
             </if>
+            <if test="description != null">
+                description,
+            </if>
             <if test="organization != null">
                 organization,
             </if>
@@ -84,16 +90,19 @@
             <if test="videoUrl != null">
                 video_url,
             </if>
+            <if test="lastModifier != null">
+                last_modifier,
+            </if>
+            <if test="lastIp != null">
+                last_ip,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="pubId != null">
-                #{pubId,jdbcType=BIGINT},
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
             </if>
             <if test="userName != null">
                 #{userName,jdbcType=VARCHAR},
-            </if>
-            <if test="authorName != null">
-                #{authorName,jdbcType=VARCHAR},
             </if>
             <if test="status != null">
                 #{status,jdbcType=INTEGER},
@@ -110,6 +119,9 @@
             <if test="authors != null">
                 #{authors,jdbcType=VARCHAR},
             </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
             <if test="organization != null">
                 #{organization,jdbcType=VARCHAR},
             </if>
@@ -125,6 +137,12 @@
             <if test="videoUrl != null">
                 #{videoUrl,jdbcType=VARCHAR},
             </if>
+            <if test="lastModifier != null">
+                #{lastModifier,jdbcType=VARCHAR},
+            </if>
+            <if test="lastIp != null">
+                #{lastIp,jdbcType=VARCHAR},
+            </if>
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.lion.entity.Publication">
@@ -132,9 +150,6 @@
         <set>
             <if test="userName != null">
                 user_name = #{userName,jdbcType=VARCHAR},
-            </if>
-            <if test="authorName != null">
-                author_name = #{authorName,jdbcType=VARCHAR},
             </if>
             <if test="status != null">
                 status = #{status,jdbcType=INTEGER},
@@ -151,6 +166,9 @@
             <if test="authors != null">
                 authors = #{authors,jdbcType=VARCHAR},
             </if>
+            <if test="description != null">
+                description = #{description, j}
+            </if>
             <if test="organization != null">
                 organization = #{organization, jdbcType=VARCHAR},
             </if>
@@ -166,13 +184,18 @@
             <if test="videoUrl != null">
                 video_url = #{videoUrl,jdbcType=VARCHAR},
             </if>
+            <if test="lastModifier != null">
+                last_modifier = #{lastModifier,jdbcType=VARCHAR},
+            </if>
+            <if test="lastIp != null">
+                last_ip = #{lastIp,jdbcType=VARCHAR},
+            </if>
         </set>
-        where pub_id = #{pubId,jdbcType=BIGINT}
+        where id = #{id,jdbcType=BIGINT}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.lion.entity.Publication">
     update t_publication
     set user_name = #{userName,jdbcType=VARCHAR},
-      author_name = #{authorName,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
@@ -182,7 +205,9 @@
       image_url = #{imageUrl,jdbcType=VARCHAR},
       text_url = #{textUrl,jdbcType=VARCHAR},
       slide_url = #{slideUrl,jdbcType=VARCHAR},
-      video_url = #{videoUrl,jdbcType=VARCHAR}
-    where pub_id = #{pubId,jdbcType=BIGINT}
+      video_url = #{videoUrl,jdbcType=VARCHAR},
+      last_modifier = #{lastModifier,jdbcType=VARCHAR},
+      last_ip = #{lastIp,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

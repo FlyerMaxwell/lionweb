@@ -70,7 +70,7 @@ public class UserController {
         }
 
         // 登录失败，跳转页面
-        request.setAttribute("Msg", "登录失败");
+        request.setAttribute("Msg", "Login Fail!");
         return "error";
     }
 
@@ -111,7 +111,7 @@ public class UserController {
     @RequestMapping(value = "/loginOut")
     public String loginOut(HttpServletRequest request) {
         request.getSession().removeAttribute("username");
-        return "/index";
+        return "redirect:/index";
     }
 
     //添加Publications

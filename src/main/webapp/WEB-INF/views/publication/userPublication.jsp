@@ -43,12 +43,12 @@
 
                                 <%--编辑操作--%>
                                 <td width="7%">
-                                    <a href="/publication/editPublication?username=${user.userName}&id=${publication.pubId}">edit</a>
+                                    <a href="/publication/editPublication?username=${user.userName}&id=${publication.id}">edit</a>
                                 </td>
                                 <%--管理员可进行删除操作--%>
                                 <c:if test="${user.userType == 0}">
                                     <td width="7%">
-                                        <a href="/publication/deletePublicationInfo?username=${user.userName}&id=${publication.pubId}">delete</a>
+                                        <a href="/publication/deletePublicationInfo?username=${user.userName}&id=${publication.id}">delete</a>
                                     </td>
                                 </c:if>
                             </tr>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-    <t_user user_id="1" user_name="DJ" password="1111111"/>
-    <t_user user_id="2" user_name="Agatha" password="19002000"/>
-    <t_user user_id="3" user_name="Mirror" password="7777777"/>
+    <t_user id="1" user_name="DJ" password="1111111"/>
+    <t_user id="2" user_name="Agatha" password="19002000"/>
+    <t_user id="3" user_name="Mirror" password="7777777"/>
 </dataset>

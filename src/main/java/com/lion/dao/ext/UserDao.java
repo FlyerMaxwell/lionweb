@@ -14,6 +14,9 @@ import java.util.List;
 //不添加@Repository如何注入到bean?
 @Repository
 public interface UserDao extends UserMapper{
+
+    List<User> selectAllUser();
+
     public User findUserByUserName(String username);
 
     public User findUserByUserId(int id);
@@ -25,8 +28,6 @@ public interface UserDao extends UserMapper{
     public void updateUserByUserName(User user);
 
     public String getUserPasswordByUserName(String username);
-
-    public List<User> getAllUserInfo();
 
     public User selectByUserName(String username);
 }
