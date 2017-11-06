@@ -65,6 +65,8 @@ public class UserController {
             loginLogService.addUserLoginLog(userLoginLog);
 
             // 登陆成功，跳转到主页
+            // 存在Session中,将在会话有效期内一直在服务器内存中维护这个值
+            // 如果使用request.setAtrribute再次添加将会导致session中值失效
             request.getSession().setAttribute("username", userName);
             return "redirect:/index";
         }
@@ -114,10 +116,5 @@ public class UserController {
         return "redirect:/index";
     }
 
-    //添加Publications
-//    @RequestMapping(value = "/addPublication",method = RequestMethod.POST)
-//    public String insertPublication(User user,HttpServletRequest request){
-//
-//    }
 
 }

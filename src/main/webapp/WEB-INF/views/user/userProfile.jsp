@@ -17,8 +17,10 @@
 </head>
 <body>
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
+
 <div id="body">
     <jsp:include page="../sideMenu.jsp" flush="true"></jsp:include>
+
 </div>
 <jsp:include page="../footer.jsp" flush="true"></jsp:include>
 </body>

@@ -14,7 +14,10 @@
             <a href="/user/userInfo">My Info</a>
         </li>
         <li>
-            <a href="/project/userProfile">My Project</a>
+            <a href="/news/userProfile?username=${username}">My News</a>
+        </li>
+        <li>
+            <a href="/project/userProfile?username=${username}">My Project</a>
         </li>
         <li>
             <a href="/publication/userProfile?username=${username}">My Publication</a>

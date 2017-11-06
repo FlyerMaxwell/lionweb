@@ -45,12 +45,12 @@
                                 <td width="7%">
                                     <a href="/publication/editPublication?username=${user.userName}&id=${publication.id}">edit</a>
                                 </td>
-                                <%--管理员可进行删除操作--%>
-                                <c:if test="${user.userType == 0}">
+                                <%--&lt;%&ndash;管理员可进行删除操作&ndash;%&gt;--%>
+                                <%--<c:if test="${user.userType == 0}">--%>
                                     <td width="7%">
                                         <a href="/publication/deletePublicationInfo?username=${user.userName}&id=${publication.id}">delete</a>
                                     </td>
-                                </c:if>
+                                <%--</c:if>--%>
                             </tr>
                         </c:forEach>
                     </c:otherwise>

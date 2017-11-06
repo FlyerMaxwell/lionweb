@@ -32,19 +32,16 @@
         </li>
 
         <li>
-            <a href="about.html">News</a>
+            <a href="/news">News</a>
         </li>
         <li>
-            <a href="location.html">Projects</a>
+            <a href="/project/">Projects</a>
         </li>
         <li>
             <a href="/publication">Publications</a>
         </li>
         <li>
-            <a href="blog.html">Members</a>
-        </li>
-        <li>
-            <a href="blog.html">Activities</a>
+            <a href="/member">Members</a>
         </li>
 
     </ul>

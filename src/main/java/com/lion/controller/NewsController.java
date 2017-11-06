@@ -33,7 +33,7 @@ public class NewsController {
 
     //显示news主页面
     @RequestMapping(value = "")
-    public String projectPage(HttpServletRequest request) {
+    public String newsPage(String username,HttpServletRequest request) {
         List<News> newsList = newsService.listAllNews();
         request.setAttribute("newsList", newsList);
         return "news/newsInfo";
@@ -41,18 +41,19 @@ public class NewsController {
 
     //用户个人news页面
     @RequestMapping(value = "userProfile", method = RequestMethod.GET)
-    public String userProject(String username, HttpServletRequest request) {
+    public String userNews(String username, HttpServletRequest request) {
         User user = userService.getUserByUserName(username);
         List<News> newsList = newsService.listNewsByUsername(username);
         request.setAttribute("newsList", newsList);
         request.setAttribute("user", user);
+        //request.setAttribute("username",username);
         return "news/userNews";
     }
 
     //显示news添加页面
     @RequestMapping(value = "addNews")
-    public String addProject(String username, HttpServletRequest request) {
-        request.setAttribute("username", username);
+    public String addNews(String username, HttpServletRequest request) {
+//        request.setAttribute("username", username);
         return "news/newsAdd";
     }
 
@@ -94,19 +95,19 @@ public class NewsController {
         newsService.addNewNews(news);
 
         redirectAttributes.addAttribute("username", news.getUserName());
-        return "redirect:/project/userProfile";
+        return "redirect:/news/userProfile";
     }
 
     //编辑news
     @RequestMapping(value = "editNews", method = RequestMethod.GET)
     public String editNews(String username, Long id, HttpServletRequest request) {
         News news = newsService.getNewsById(id);
-        request.setAttribute("username", username);
+//        request.setAttribute("username", username);
         request.setAttribute("news", news);
         return "news/newsEdit";
     }
 
-    //提交编辑后的project
+    //提交编辑后的news
     @RequestMapping(value = "editNewsInfo", method = RequestMethod.POST)
     public String editNewsInfo(String username, Long id,
                                @RequestParam(value = "title") String title,
@@ -157,4 +158,14 @@ public class NewsController {
         redirectAttributes.addAttribute("username", username);
         return "redirect:/news/userProfile";
     }
+
+    //news详情页
+    @RequestMapping(value = "newsDetail", method = RequestMethod.GET)
+    public String newsDetail(String username,Long id,HttpServletRequest request){
+        News news=newsService.getNewsById(id);
+        request.setAttribute("news",news);
+//        request.setAttribute("username",username);
+        return "news/newsDetail";
+    }
+
 }

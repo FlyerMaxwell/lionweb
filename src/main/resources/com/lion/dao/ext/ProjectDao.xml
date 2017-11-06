@@ -34,7 +34,7 @@
         pro.last_ip as lastIp
         FROM t_project pro
         LEFT JOIN t_project_user pu ON pro.id=pu.pro_id
-        WHERE pu.user_id=#{useId}
+        WHERE pu.user_id=#{userId}
     </select>
 
 

@@ -37,7 +37,9 @@ body {
 #header {
     /*background: url(../../../images/bg-header.jpg) repeat-x;*/
     margin: 0;
-    padding: 18px 0 0;
+    /*padding: 18px 0 0;*/
+    padding: 0;
+    text-align: center;
 }
 #header a.logo {
     display: block;
@@ -50,10 +52,12 @@ body {
     border: 0;
     display: block;
 }
+
 #header ul {
     margin: 0 auto;
     overflow: hidden;
-    padding: 15px 0 22px;
+    /*padding: 15px 0 22px;*/
+    padding:0;
     text-align: center;
     width: 960px;
 }
@@ -61,7 +65,7 @@ body {
     float: left;
     list-style: none;
     margin: 0 0 0 66px;
-;
+    text-align:center;
     padding: 0;
 }
 #header ul li:first-child {

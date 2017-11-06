@@ -94,4 +94,27 @@ public class AdminController {
         request.setAttribute("Msg","Null User Info!");
         return "error";
     }
+
+    @RequestMapping(value="memberEdit",method = RequestMethod.GET)
+    public String memberEdit(String admin,HttpServletRequest request){
+        request.setAttribute("admin",admin);
+        return "admin/memberEdit";
+    }
+
+    @RequestMapping(value="memberEditInfo",method = RequestMethod.POST)
+    public String memberEditInfo(String adminName, String userName, String userEmail,
+                                Integer userSex, String userPhone, Integer userType,
+                                Integer userState, HttpServletRequest request,
+                                RedirectAttributes redirectAttributes){
+        User updateUser=userService.getUserByUserName(userName);
+        updateUser.setUserName(userName);
+        updateUser.setUserEmail(userEmail);
+        updateUser.setUserSex(userSex);
+        updateUser.setUserPhone(userPhone);
+        updateUser.setUserType(userType);
+        updateUser.setUserState(userState);
+
+        redirectAttributes.addAttribute("adminName",adminName);
+        return "redirect:admin/memberInfo";
+    }
 }

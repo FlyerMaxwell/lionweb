@@ -23,7 +23,8 @@ public class FileHandler {
         //写文件到服务器
         File serverFile=new File(dir.getAbsolutePath()+File.separator+file.getOriginalFilename());
         file.transferTo(serverFile);
-        return rootPath+File.separator+serverFile.getName();
+//        return rootPath+File.separator+serverFile.getName();
+        return rootPath+"/"+serverFile.getName();
     }
 
     //文件或目录删除
