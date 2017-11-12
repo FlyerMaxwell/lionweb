@@ -2,18 +2,18 @@
 :root{
     --color1:#0066CC;
     --color2:#5599FF;
-    --color3:#0066;
+
 }
 
-@font-face {
+/*@font-face {
     font-family: 'Conv_Ubuntu-Light';
     src: url('../fonts/Ubuntu-Light.eot');
     src: url('../fonts/Ubuntu-Light.woff') format('woff'), url('../fonts/Ubuntu-Light.ttf') format('truetype'), url('../fonts/Ubuntu-Light.svg') format('svg');
-}
+}*/
 body {
     /*background: url(../../../images/bg-body.jpg) repeat;*/
     /*font-family: 'Conv_Ubuntu-Light';*/
-    font-family: sans-serif;
+    font-family: Comic Sans MS,sans-serif;
     font-size: 14px;
     font-weight: normal;
     line-height: 1;
@@ -332,7 +332,7 @@ body {
     padding: 20px 0;
     text-transform: capitalize;
 }
-#body .content h3 {
+/*#body .content h3 {
     background: url(../images/icons.png) no-repeat 0 -350px;
     color: #767676;
     font-size: 14px;
@@ -355,7 +355,7 @@ body {
 
 #bode .content ul a .add:hover{
     background-position: 0 -43px;
-}
+}*/
 
 #body .content p {
     color: #767676;
@@ -369,6 +369,86 @@ body {
 }
 #body .content p a:hover {
     color: #333;
+}
+#body .content .container li{
+    list-style: none;
+}
+#body .content .container .row{
+    border: dotted;
+    border-width: medium;
+    border-color:#5599FF;
+    margin:5px;
+    border-radius: 15px;
+
+}
+#body .content .container a{
+    text-decoration: none;
+}
+#body .content .container a:link{
+    color:#5599FF;
+}
+#body .content .container a:visited{
+    color:#000079;
+}
+#body .content .container a:hover{
+    color:#0066CC;
+}
+#body .content-display{
+    float:left;
+    margin: 0 10px 0 10px;
+    padding: 0px;
+    width: 940px;
+}
+#body .content-display h2 {
+    color: #97aeb3;
+    font-size: 24px;
+    font-weight: normal;
+    margin: 0;
+    padding: 20px 0;
+    text-transform: capitalize;
+}
+#body .content-display p {
+    color: #767676;
+    line-height: 30px;
+    margin: 0;
+    padding: 20px 0;
+}
+#body .content-display p a {
+    color: #767676;
+    text-decoration: underline;
+}
+#body .content-display p a:hover {
+    color: #333;
+}
+#body .content-display .container li{
+    list-style: none;
+}
+#body .content-display .container .row{
+    border: dotted;
+    border-width: medium;
+    border-color:#5599FF;
+    margin:5px;
+    border-radius: 15px;
+
+}
+#body .content-display .container a{
+    text-decoration: none;
+}
+#body .content-display .container a:link{
+    color:#5599FF;
+}
+#body .content-display .container a:visited{
+    color:#000079;
+}
+#body .content-display .container a:hover{
+    color:#0066CC;
+    text-decoration: underline;
+}
+#body .content-display .container a.more{
+    float:right;
+    margin:20px;
+    color: #5599FF;
+    text-decoration: none;
 }
 #body > ul {
     margin: 0;
@@ -403,7 +483,7 @@ body {
     border: 1px solid #fff;
     display: block;
 }
-#body ul li .article {
+/*#body ul li .article {
     float: left;
     margin: 0;
     padding: 0;
@@ -445,54 +525,10 @@ body {
     text-transform: uppercase;
 }
 /*#body id | ul li 派生选择器 .article class*/
-#body ul li .article ul li a:hover {
+/*#body ul li .article ul li a:hover {
     color: #386370;
-}
-#body .content .section {
-    margin: 0;
-    overflow: hidden;
-    padding: 10px 0 0;
-}
-#body .content .section div {
-    float: left;
-    margin: 0 0 0 24px;
-    padding: 0;
-    width: 210px;
-}
-#body .content .section div span {
-    background: #ffe600;
-    color: #767676;
-    display: block;
-    line-height: 30px;
-    margin: 0;
-    padding: 0 0 0 10px;
-    text-transform: uppercase;
-}
-#body .content .section div:first-child {
-    margin: 0;
-}
-#body .content .section div ul {
-    margin: 0;
-    padding: 10px 0 10px 10px;
-}
-#body .content .section div ul.last {
-    border-top: 2px solid #ffe600;
-}
-#body .content .section div ul li {
-    color: #767676;
-    line-height: 30px;
-    list-style: none;
-    margin: 0;
-    padding: 15px 0;
-    text-transform: uppercase;
-}
-#body .content .section div ul ul {
-    padding: 0;
-}
-#body .content .section div ul ul li {
-    text-transform: capitalize;
-    padding: 0;
-}
+}*/
+
 #body .content form {
     margin: 0;
     padding: 0;
@@ -754,6 +790,8 @@ body {
     border-top: 2px solid #1E90FF;
     margin: 2px 0 0;
     padding: 16px 0;
+    /*avoid format bug caused by float element*/
+    /*clear: left*/
 }
 #footer div {
     margin: 0 auto;
