@@ -161,10 +161,9 @@ public class NewsController {
 
     //news详情页
     @RequestMapping(value = "newsDetail", method = RequestMethod.GET)
-    public String newsDetail(String username,Long id,HttpServletRequest request){
+    public String newsDetail(Long id,HttpServletRequest request){
         News news=newsService.getNewsById(id);
         request.setAttribute("news",news);
-//        request.setAttribute("username",username);
         return "news/newsDetail";
     }
 

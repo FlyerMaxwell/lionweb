@@ -29,4 +29,12 @@ public class PublicationUserServiceImpl implements PublicationUserService{
     public int deleteRecordById(Long userId,Long pubId) {
         return publicationUserDao.deleteRecordById(userId,pubId);
     }
+
+    public int deleteRecordByPubId(Long pubId) {
+        return publicationUserDao.deleteRecordByPubId(pubId);
+    }
+
+    public int deleteRecordByUserId(Long userId) {
+        return publicationUserDao.deleteRecordByUserId(userId);
+    }
 }

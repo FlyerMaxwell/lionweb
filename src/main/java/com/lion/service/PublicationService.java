@@ -15,6 +15,8 @@ public interface PublicationService {
 
     List<Publication> listPublicationByUserId(Long id);
 
+    List<Publication> listLatestPub(int num);
+
     int addNewPublication(Publication publication);
 
     int editPublication(Publication publication);

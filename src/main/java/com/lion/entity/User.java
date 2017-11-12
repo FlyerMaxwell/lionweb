@@ -23,6 +23,12 @@ public class User {
 
     private String password;
 
+    private String imageUrl;
+
+    private String description;
+
+    private String detail;
+
     private String userEmail;
 
     private Integer userSex;
@@ -68,7 +74,7 @@ public class User {
     }
 
     public void setAdminName(String adminName) {
-        this.adminName = adminName;
+        this.adminName = adminName == null ? null : adminName.trim();
     }
 
     public String getPassword() {
@@ -77,6 +83,30 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password == null ? null : password.trim();
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl == null ? null : imageUrl.trim();
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description == null ? null : description.trim();
+    }
+
+    public String getDetail() {
+        return detail;
+    }
+
+    public void setDetail(String detail) {
+        this.detail = detail == null ? null : detail.trim();
     }
 
     public String getUserEmail() {
@@ -100,7 +130,7 @@ public class User {
     }
 
     public void setUserPhone(String userPhone) {
-        this.userPhone = userPhone;
+        this.userPhone = userPhone == null ? null : userPhone.trim();
     }
 
     public Date getCreateTime() {

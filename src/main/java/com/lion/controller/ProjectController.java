@@ -208,7 +208,7 @@ public class ProjectController {
         publicationList=tempList;
         oldPubList.removeAll(publicationList);
         for(Long oldPubId:oldPubList){
-            projectPublicationService.deleteRecordByPubId(oldPubId,id);
+            projectPublicationService.deleteRecordById(oldPubId,id);
         }
 
         redirectAttributes.addAttribute("username",project.getUserName());
@@ -223,8 +223,18 @@ public class ProjectController {
         FileHandler.deleteFile(project.getSlideUrl());
         FileHandler.deleteFile(project.getVideoUrl());
         projectService.deleteProject(id);
+        projectPublicationService.deleteRecordByProId(id);
+        projectUserService.deleteRecordByProId(id);
         redirectAttributes.addAttribute("username",username);
         return "redirect:/project/userProfile";
+    }
+
+    //显示project详情
+    @RequestMapping(value = "projectDetail")
+    public String projectDetail(Long id,HttpServletRequest request){
+        Project project=projectService.getProjectById(id);
+        request.setAttribute("project",project);
+        return "project/projectDetail";
     }
 
     private void batchInsertProUser(List<Long> authorList,Project project,

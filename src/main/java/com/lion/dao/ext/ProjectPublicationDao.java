@@ -15,6 +15,10 @@ public interface ProjectPublicationDao extends ProjectPublicationMapper{
 
     List<Long> selectPubIdByProId(@Param("proId") Long proId);
 
-    int deleteRecordByPubId(@Param("pubId") Long pubId,@Param("proId") Long proId);
+    int deleteRecordById(@Param("pubId") Long pubId,@Param("proId") Long proId);
+
+    int deleteRecordByProId(@Param("proId") Long proId);
+
+    int deleteRecordByPubId(@Param("pubId") Long pubId);
 
 }

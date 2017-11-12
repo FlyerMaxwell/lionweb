@@ -13,5 +13,9 @@ public interface ProjectUserService {
 
     int deleteRecordById(Long userId,Long proId);
 
+    int deleteRecordByProId(Long proId);
+
+    int deleteRecordByUserId(Long userId);
+
     int addRecord(ProjectUser record);
 }

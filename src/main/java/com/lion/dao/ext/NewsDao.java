@@ -18,4 +18,6 @@ public interface NewsDao extends NewsMapper{
 
     List<News> selectNewsByUsername(@Param("username") String username);
 
+    List<News> selectLatestNews(@Param("num") int num);
+
 }

@@ -14,6 +14,8 @@ public interface NewsService {
 
     List<News> listNewsByUsername(String username);
 
+    List<News> listLatestNews(int num);
+
     int addNewNews(News record);
 
     News getNewsById(Long id);

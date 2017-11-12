@@ -22,7 +22,7 @@ public class ResourceController {
                             HttpServletResponse response, String imagePath) throws IOException {
         //如果没有图片显示默认图片
         if(imagePath == null || imagePath.equals("")){
-            imagePath = request.getSession().getServletContext().getRealPath("static/img/default.jpg");
+            imagePath = request.getSession().getServletContext().getRealPath("statics/images/default.jpg");
         }
         FileInputStream in;
         response.setContentType("application/octet-stream;charset=UTF-8");

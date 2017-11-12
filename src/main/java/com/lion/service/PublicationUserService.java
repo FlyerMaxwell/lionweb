@@ -15,4 +15,8 @@ public interface PublicationUserService {
     List<Long> listUserIdByPubId(Long id);
 
     int deleteRecordById(Long userId,Long pubId);
+
+    int deleteRecordByPubId(Long pubId);
+
+    int deleteRecordByUserId(Long userId);
 }

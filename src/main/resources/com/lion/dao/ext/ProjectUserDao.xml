@@ -21,5 +21,15 @@
         AND pro_id=#{proId,jdbcType=BIGINT}
     </delete>
 
+    <delete id="deleteRecordByProId" parameterType="java.lang.Long">
+        DELETE FROM t_project_user
+        WHERE pro_id=#{proId,jdbcType=BIGINT}
+    </delete>
+
+    <delete id="deleteRecordByUserId" parameterType="java.lang.Long">
+        DELETE FROM t_project_user
+        WHERE user_id=#{userId,jdbcType=BIGINT}
+    </delete>
+
 
 </mapper>

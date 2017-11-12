@@ -22,8 +22,16 @@ public class ProjectPublicationServiceImpl implements ProjectPublicationService{
         return projectPublicationDao.selectPubIdByProId(id);
     }
 
-    public int deleteRecordByPubId(Long pubId,Long proId) {
-        return projectPublicationDao.deleteRecordByPubId(pubId,proId);
+    public int deleteRecordById(Long pubId,Long proId) {
+        return projectPublicationDao.deleteRecordById(pubId,proId);
+    }
+
+    public int deleteRecordByProId(Long proId) {
+        return projectPublicationDao.deleteRecordByProId(proId);
+    }
+
+    public int deleteRecordByPubId(Long pubId) {
+        return projectPublicationDao.deleteRecordByPubId(pubId);
     }
 
     public int addRecord(ProjectPublication record) {

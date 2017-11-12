@@ -14,6 +14,12 @@ public interface UserService {
 
     User getUserByUserName(String name);
 
+    User getUserByUserId(Long id);
+
+    User getUserByEmail(String email);
+
+    int deleteUser(Long id);
+
     void updateUserByUserId(User user);
 
     void addUser(User user);

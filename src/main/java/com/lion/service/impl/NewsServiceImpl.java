@@ -26,6 +26,10 @@ public class NewsServiceImpl implements NewsService{
         return newsDao.selectNewsByUsername(username);
     }
 
+    public List<News> listLatestNews(int num) {
+        return newsDao.selectLatestNews(num);
+    }
+
     public int addNewNews(News record) {
         return newsDao.insertSelective(record);
     }

@@ -4,9 +4,12 @@
   <resultMap id="BaseResultMap" type="com.lion.entity.User">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
-    <result column="admin_id" jdbcType="BIGINT" property="admin_id"/>
-    <result column="admin_name" jdbcType="BIGINT" property="admin_name"/>
+    <result column="admin_id" jdbcType="BIGINT" property="adminId" />
+    <result column="admin_name" jdbcType="VARCHAR" property="adminName" />
     <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="image_url" jdbcType="VARCHAR" property="imageUrl" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="detail" jdbcType="VARCHAR" property="detail" />
     <result column="user_email" jdbcType="VARCHAR" property="userEmail" />
     <result column="user_sex" jdbcType="INTEGER" property="userSex" />
     <result column="user_phone" jdbcType="VARCHAR" property="userPhone" />
@@ -17,8 +20,8 @@
     <result column="last_ip" jdbcType="VARCHAR" property="lastIp" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, user_name, admin_id, admin_name, password, user_email, user_sex, user_phone, create_time, user_type,
-    user_state, last_login_time, last_ip
+    id, user_name, admin_id, admin_name, password, image_url, description, detail, user_email, 
+    user_sex, user_phone, create_time, user_type, user_state, last_login_time, last_ip
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
@@ -31,15 +34,18 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.lion.entity.User">
-    insert into t_user (id, user_name,
-      admin_id, admin_name, password,
-      user_email, user_sex, user_phone, 
-      create_time, user_type, user_state, 
-      last_login_time, last_ip)
-    values (#{id,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
-      #{userEmail,jdbcType=VARCHAR}, #{userSex,jdbcType=INTEGER}, #{userPhone,jdbcType=VARCHAR},
-      #{createTime,jdbcType=TIMESTAMP}, #{userType,jdbcType=INTEGER}, #{userState,jdbcType=INTEGER}, 
-      #{lastLoginTime,jdbcType=TIMESTAMP}, #{lastIp,jdbcType=VARCHAR})
+    insert into t_user (id, user_name, admin_id, 
+      admin_name, password, image_url, 
+      description, detail, user_email, 
+      user_sex, user_phone, create_time, 
+      user_type, user_state, last_login_time, 
+      last_ip)
+    values (#{id,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{adminId,jdbcType=BIGINT}, 
+      #{adminName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{imageUrl,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{detail,jdbcType=VARCHAR}, #{userEmail,jdbcType=VARCHAR}, 
+      #{userSex,jdbcType=INTEGER}, #{userPhone,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{userType,jdbcType=INTEGER}, #{userState,jdbcType=INTEGER}, #{lastLoginTime,jdbcType=TIMESTAMP}, 
+      #{lastIp,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.lion.entity.User">
     insert into t_user
@@ -58,6 +64,15 @@
       </if>
       <if test="password != null">
         password,
+      </if>
+      <if test="imageUrl != null">
+        image_url,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="detail != null">
+        detail,
       </if>
       <if test="userEmail != null">
         user_email,
@@ -91,8 +106,23 @@
       <if test="userName != null">
         #{userName,jdbcType=VARCHAR},
       </if>
+      <if test="adminId != null">
+        #{adminId,jdbcType=BIGINT},
+      </if>
+      <if test="adminName != null">
+        #{adminName,jdbcType=VARCHAR},
+      </if>
       <if test="password != null">
         #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="imageUrl != null">
+        #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null">
+        #{detail,jdbcType=VARCHAR},
       </if>
       <if test="userEmail != null">
         #{userEmail,jdbcType=VARCHAR},
@@ -126,8 +156,23 @@
       <if test="userName != null">
         user_name = #{userName,jdbcType=VARCHAR},
       </if>
+      <if test="adminId != null">
+        admin_id = #{adminId,jdbcType=BIGINT},
+      </if>
+      <if test="adminName != null">
+        admin_name = #{adminName,jdbcType=VARCHAR},
+      </if>
       <if test="password != null">
         password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="imageUrl != null">
+        image_url = #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null">
+        detail = #{detail,jdbcType=VARCHAR},
       </if>
       <if test="userEmail != null">
         user_email = #{userEmail,jdbcType=VARCHAR},
@@ -154,12 +199,17 @@
         last_ip = #{lastIp,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.lion.entity.User">
     update t_user
     set user_name = #{userName,jdbcType=VARCHAR},
+      admin_id = #{adminId,jdbcType=BIGINT},
+      admin_name = #{adminName,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
+      image_url = #{imageUrl,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      detail = #{detail,jdbcType=VARCHAR},
       user_email = #{userEmail,jdbcType=VARCHAR},
       user_sex = #{userSex,jdbcType=INTEGER},
       user_phone = #{userPhone,jdbcType=VARCHAR},

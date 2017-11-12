@@ -11,27 +11,25 @@
 <div id="body">
     <jsp:include page="../sideMenu.jsp" flush="true"></jsp:include>
     <div class="content">
-        <h2>Add New Member</h2>
-        <form method="POST" action="/admin/addMemberInfo?adminName=${username}" enctype="multipart/form-data">
+        <h2>Edit Member</h2>
+        <form method="POST" action="/admin/editMemberInfo?adminName=${username}&id=${user.id}"
+              enctype="multipart/form-data">
             <label for="image"> <span>Image</span>
                 <a href="javascript:;" class="file">
-                    <input type="file" name="image" id="image" >
+                    <input type="file" name="image" id="image">
                 </a>
             </label>
-            <label for="username"> <span>Username *</span>
-                <input type="text" name="username" id="username">
-            </label>
             <label for="email"> <span>Email *</span>
-                <input type="text" name="email" id="email">
+                <input type="text" name="email" id="email" value="${user.userEmail}">
             </label>
             <label for="phone"> <span>Telephone *</span>
-                <input type="text" name="phone" id="phone">
+                <input type="text" name="phone" id="phone" value="${user.userPhone}">
             </label>
             <label for="description"> <span>Description *</span>
-                <textarea name="description" id="description" cols="10" rows="3"></textarea>
+                <textarea name="description" id="description" cols="10" rows="3">${user.description}</textarea>
             </label>
             <label for="detail"> <span>Detail</span>
-                <textarea name="detail" id="detail" cols="30" rows="10"></textarea>
+                <textarea name="detail" id="detail" cols="30" rows="10">${user.detail}</textarea>
             </label>
             <label><span>Gender *</span>
                 <input id="gender0" type="radio" name="gender" value=1 checked="checked"/>
@@ -54,8 +52,8 @@
             <input type="submit" value="" id="submit">
         </form>
     </div>
-
 </div>
 <jsp:include page="../footer.jsp" flush="true"></jsp:include>
+
 </body>
 </html>

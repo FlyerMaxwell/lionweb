@@ -1,8 +1,10 @@
 package com.lion.controller;
 
+import com.lion.entity.ProjectPublication;
 import com.lion.entity.Publication;
 import com.lion.entity.PublicationUser;
 import com.lion.entity.User;
+import com.lion.service.ProjectPublicationService;
 import com.lion.service.PublicationService;
 import com.lion.service.PublicationUserService;
 import com.lion.service.UserService;
@@ -17,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -36,6 +39,9 @@ public class PublicationController {
 
     @Autowired
     PublicationUserService publicationUserService;
+
+    @Autowired
+    ProjectPublicationService projectPublicationService;
 
     //显示publication主页面
     @RequestMapping(value = "")
@@ -58,7 +64,9 @@ public class PublicationController {
     //显示publication添加页面
     @RequestMapping(value = "addPublication")
     public String addPublication(String username,HttpServletRequest request){
+        List<User> users=userService.listAllUser();
         request.setAttribute("username",username);
+        request.setAttribute("users",users);
         return "publication/publicationAdd";
     }
     //提交新publication
@@ -72,7 +80,7 @@ public class PublicationController {
                                      @RequestParam(value = "text", required = false) MultipartFile text,
                                      @RequestParam(value = "slide", required = false) MultipartFile slide,
                                      @RequestParam(value = "video", required = false) MultipartFile video,
-                                     @RequestParam(value = "authorList") List<Long> authorList,
+                                     @RequestParam(value = "members") String members,
                                      HttpServletRequest request,
                                      RedirectAttributes redirectAttributes){
         Publication publication=new Publication();
@@ -115,6 +123,11 @@ public class PublicationController {
 
         //添加文章作者关联记录
         //TODO 一次插入多条效率更高，此处不是非常需要
+        String[] temp=members.split(",");
+        List<Long> authorList=new ArrayList<Long>();
+        for(String s:temp){
+            authorList.add(Long.parseLong(s.trim()));
+        }
         batchInsertPubUser(authorList,publication,username,request);
 
         redirectAttributes.addAttribute("username",publication.getUserName());
@@ -140,7 +153,7 @@ public class PublicationController {
                                       @RequestParam(value = "text", required = false) MultipartFile text,
                                       @RequestParam(value = "slide", required = false) MultipartFile slide,
                                       @RequestParam(value = "video", required = false) MultipartFile video,
-                                      @RequestParam(value = "authorList") List<Long> authorList,
+                                      @RequestParam(value = "members") String members,
                                       HttpServletRequest request,
                                       RedirectAttributes redirectAttributes) {
         Publication publication=publicationService.getPublicationById(id);
@@ -183,6 +196,11 @@ public class PublicationController {
 
         publicationService.editPublication(publication);
         List<Long> oldAuthorList=publicationUserService.listUserIdByPubId(id);
+        String[] temp=members.split(",");
+        List<Long> authorList=new ArrayList<Long>();
+        for(String s:temp){
+            authorList.add(Long.parseLong(s.trim()));
+        }
         List<Long> tempList=authorList;
         authorList.removeAll(oldAuthorList);
         batchInsertPubUser(authorList,publication,username,request);
@@ -204,8 +222,18 @@ public class PublicationController {
         FileHandler.deleteFile(publication.getSlideUrl());
         FileHandler.deleteFile(publication.getVideoUrl());
         publicationService.deletePublication(id);
+        publicationUserService.deleteRecordByPubId(id);
+        projectPublicationService.deleteRecordByPubId(id);
         redirectAttributes.addAttribute("username",username);
         return "redirect:/publication/userProfile";
+    }
+
+    //显示publication详情
+    @RequestMapping(value = "publicationDetail")
+    public String publicationDetail(Long id,HttpServletRequest request){
+        Publication publication=publicationService.getPublicationById(id);
+        request.setAttribute("publication",publication);
+        return "publication/publicationDetail";
     }
 
     private void batchInsertPubUser(List<Long> authorList,Publication publication,

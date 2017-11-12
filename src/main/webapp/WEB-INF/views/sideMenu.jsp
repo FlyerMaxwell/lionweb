@@ -11,16 +11,24 @@
     <h3>My Profile</h3>
     <ul>
         <li>
-            <a href="/user/userInfo">My Info</a>
+            <a href="<%=request.getContextPath() %>/member/memberDetail?username=${username}">My Info</a>
         </li>
         <li>
-            <a href="/news/userProfile?username=${username}">My News</a>
+            <a href="<%=request.getContextPath() %>/news/userProfile?username=${username}">My News</a>
         </li>
         <li>
-            <a href="/project/userProfile?username=${username}">My Project</a>
+            <a href="<%=request.getContextPath() %>/project/userProfile?username=${username}">My Project</a>
         </li>
         <li>
-            <a href="/publication/userProfile?username=${username}">My Publication</a>
+            <a href="<%=request.getContextPath() %>/publication/userProfile?username=${username}">My Publication</a>
         </li>
     </ul>
+    <c:if test="${userType == 0}">
+        <h3>Admin Panel</h3>
+        <ul>
+            <li>
+                <a href="<%=request.getContextPath() %>/admin/memberInfo">All Members</a>
+            </li>
+        </ul>
+    </c:if>
 </div>

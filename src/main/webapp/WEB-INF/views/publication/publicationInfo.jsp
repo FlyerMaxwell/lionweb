@@ -13,7 +13,7 @@
 <head>
     <meta charset="UTF-8">
     <title>LION</title>
-    <link rel="stylesheet" href="/statics/css/style.css" type="text/css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/statics/css/style.css" type="text/css">
 </head>
 <body>
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
@@ -31,7 +31,7 @@
                         <c:forEach items="${publications}" var="publication">
                             <tr height="100px">
                                 <td width="20%">
-                                    <img src="/statics/images/button-submit.png">
+                                    <img src="<%=request.getContextPath() %>/statics/images/button-submit.png">
                                 </td>
                                 <td width="80">
                                     ${publication.title}

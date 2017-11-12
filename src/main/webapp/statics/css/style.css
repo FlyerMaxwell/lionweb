@@ -12,7 +12,8 @@
 }
 body {
     /*background: url(../../../images/bg-body.jpg) repeat;*/
-    font-family: 'Conv_Ubuntu-Light';
+    /*font-family: 'Conv_Ubuntu-Light';*/
+    font-family: sans-serif;
     font-size: 14px;
     font-weight: normal;
     line-height: 1;
@@ -56,24 +57,24 @@ body {
 #header ul {
     margin: 0 auto;
     overflow: hidden;
-    /*padding: 15px 0 22px;*/
-    padding:0;
+    padding: 20px 0;
     text-align: center;
     width: 960px;
 }
 #header ul li {
     float: left;
     list-style: none;
-    margin: 0 0 0 66px;
+    margin: 0 0 0 0;
     text-align:center;
     padding: 0;
+    width:20%;
 }
-#header ul li:first-child {
+/*#header ul li:first-child {
     margin: 0 0 0 15px;
-}
+}*/
 #header ul li a {
     color: var(--color1);
-    display: block;
+    /*display: block;*/
     height: 37px;
     line-height: 40px;
     margin: 0;
@@ -81,6 +82,9 @@ body {
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
+    display:inline-block;
+    *display:inline;
+    *zoom:1;
 }
 #header ul li a:hover {
     color: #1E90FF;
@@ -245,7 +249,7 @@ body {
     width: 960px;
 }
 #body .sidebar {
-    background: #94acb3;
+    background: var(--color2);
     float: left;
     margin: 0 10px 0 20px;
     padding: 0 0 10px;
@@ -440,6 +444,7 @@ body {
     text-decoration: none;
     text-transform: uppercase;
 }
+/*#body id | ul li 派生选择器 .article class*/
 #body ul li .article ul li a:hover {
     color: #386370;
 }
@@ -492,13 +497,13 @@ body {
     margin: 0;
     padding: 0;
 }
-#body .content form label {
+#body .content form > label {
     display: block;
     margin: 0;
     overflow: hidden;
     padding: 10px 0;
 }
-#body .content form label span {
+#body .content form > label span {
     color: #767676;
     display: block;
     float: left;
@@ -508,7 +513,7 @@ body {
     text-transform: capitalize;
     width: 130px;
 }
-#body .content form label input {
+#body .content form label input[type='text'] {
     border: 1px solid #94acb3;
     color: #767676;
     display: block;
@@ -519,6 +524,19 @@ body {
     margin: 0;
     padding: 3px 5px;
     width: 308px;
+}
+#body .content form label input[type='radio'] {
+    border: 1px solid #94acb3;
+    color: #767676;
+    font-family: 'Conv_Ubuntu-Light';
+    font-size: 14px;
+    margin: 0;
+    padding: 3px 5px;
+    width: 50px;
+}
+#body .content form > label > label{
+    width:70px;
+    display:inline-block;
 }
 #body .content form label textarea {
     border: 1px solid #94acb3;
@@ -702,6 +720,36 @@ body {
 #body #sidebar div ul li a:hover {
     text-decoration: underline;
 }
+
+#body #members{
+    display: none;
+}
+#body #checkbox{
+    width:100px;
+    height:100px;
+    color: black;
+    margin-left: 130px;
+    border:2px solid black;
+    overflow:scroll;
+    display: inline-block;
+}
+#body #checkbox input{
+
+    width:21px;
+    height:21px;
+
+    display: inline-block;
+}
+
+#body #checkbox-pre{
+    padding-left:130px;
+}
+#body #checkbox-pre p{
+    height: 24px;
+    padding:0px;
+    padding-bottom:10px;
+}
+
 #footer {
     border-top: 2px solid #1E90FF;
     margin: 2px 0 0;

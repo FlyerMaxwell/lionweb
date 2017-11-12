@@ -13,16 +13,15 @@
 <head>
     <meta charset="UTF-8">
     <title>LION</title>
-    <link rel="stylesheet" href="/statics/css/style.css" type="text/css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/statics/css/style.css" type="text/css">
 </head>
 <body>
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
 <div id="body">
     <jsp:include page="../sideMenu.jsp" flush="true"></jsp:include>
     <div class="content">
-        <img src="images/telephone.jpg" alt="">
         <h2>Add New Publication</h2>
-        <form method="POST" action="/publication/addPublicationInfo?username=${username}" enctype="multipart/form-data">
+        <form method="POST" action="<%=request.getContextPath() %>/publication/addPublicationInfo?username=${username}" enctype="multipart/form-data">
             <label for="title"> <span>Title *</span>
                 <input type="text" name="title" id="title">
             </label>
@@ -31,6 +30,9 @@
             </label>
             <label for="organization"> <span>Organization*</span>
                 <input type="text" name="organization" id="organization">
+            </label>
+            <label for="description"> <span>Description*</span>
+                <input type="text" name="description" id="description">
             </label>
             <label for="image"> <span>Image*</span>
 
@@ -50,6 +52,21 @@
                     <input type="file" name="slide" id="slide" >
                 </a>
             </label>
+
+            <label for="members">
+                <span>Members*</span>
+                <input type="text" name="members" id="members">
+                <div id="checkbox-pre">
+                </div>
+            </label>
+
+            <span id="checkbox">
+                <c:forEach items="${users}" var="user">
+                    <input type="checkbox" value="${user.id}" name="${user.userName}" onclick="display()"/>
+                    ${user.userName}<br />
+                </c:forEach>
+            </span>
+
             <input type="submit" value="" id="submit">
         </form>
     </div>
@@ -58,3 +75,34 @@
 <jsp:include page="../footer.jsp" flush="true"></jsp:include>
 </body>
 </html>
+
+<script>
+    function display()
+    {
+        var objform=document.getElementById("checkbox");
+        var objtext=document.getElementById("members");
+        var objdisplay=document.getElementById("checkbox-pre");
+
+        var memberlist=objform.getElementsByTagName("input");
+        var idstr="";
+        //remove all childs
+        while(objdisplay.hasChildNodes())
+        {
+            objdisplay.removeChild(objdisplay.firstChild);
+        }
+
+        //add new childs
+        for(var i=0;i<memberlist.length;i++)
+        {
+            if(memberlist[i].checked==true)
+            {
+                var objp=document.createElement("p");
+                objp.innerText=memberlist[i].name;
+                idstr = idstr + String(memberlist[i].value)+",";
+                objdisplay.appendChild(objp);
+            }
+        }
+        idstr=idstr.substring(0,idstr.length-1);
+        objtext.value = idstr;
+    }
+</script>

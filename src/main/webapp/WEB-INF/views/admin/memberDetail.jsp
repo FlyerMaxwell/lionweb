@@ -10,9 +10,6 @@
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
 <div id="body">
     <div class="content">
-        <ul>
-            <a href="/member/editMember?username=${username}" class="add">Edit</a>
-        </ul>
         <div>
             <table width="1000px" border="0" id="list">
                 <tr height="100px">

@@ -17,4 +17,6 @@ public interface PublicationDao extends PublicationMapper{
 
     List<Publication> selectPublicationByUserId(@Param("userId") Long userId);
 
+    List<Publication> selectLatestPublication(@Param("num") int num);
+
 }

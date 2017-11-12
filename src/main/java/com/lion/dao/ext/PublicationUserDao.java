@@ -17,4 +17,8 @@ public interface PublicationUserDao extends PublicationUserMapper{
     List<Long> selectUserIdByPubId(@Param("pubId") Long pubId);
 
     int deleteRecordById(@Param("userId") Long userId,@Param("pubId") Long pubId);
+
+    int deleteRecordByPubId(@Param("pubId") Long pubId);
+
+    int deleteRecordByUserId(@Param("userId") Long userId);
 }

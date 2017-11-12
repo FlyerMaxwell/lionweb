@@ -16,4 +16,8 @@ public interface ProjectUserDao extends ProjectUserMapper{
     List<Long> selectUserIdByProId(@Param("proId") Long proId);
 
     int deleteRecordById(@Param("userId") Long userId,@Param("proId") Long proId);
+
+    int deleteRecordByProId(@Param("proId") Long proId);
+
+    int deleteRecordByUserId(@Param("userId") Long userId);
 }

@@ -2,6 +2,7 @@ package com.lion.dao.ext;
 
 import com.lion.dao.gen.UserMapper;
 import com.lion.entity.User;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
@@ -29,6 +30,8 @@ public interface UserDao extends UserMapper{
 
     public String getUserPasswordByUserName(String username);
 
-    public User selectByUserName(String username);
+    User selectByUserName(@Param("username") String username);
+
+    User selectByEmail(@Param("email") String email);
 }
 

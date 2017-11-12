@@ -12,7 +12,11 @@ public interface ProjectPublicationService {
 
     List<Long> listPubIdByProId(Long id);
 
-    int deleteRecordByPubId(Long pubId,Long proId);
+    int deleteRecordById(Long pubId,Long proId);
+
+    int deleteRecordByProId(Long proId);
+
+    int deleteRecordByPubId(Long pubId);
 
     int addRecord(ProjectPublication record);
 

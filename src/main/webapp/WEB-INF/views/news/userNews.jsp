@@ -12,7 +12,7 @@
     <jsp:include page="../sideMenu.jsp" flush="true"></jsp:include>
     <div class="content">
         <ul>
-            <a href="/news/addNews?username=${user.userName}" class="add">New News</a>
+            <a href="/news/addNews?username=${username}" class="add">New News</a>
         </ul>
         <div>
             <table width="100%" border="0" id="list">
@@ -26,24 +26,24 @@
                         <c:forEach items="${newsList}" var="news">
                             <tr height="100px" width="100%">
                                 <td width="30%">
-                                    <img src="/resource/showImage?imagePath=${news.imageUrl}" width="200px" height="150px">
+                                    <img src="/resource/showImage?imagePath=${news.imageUrl}" width="200px"
+                                         height="150px">
                                 </td>
                                 </td>
 
                                 <td width="20%">
                                     <a href="/news/newsDetail?username=${user.userName}&id=${news.id}">${news.title}</a>
                                 </td>
-
+                                <c:if test="${username!=null}">
                                     <%--编辑操作--%>
-                                <td width="7%">
-                                    <a href="/news/editNews?username=${user.userName}&id=${news.id}">edit</a>
-                                </td>
-                                    <%--&lt;%&ndash;管理员可进行删除操作&ndash;%&gt;--%>
-                                    <%--<c:if test="${user.userType == 0}">--%>
-                                <td width="7%">
-                                    <a href="/news/deleteNewsInfo?username=${user.userName}&id=${news.id}">delete</a>
-                                </td>
-                                    <%--</c:if>--%>
+                                    <td width="7%">
+                                        <a href="/news/editNews?username=${user.userName}&id=${news.id}">edit</a>
+                                    </td>
+                                    <%--删除操作--%>
+                                    <td width="7%">
+                                        <a href="/news/deleteNewsInfo?username=${user.userName}&id=${news.id}">delete</a>
+                                    </td>
+                                </c:if>
                             </tr>
                         </c:forEach>
                     </c:otherwise>

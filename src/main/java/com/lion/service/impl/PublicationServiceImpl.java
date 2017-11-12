@@ -25,6 +25,10 @@ public class PublicationServiceImpl implements PublicationService{
         return publicationDao.selectPublicationByUserId(id);
     }
 
+    public List<Publication> listLatestPub(int num) {
+        return publicationDao.selectLatestPublication(num);
+    }
+
     public int addNewPublication(Publication publication) {
         return publicationDao.insertSelective(publication);
     }

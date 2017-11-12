@@ -4,8 +4,9 @@
     <resultMap id="BaseResultMap" type="com.lion.entity.User" extends="com.lion.dao.gen.UserMapper.BaseResultMap">
     </resultMap>
     <sql id="Base_Column_List">
-    id, user_name, password, user_email, user_sex, user_phone, create_time, user_type,
-        user_state, last_login_time, last_ip</sql>
+    id, user_name, admin_id, admin_name, password, image_url, description, detail, user_email,
+    user_sex, user_phone, create_time, user_type, user_state, last_login_time, last_ip
+  </sql>
     <select id="selectAllUser" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List" />
@@ -15,6 +16,12 @@
         select
         <include refid="Base_Column_List" />
         from t_user
-        where user_name = #{userName,jdbcType=VARCHAR}
+        where user_name = #{username,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEmail" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from t_user
+        where user_email = #{email,jdbcType=VARCHAR}
     </select>
 </mapper>

@@ -28,6 +28,18 @@ public class UserServiceImpl implements UserService {
         return userDao.selectByUserName(name);
     }
 
+    public User getUserByUserId(Long id) {
+        return userDao.selectByPrimaryKey(id);
+    }
+
+    public User getUserByEmail(String email) {
+        return userDao.selectByEmail(email);
+    }
+
+    public int deleteUser(Long id) {
+        return userDao.deleteByPrimaryKey(id);
+    }
+
     public void updateUserByUserId(User user) {
         userDao.updateByPrimaryKeySelective(user);
 

@@ -11,7 +11,6 @@
 <div id="body">
     <jsp:include page="../sideMenu.jsp" flush="true"></jsp:include>
     <div class="content">
-        <img src="images/telephone.jpg" alt="">
         <h2>Edit News</h2>
         <form method="POST" action="/news/editNewsInfo?username=${username}&id=${news.id}" enctype="multipart/form-data">
             <label for="title"> <span>Title *</span>

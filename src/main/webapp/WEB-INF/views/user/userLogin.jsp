@@ -15,18 +15,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LION</title>
-    <link rel="stylesheet" type="text/css" href="/statics/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/statics/css/styles.css">
 </head>
 <body>
 <div id="header">
-    <a href="<%=request.getContextPath() %>/index" class="logo"><img src="/statics/images/logo.png" alt=""></a>
+    <a href="<%=request.getContextPath() %>/index" class="logo"><img src="<%=request.getContextPath() %>/statics/images/logo.png" alt=""></a>
 </div>
 <div class="htmleaf-container">
     <div class="wrapper">
         <div class="container">
             <h1>Welcome</h1>
 
-            <form class="form" action="/user/login" method="post">
+            <form class="form" action="<%=request.getContextPath() %>/user/login" method="post">
                 <input type="text" placeholder="Username" id="userName" name="userName">
                 <input type="password" placeholder="Password" id="password" name="password">
                 <input type="submit" value="login" id="login-button"/>
@@ -48,7 +48,7 @@
     </div>
 </div>
 
-<script src="/statics/js/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath() %>/statics/js/jquery-2.1.1.min.js" type="text/javascript"></script>
 
 </body>
 </html>

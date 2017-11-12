@@ -22,5 +22,13 @@
         WHERE user_name=#{username,jdbcType=VARCHAR}
     </select>
 
+    <select id="selectLatestNews" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        from t_news
+        ORDER BY create_time DESC limit #{num}
+
+    </select>
+
 
 </mapper>

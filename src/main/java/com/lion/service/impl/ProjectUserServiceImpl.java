@@ -26,6 +26,14 @@ public class ProjectUserServiceImpl implements ProjectUserService{
         return projectUserDao.deleteRecordById(userId,proId);
     }
 
+    public int deleteRecordByProId(Long proId) {
+        return projectUserDao.deleteRecordByProId(proId);
+    }
+
+    public int deleteRecordByUserId(Long userId) {
+        return projectUserDao.deleteRecordByUserId(userId);
+    }
+
     public int addRecord(ProjectUser record) {
         return projectUserDao.insertSelective(record);
     }

@@ -11,14 +11,13 @@
 <div id="body">
     <jsp:include page="../sideMenu.jsp" flush="true"></jsp:include>
     <div class="content">
-        <img src="images/telephone.jpg" alt="">
         <h2>Add New News</h2>
         <form method="POST" action="/news/addNewsInfo?username=${username}" enctype="multipart/form-data">
             <label for="title"> <span>Title *</span>
                 <input type="text" name="title" id="title">
             </label>
             <label for="description"> <span>Description*</span>
-                <input type="text" name="description" id="description" value="${news.description}">
+                <input type="text" name="description" id="description">
             </label>
             <label for="image"> <span>Image*</span>
 

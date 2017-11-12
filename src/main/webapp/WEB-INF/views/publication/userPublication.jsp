@@ -13,7 +13,7 @@
 <head>
     <meta charset="UTF-8">
     <title>LION</title>
-    <link rel="stylesheet" href="/statics/css/style.css" type="text/css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/statics/css/style.css" type="text/css">
 </head>
 <body>
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
@@ -21,7 +21,7 @@
     <jsp:include page="../sideMenu.jsp" flush="true"></jsp:include>
     <div class="content">
         <ul>
-            <a href="/publication/addPublication?username=${user.userName}" class="add">New Publication</a>
+            <a href="<%=request.getContextPath() %>/publication/addPublication?username=${user.userName}" class="add">New Publication</a>
         </ul>
         <div>
             <table width="100%" border="0" id="list">
@@ -35,7 +35,7 @@
                         <c:forEach items="${publications}" var="publication">
                             <tr height="100px" width="100%">
                                 <td width="20%">
-                                    <img src="/statics/images/button-submit.png">
+                                    <img src="<%=request.getContextPath() %>/statics/images/button-submit.png">
                                 </td>
                                 <td width="20%">
                                         ${publication.title}
@@ -43,12 +43,12 @@
 
                                 <%--编辑操作--%>
                                 <td width="7%">
-                                    <a href="/publication/editPublication?username=${user.userName}&id=${publication.id}">edit</a>
+                                    <a href="<%=request.getContextPath() %>/publication/editPublication?username=${user.userName}&id=${publication.id}">edit</a>
                                 </td>
                                 <%--&lt;%&ndash;管理员可进行删除操作&ndash;%&gt;--%>
                                 <%--<c:if test="${user.userType == 0}">--%>
                                     <td width="7%">
-                                        <a href="/publication/deletePublicationInfo?username=${user.userName}&id=${publication.id}">delete</a>
+                                        <a href="<%=request.getContextPath() %>/publication/deletePublicationInfo?username=${user.userName}&id=${publication.id}">delete</a>
                                     </td>
                                 <%--</c:if>--%>
                             </tr>

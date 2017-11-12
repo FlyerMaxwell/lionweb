@@ -16,4 +16,6 @@ public interface ProjectDao extends ProjectMapper{
     List<Project> selectAllProject();
 
     List<Project> selectProjectByUserId(@Param("userId") Long userId);
+
+    List<Project> selectLatestProject(@Param("num") int num);
 }

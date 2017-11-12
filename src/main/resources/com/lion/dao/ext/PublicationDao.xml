@@ -12,6 +12,14 @@
         <include refid="Base_Column_List" />
         from t_publication
     </select>
+
+    <select id="selectLatestPublication" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from t_publication
+        ORDER BY create_time DESC limit #{num}
+    </select>
+
     <select id="selectPublicationByUserId" parameterType="java.lang.Long" resultMap="BaseResultMap">
         SELECT
         pub.id as id,

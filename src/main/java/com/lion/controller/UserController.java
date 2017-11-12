@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,12 +29,6 @@ public class UserController {
     UserService userService;
     @Autowired
     UserLoginLogService loginLogService;
-
-
-    @RequestMapping(value={""},method = {RequestMethod.GET})
-    public String user(){
-        return "user/user";
-    }
 
     // 用户登录
     @RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -66,8 +62,9 @@ public class UserController {
 
             // 登陆成功，跳转到主页
             // 存在Session中,将在会话有效期内一直在服务器内存中维护这个值
-            // 如果使用request.setAtrribute再次添加将会导致session中值失效
+            // 如果使用request.setAttribute再次添加将会导致session中值失效
             request.getSession().setAttribute("username", userName);
+            request.getSession().setAttribute("userType",user.getUserType());
             return "redirect:/index";
         }
 
@@ -85,34 +82,39 @@ public class UserController {
     }
 
     //显示用户信息
-    @RequestMapping(value = "userInfo")
-    public String displayUserInfo(String username,HttpServletRequest request){
+    @RequestMapping(value="userDetail")
+    public String displayUserDetail(String username,HttpServletRequest request){
         User user=userService.getUserByUserName(username);
         request.setAttribute("user",user);
-        return "user/userInfo";
+        return "user/userDetail";
     }
 
-    //编辑用户个人信息页面
-    @RequestMapping(value = "editUser",method = RequestMethod.GET)
-    public String updateUserInfoPage(String username, HttpServletRequest request){
-        //TODO 用户名更改？
+    //用户编辑个人信息页面
+    @RequestMapping(value="editUser")
+    public String editUser(String username,HttpServletRequest request){
         User user=userService.getUserByUserName(username);
         request.setAttribute("user",user);
         return "user/userEdit";
     }
 
-    //用户信息编辑提交
-    @RequestMapping(value = "editUserInfo",method = RequestMethod.POST)
-    public String updateUserInfo(User user,RedirectAttributes redirectAttributes){
-        userService.updateUserByUserId(user);
-        redirectAttributes.addAttribute("username", user.getUserName());
-        return "redirect:/user/userInfo";
+    @RequestMapping(value="editUserInfo")
+    public String editUserInfo(String username,
+                               @RequestParam(value="title") String title,
+                               @RequestParam(value="description") String description,
+                               @RequestParam(value="detail") String detail,
+                               @RequestParam(value = "image",required = false) MultipartFile image,
+                               HttpServletRequest request,
+                               RedirectAttributes redirectAttributes){
+        //TODO
+        return "redirect:/user/userDetail";
+
     }
 
     // 用户登录注销
     @RequestMapping(value = "/loginOut")
     public String loginOut(HttpServletRequest request) {
         request.getSession().removeAttribute("username");
+        request.getSession().removeAttribute("userType");
         return "redirect:/index";
     }
 

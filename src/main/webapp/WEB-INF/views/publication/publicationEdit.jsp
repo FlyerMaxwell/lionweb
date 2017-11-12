@@ -13,16 +13,16 @@
 <head>
     <meta charset="UTF-8">
     <title>LION</title>
-    <link rel="stylesheet" href="/statics/css/style.css" type="text/css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/statics/css/style.css" type="text/css">
 </head>
 <body>
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
 <div id="body">
     <jsp:include page="../sideMenu.jsp" flush="true"></jsp:include>
     <div class="content">
-        <img src="images/telephone.jpg" alt="">
+        <%--<img src="images/telephone.jpg" alt="">--%>
         <h2>Edit Publication</h2>
-        <form method="POST" action="/publication/editPublicationInfo?username=${username}&id=${publication.id}" enctype="multipart/form-data">
+        <form method="POST" action="<%=request.getContextPath() %>/publication/editPublicationInfo?username=${username}&id=${publication.id}" enctype="multipart/form-data">
             <label for="title"> <span>Title *</span>
                 <input type="text" name="title" id="title" value="${publication.title}">
             </label>
