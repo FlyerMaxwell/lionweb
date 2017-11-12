@@ -8,29 +8,35 @@
 </head>
 <body>
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
-<div class="content">
-    <div>
-        <table width="100%" border="0" id="list">
+<div id="body">
+    <div class="content-display">
+        <div class="container">
+        <table>
             <c:choose>
                 <c:when test="${empty users}">
                     <div align="left">
-                        <span>No Members!</span>
+                        <span>No User!</span>
                     </div>
                 </c:when>
                 <c:otherwise>
                     <c:forEach items="${users}" var="user">
-                        <tr height="100px" width="100%">
-                            <td width="30%">
-                                <img src="/resource/showImage?imagePath=${user.imageUrl}" alt="No Photo!" width="200px" height="150px">
+                        <tr>
+                            <td class="photo">
+                                <img src="<%=request.getContextPath() %>/resource/showImage?imagePath=${user.imageUrl}&type=0">
                             </td>
-                            <td width="20%">
-                                <a href="/member/memberDetail?id=${user.id}">${user.userName}</a>
+                            <td>
+                                <div class="text">
+                                    <div>${user.userName}</div>
+                                    <div>${user.userEmail}</div>
+                                    <div>${user.description}</div>
+                                </div>
                             </td>
                         </tr>
                     </c:forEach>
                 </c:otherwise>
             </c:choose>
         </table>
+        </div>
     </div>
 </div>
 <jsp:include page="../footer.jsp" flush="true"></jsp:include>

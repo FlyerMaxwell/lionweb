@@ -4,25 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <title>LION</title>
-    <link rel="stylesheet" href="/statics/css/style.css" type="text/css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/statics/css/style.css" type="text/css">
 </head>
 <body>
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
 <div id="body">
     <div class="content">
-        <div>
-            <table width="1000px" border="0" id="list">
-                <tr height="100px">
-                    <td width="20%">
-                        <img src="/resource/showImage?imagePath=${news.imageUrl}" width="400px" height="300px">
+        <div class="container">
+            <table>
+                <tr>
+                    <td class="picture">
+                        <img src="<%=request.getContextPath() %>/resource/showImage?imagePath=${news.imageUrl}&type=1">
                     </td>
-                    <td width="80%">
-                        ${news.title}
+                    <td>
+                        <div class="text">
+                            <div>${news.title}</div>
+                            <div>${news.createTime}</div>
+                        </div>
                     </td>
                 </tr>
-                <tr height="100px">
-                    <td width="100%" >
-                        ${news.description}
+                <tr>
+                    <td class="text">
+                        <div>${news.description}</div>
+                        <c:if test="${news.textUrl != ''}">
+                            <div>
+                                <a href="<%=request.getContextPath() %>/resource/downloadFile?filePath=${news.textUrl}">Text</a>
+                            </div>
+                        </c:if>
                     </td>
                 </tr>
 

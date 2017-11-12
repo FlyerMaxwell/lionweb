@@ -10,7 +10,7 @@
 <div id="footer">
     <div>
         <p>
-            <span>Lab of Innovation on Networking.</span><a href="#" >Terms of Service</a> | <a href="#" >Privacy Policy</a>
+            <span>Lab of Innovation on Networking</span>
         </p>
         <ul>
             <li id="facebook">

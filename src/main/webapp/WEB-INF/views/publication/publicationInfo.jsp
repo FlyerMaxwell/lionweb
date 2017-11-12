@@ -18,29 +18,50 @@
 <body>
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
 <div id="body">
-    <div class="content">
-        <div>
-            <table width="1000px" border="0" id="list">
-                <c:choose>
-                    <c:when test="${empty publications}">
-                        <div align="left">
-                            <span>No Publication!</span>
-                        </div>
-                    </c:when>
-                    <c:otherwise>
-                        <c:forEach items="${publications}" var="publication">
-                            <tr height="100px">
-                                <td width="20%">
-                                    <img src="<%=request.getContextPath() %>/statics/images/button-submit.png">
-                                </td>
-                                <td width="80">
-                                    ${publication.title}
-                                </td>
-                            </tr>
-                        </c:forEach>
-                    </c:otherwise>
-                </c:choose>
-            </table>
+    <div class="content-display">
+        <div class="container">
+        <table>
+            <c:choose>
+                <c:when test="${empty publications}">
+                    <div align="left">
+                        <span>No Publication!</span>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <c:forEach items="${publications}" var="publication">
+                        <tr>
+                            <td class="picture">
+                                <img src="<%=request.getContextPath() %>/resource/showImage?imagePath=${publication.imageUrl}&type=1">
+                            </td>
+                            <td>
+                                <div class="text">
+                                    <div>${publication.title}</div>
+                                    <div>${publication.authors}</div>
+                                    <div>${publication.organization}</div>
+                                    <div>
+                                    <c:if test="${publication.textUrl != ''}">
+                                        <span>
+                                            <a href="<%=request.getContextPath() %>/resource/downloadFile?filePath=${publication.textUrl}">Paper</a>
+                                        </span>
+                                    </c:if>
+                                    <c:if test="${publication.slideUrl != ''}">
+                                        <span>
+                                            <a href="<%=request.getContextPath() %>/resource/downloadFile?filePath=${publication.slideUrl}">Slide</a>
+                                        </span>
+                                    </c:if>
+                                    <c:if test="${publication.videoUrl != ''}">
+                                        <span>
+                                            <a href="<%=request.getContextPath() %>/resource/downloadFile?filePath=${publication.videoUrl}">Video</a>
+                                        </span>
+                                    </c:if>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </c:otherwise>
+            </c:choose>
+        </table>
         </div>
     </div>
 </div>

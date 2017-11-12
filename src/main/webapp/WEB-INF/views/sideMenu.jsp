@@ -11,6 +11,9 @@
     <h3>My Profile</h3>
     <ul>
         <li>
+            <a href="<%=request.getContextPath() %>/member/memberEditPhoto?username=${username}">My Photo</a>
+        </li>
+        <li>
             <a href="<%=request.getContextPath() %>/member/memberDetail?username=${username}">My Info</a>
         </li>
         <li>

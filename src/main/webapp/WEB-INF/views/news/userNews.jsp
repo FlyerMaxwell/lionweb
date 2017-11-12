@@ -14,8 +14,8 @@
         <ul>
             <a href="/news/addNews?username=${username}" class="add">New News</a>
         </ul>
-        <div>
-            <table width="100%" border="0" id="list">
+        <div class="container">
+            <table>
                 <c:choose>
                     <c:when test="${empty newsList}">
                         <div align="left">
@@ -24,26 +24,28 @@
                     </c:when>
                     <c:otherwise>
                         <c:forEach items="${newsList}" var="news">
-                            <tr height="100px" width="100%">
-                                <td width="30%">
-                                    <img src="/resource/showImage?imagePath=${news.imageUrl}" width="200px"
-                                         height="150px">
+                            <tr>
+                                <td class="picture">
+                                    <img src="<%=request.getContextPath() %>/resource/showImage?imagePath=${news.imageUrl}&type=1">
                                 </td>
-                                </td>
+                                <td>
+                                    <div class="text">
+                                        <div>${news.title}</div>
+                                        <div>${news.createTime}</div>
+                                    </div>
 
-                                <td width="20%">
-                                    <a href="/news/newsDetail?username=${user.userName}&id=${news.id}">${news.title}</a>
-                                </td>
                                 <c:if test="${username!=null}">
                                     <%--编辑操作--%>
-                                    <td width="7%">
+                                    <span width="7%">
                                         <a href="/news/editNews?username=${user.userName}&id=${news.id}">edit</a>
-                                    </td>
+                                    </span>
                                     <%--删除操作--%>
-                                    <td width="7%">
+                                    <span width="7%">
                                         <a href="/news/deleteNewsInfo?username=${user.userName}&id=${news.id}">delete</a>
-                                    </td>
+                                    </span>
                                 </c:if>
+                                </td>
+
                             </tr>
                         </c:forEach>
                     </c:otherwise>

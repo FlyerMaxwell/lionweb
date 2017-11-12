@@ -12,9 +12,10 @@
 <body>
 <jsp:include page="header.jsp" flush="true"></jsp:include>
 <div id="body">
-    <div class="content">
+    <div class="content-display">
         <div class="container">
             <div class="row">
+                <a class="more" href="<%=request.getContextPath() %>/news/">more</a>
                 <h2>Recent News</h2>
                 <ul>
                     <c:forEach items="${newsList}" var="news">
@@ -25,6 +26,7 @@
                 </ul>
             </div>
             <div class="row">
+                <a class="more" href="<%=request.getContextPath() %>/publication/">more</a>
                 <h2>Recent Publication</h2>
                 <ul>
                     <c:forEach items="${publicationList}" var="publication">
@@ -35,7 +37,8 @@
                 </ul>
             </div>
             <div class="row">
-                <h2>Recent News</h2>
+                <a class="more" href="<%=request.getContextPath() %>/project/">more</a>
+                <h2>Recent Project</h2>
                 <ul>
                     <c:forEach items="${projectList}" var="project">
                         <li>

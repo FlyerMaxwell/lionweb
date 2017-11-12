@@ -19,10 +19,11 @@ import java.io.OutputStream;
 public class ResourceController {
     @RequestMapping("/showImage")
     public void showPicture(HttpServletRequest request,
-                            HttpServletResponse response, String imagePath) throws IOException {
+                            HttpServletResponse response, String imagePath,int type) throws IOException {
         //如果没有图片显示默认图片
         if(imagePath == null || imagePath.equals("")){
-            imagePath = request.getSession().getServletContext().getRealPath("statics/images/default.jpg");
+
+            imagePath = request.getSession().getServletContext().getRealPath("/statics/images/default_"+(type==0?"0":"1")+".png");
         }
         FileInputStream in;
         response.setContentType("application/octet-stream;charset=UTF-8");

@@ -2,7 +2,7 @@
 :root{
     --color1:#0066CC;
     --color2:#5599FF;
-
+    
 }
 
 /*@font-face {
@@ -599,6 +599,23 @@ body {
 }
 #body .content form #submit:hover {
     background-position: 0 -43px;
+}
+#body table .photo{
+    width: 100px;
+    height: 150px;
+    padding-right: 150px;
+}
+#body table .picture{
+    width: 200px;
+    height: 150px;
+    padding-right: 50px;
+}
+#body td{
+    vertical-align: top;
+}
+#body tr{
+    padding: 5px;
+    margin:5px 10px 5px 10px;
 }
 #body #blog {
     float: left;

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>LION</title>
-    <link rel="stylesheet" href="/statics/css/style.css" type="text/css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/statics/css/style.css" type="text/css">
 </head>
 <body>
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
@@ -12,7 +12,7 @@
     <jsp:include page="../sideMenu.jsp" flush="true"></jsp:include>
     <div class="content">
         <ul>
-            <a href="/admin/addMember?admin=${username}" class="add">New Member</a>
+            <a href="<%=request.getContextPath() %>/admin/addMember?admin=${username}" class="add">New Member</a>
         </ul>
         <div>
             <table width="100%" border="0" id="list">
