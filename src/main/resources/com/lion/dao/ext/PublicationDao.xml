@@ -21,22 +21,7 @@
     </select>
 
     <select id="selectPublicationByUserId" parameterType="java.lang.Long" resultMap="BaseResultMap">
-        SELECT
-        pub.id as id,
-        pub.user_name as userName,
-        pub.status as status,
-        pub.create_time as createTime,
-        pub.update_time as updateTime,
-        pub.title as title,
-        pub.authors as authors,
-        pub.description as description,
-        pub.organization as organization,
-        pub.image_url as imageUrl,
-        pub.text_url as textUrl,
-        pub.slide_url as slideUrl,
-        pub.video_url as videoUrl,
-        pub.last_modifier as lastModifier,
-        pub.last_ip as lastIp
+        SELECT pub.*
         FROM t_publication pub
         LEFT JOIN t_publication_user pu ON pub.id=pu.pub_id
         WHERE pu.user_id=#{userId}

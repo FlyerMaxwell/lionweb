@@ -10,39 +10,43 @@
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
 <div id="body">
     <jsp:include page="../sideMenu.jsp" flush="true"></jsp:include>
+    <ul>
+        <a href="<%=request.getContextPath() %>/admin/addMember" class="add">New Member</a>
+    </ul>
     <div class="content">
-        <ul>
-            <a href="<%=request.getContextPath() %>/admin/addMember?admin=${username}" class="add">New Member</a>
-        </ul>
-        <div>
-            <table width="100%" border="0" id="list">
+        <div class="container">
+            <table>
                 <c:choose>
                     <c:when test="${empty users}">
                         <div align="left">
-                            <span>No Members!</span>
+                            <span>No User!</span>
                         </div>
                     </c:when>
                     <c:otherwise>
                         <c:forEach items="${users}" var="user">
-                            <tr height="100px" width="100%">
-                                <td width="30%">
-                                    <img src="/resource/showImage?imagePath=${user.imageUrl}" width="200px"
-                                         height="150px">
+                            <tr>
+                                <td class="photo">
+                                    <img src="<%=request.getContextPath() %>/resource/showImage?imagePath=${user.imageUrl}&type=0">
                                 </td>
-                                <td width="20%">
-                                    <a href="/admin/memberDetail?id=${user.id}">${user.userName}</a>
+                                <td>
+                                    <div class="text">
+                                        <div>
+                                            <a href="<%=request.getContextPath() %>/admin/memberDetail?id=${user.id}">${user.userName}</a>
+                                        </div>
+                                        <div>${user.userEmail}</div>
+                                        <div>${user.description}</div>
+                                    </div>
+                                    <c:if test="${username!=null&&userType==0}">
+                                        <%--编辑操作--%>
+                                        <span width="7%">
+                                            <a href="<%=request.getContextPath() %>/admin/editMember?id=${user.id}">edit</a>
+                                        </span>
+                                        <%--删除操作--%>
+                                        <span width="7%">
+                                            <a href="<%=request.getContextPath() %>/admin/deleteMemberInfo?admin=${username}&id=${user.id}">delete</a>
+                                        </span>
+                                    </c:if>
                                 </td>
-
-                                <c:if test="${userType==0}">
-                                    <%--编辑操作--%>
-                                    <td width="7%">
-                                        <a href="/admin/editMember?admin=${username}&id=${user.id}">edit</a>
-                                    </td>
-                                    <%--删除操作--%>
-                                    <td width="7%">
-                                        <a href="/admin/deleteMemberInfo?admin=${username}&id=${user.id}">delete</a>
-                                    </td>
-                                </c:if>
                             </tr>
                         </c:forEach>
                     </c:otherwise>

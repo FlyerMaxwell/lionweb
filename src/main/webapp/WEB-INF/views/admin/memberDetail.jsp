@@ -4,31 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <title>LION</title>
-    <link rel="stylesheet" href="/statics/css/style.css" type="text/css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/statics/css/style.css" type="text/css">
 </head>
 <body>
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
 <div id="body">
     <div class="content">
-        <div>
-            <table width="1000px" border="0" id="list">
+        <div class="container">
+            <table>
                 <tr height="100px">
-                    <td width="20%">
-                        <img src="/resource/showImage?imagePath=${user.imageUrl}" width="400px" height="300px">
+                    <td class="photo">
+                        <img src="<%=request.getContextPath() %>/resource/showImage?imagePath=${user.imageUrl}&type=0">
                     </td>
-                    <td width="80%">
-                        ${user.userName}
+                    <td>
+                        <div class="text">
+                            <div>${user.userName}</div>
+                            <div>${user.userEmail}</div>
+                            <div>${user.description}</div>
+                        </div>
                     </td>
                 </tr>
-                <tr height="100px">
-                    <td width="100%" >
-                        ${user.description}
+                <tr >
+                    <td colspan="2">
+                        ${user.detail}
                     </td>
-                </tr><tr height="100px">
-                <td width="100%" >
-                    ${user.detail}
-                </td>
-            </tr>
+                </tr>
 
             </table>
         </div>

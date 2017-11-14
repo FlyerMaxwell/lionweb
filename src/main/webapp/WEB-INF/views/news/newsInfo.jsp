@@ -26,7 +26,9 @@
                             </td>
                             <td>
                                 <div class="text">
-                                    <div>${news.title}</div>
+                                    <div>
+                                        <a href="<%=request.getContextPath() %>/news/newsDetail?id=${news.id}">${news.title}</a>
+                                    </div>
                                     <div>${news.createTime}</div>
                                 </div>
                             </td>

@@ -23,22 +23,7 @@
     </select>
 
     <select id="selectProjectByUserId" parameterType="java.lang.Long" resultMap="BaseResultMap">
-        SELECT
-        pro.id as id,
-        pro.user_name as userName,
-        pro.status as status,
-        pro.create_time as createTime,
-        pro.update_time as updateTime,
-        pro.title as title,
-        pro.authors as authors,
-        pro.description as description,
-        pro.organization as organization,
-        pro.image_url as imageUrl,
-        pro.text_url as textUrl,
-        pro.slide_url as slideUrl,
-        pro.video_url as videoUrl,
-        pro.last_modifier as lastModifier,
-        pro.last_ip as lastIp
+        SELECT pro.*
         FROM t_project pro
         LEFT JOIN t_project_user pu ON pro.id=pu.pro_id
         WHERE pu.user_id=#{userId}

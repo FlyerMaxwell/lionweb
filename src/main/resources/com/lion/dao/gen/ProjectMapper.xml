@@ -46,7 +46,8 @@
       #{videoUrl,jdbcType=VARCHAR}, #{lastModifier,jdbcType=VARCHAR}, #{lastIp,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.lion.entity.Project">
+  <!--将生成的主键返回到传回的对象中-->
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.lion.entity.Project">
     insert into t_project
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">

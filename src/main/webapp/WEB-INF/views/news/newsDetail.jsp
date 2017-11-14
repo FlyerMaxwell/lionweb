@@ -9,7 +9,7 @@
 <body>
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
 <div id="body">
-    <div class="content">
+    <div class="content-display">
         <div class="container">
             <table>
                 <tr>
@@ -20,17 +20,17 @@
                         <div class="text">
                             <div>${news.title}</div>
                             <div>${news.createTime}</div>
+                            <c:if test="${news.textUrl != ''}">
+                                <div>
+                                    <a href="<%=request.getContextPath() %>/resource/downloadFile?filePath=${news.textUrl}">Text</a>
+                                </div>
+                            </c:if>
                         </div>
                     </td>
                 </tr>
                 <tr>
-                    <td class="text">
+                    <td colspan="2">
                         <div>${news.description}</div>
-                        <c:if test="${news.textUrl != ''}">
-                            <div>
-                                <a href="<%=request.getContextPath() %>/resource/downloadFile?filePath=${news.textUrl}">Text</a>
-                            </div>
-                        </c:if>
                     </td>
                 </tr>
 

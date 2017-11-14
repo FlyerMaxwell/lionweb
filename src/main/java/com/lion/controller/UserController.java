@@ -4,6 +4,7 @@ import com.lion.entity.User;
 import com.lion.entity.UserLoginLog;
 import com.lion.service.UserLoginLogService;
 import com.lion.service.UserService;
+import com.lion.util.FileHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +23,7 @@ import java.util.Date;
  */
 
 @Controller
-@RequestMapping(value={"/user"})
+@RequestMapping(value = {"/user"})
 public class UserController {
 
     @Autowired
@@ -64,7 +65,7 @@ public class UserController {
             // 存在Session中,将在会话有效期内一直在服务器内存中维护这个值
             // 如果使用request.setAttribute再次添加将会导致session中值失效
             request.getSession().setAttribute("username", userName);
-            request.getSession().setAttribute("userType",user.getUserType());
+            request.getSession().setAttribute("userType", user.getUserType());
             return "redirect:/index";
         }
 
@@ -75,39 +76,53 @@ public class UserController {
 
     //显示用户profile界面
     @RequestMapping(value = "userProfile")
-    public String displayUserProfile(String username,HttpServletRequest request){
-        User user=userService.getUserByUserName(username);
-        request.setAttribute("user",user);
+    public String displayUserProfile(String username, HttpServletRequest request) {
+        User user = userService.getUserByUserName(username);
+        request.setAttribute("user", user);
         return "user/userProfile";
     }
 
-    //显示用户信息
-    @RequestMapping(value="userDetail")
-    public String displayUserDetail(String username,HttpServletRequest request){
-        User user=userService.getUserByUserName(username);
-        request.setAttribute("user",user);
-        return "user/userDetail";
-    }
-
     //用户编辑个人信息页面
-    @RequestMapping(value="editUser")
-    public String editUser(String username,HttpServletRequest request){
-        User user=userService.getUserByUserName(username);
-        request.setAttribute("user",user);
+    @RequestMapping(value = "editUser")
+    public String editUser(String username, HttpServletRequest request) {
+        User user = userService.getUserByUserName(username);
+        request.setAttribute("user", user);
         return "user/userEdit";
     }
 
-    @RequestMapping(value="editUserInfo")
+    //编辑用户信息提交
+    @RequestMapping(value = "editUserInfo", method = RequestMethod.POST)
     public String editUserInfo(String username,
-                               @RequestParam(value="title") String title,
-                               @RequestParam(value="description") String description,
-                               @RequestParam(value="detail") String detail,
-                               @RequestParam(value = "image",required = false) MultipartFile image,
-                               HttpServletRequest request,
-                               RedirectAttributes redirectAttributes){
-        //TODO
-        return "redirect:/user/userDetail";
+                               @RequestParam(value = "email") String userEmail,
+                               @RequestParam(value = "phone") String userPhone,
+                               @RequestParam(value = "description") String description,
+                               @RequestParam(value = "gender") Integer userSex,
+                               @RequestParam(value = "image", required = false) MultipartFile image,
+                               @RequestParam(value = "detail", required = false) String detail,
+                               HttpServletRequest request, RedirectAttributes redirectAttributes) {
+        User updateUser = userService.getUserByUserName(username);
+        //TODO 路径配置
+        String basePath = "D:/lion/members";
+        try {
+            if (image != null && !image.isEmpty()) {
+                FileHandler.deleteFile(updateUser.getImageUrl());
+                String filePath1 = FileHandler.uploadFile(basePath + "/image", image, request);
+                updateUser.setImageUrl(filePath1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.setAttribute("Msg", "File Upload Failed!");
+            return "error";
+        }
+        updateUser.setUserEmail(userEmail);
+        updateUser.setUserPhone(userPhone);
+        updateUser.setUserSex(userSex);
+        updateUser.setDescription(description);
+        updateUser.setDetail(detail);
+        userService.updateUserByUserId(updateUser);
 
+        redirectAttributes.addAttribute("username", username);
+        return "redirect:/user/userProfile";
     }
 
     // 用户登录注销

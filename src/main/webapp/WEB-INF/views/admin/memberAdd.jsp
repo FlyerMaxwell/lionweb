@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>LION</title>
-    <link rel="stylesheet" href="/statics/css/style.css" type="text/css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/statics/css/style.css" type="text/css">
 </head>
 <body>
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
@@ -12,7 +12,7 @@
     <jsp:include page="../sideMenu.jsp" flush="true"></jsp:include>
     <div class="content">
         <h2>Add New Member</h2>
-        <form method="POST" action="/admin/addMemberInfo?adminName=${username}" enctype="multipart/form-data">
+        <form method="POST" action="<%=request.getContextPath() %>/admin/addMemberInfo?adminName=${username}" enctype="multipart/form-data">
             <label for="image"> <span>Image</span>
                 <a href="javascript:;" class="file">
                     <input type="file" name="image" id="image" >

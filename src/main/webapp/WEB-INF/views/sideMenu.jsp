@@ -14,16 +14,16 @@
             <a href="<%=request.getContextPath() %>/member/memberEditPhoto?username=${username}">My Photo</a>
         </li>
         <li>
-            <a href="<%=request.getContextPath() %>/member/memberDetail?username=${username}">My Info</a>
+            <a href="<%=request.getContextPath() %>/user/userProfile?username=${username}">My Info</a>
         </li>
         <li>
             <a href="<%=request.getContextPath() %>/news/userProfile?username=${username}">My News</a>
         </li>
         <li>
-            <a href="<%=request.getContextPath() %>/project/userProfile?username=${username}">My Project</a>
+            <a href="<%=request.getContextPath() %>/publication/userProfile?username=${username}">My Publication</a>
         </li>
         <li>
-            <a href="<%=request.getContextPath() %>/publication/userProfile?username=${username}">My Publication</a>
+            <a href="<%=request.getContextPath() %>/project/userProfile?username=${username}">My Project</a>
         </li>
     </ul>
     <c:if test="${userType == 0}">

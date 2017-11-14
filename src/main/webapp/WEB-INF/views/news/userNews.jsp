@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>LION</title>
-    <link rel="stylesheet" href="/statics/css/style.css" type="text/css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/statics/css/style.css" type="text/css">
 </head>
 <body>
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
@@ -12,7 +12,7 @@
     <jsp:include page="../sideMenu.jsp" flush="true"></jsp:include>
     <div class="content">
         <ul>
-            <a href="/news/addNews?username=${username}" class="add">New News</a>
+            <a href="<%=request.getContextPath() %>/news/addNews?username=${username}" class="add">New News</a>
         </ul>
         <div class="container">
             <table>
@@ -30,18 +30,20 @@
                                 </td>
                                 <td>
                                     <div class="text">
-                                        <div>${news.title}</div>
+                                        <div>
+                                            <a href="<%=request.getContextPath() %>/news/newsDetail?id=${news.id}">${news.title}</a>
+                                        </div>
                                         <div>${news.createTime}</div>
-                                    </div>
+                                    </>
 
                                 <c:if test="${username!=null}">
                                     <%--编辑操作--%>
                                     <span width="7%">
-                                        <a href="/news/editNews?username=${user.userName}&id=${news.id}">edit</a>
+                                        <a href="<%=request.getContextPath() %>/news/editNews?username=${user.userName}&id=${news.id}">edit</a>
                                     </span>
                                     <%--删除操作--%>
                                     <span width="7%">
-                                        <a href="/news/deleteNewsInfo?username=${user.userName}&id=${news.id}">delete</a>
+                                        <a href="<%=request.getContextPath() %>/news/deleteNewsInfo?username=${user.userName}&id=${news.id}">delete</a>
                                     </span>
                                 </c:if>
                                 </td>

@@ -22,7 +22,9 @@
     <div class="content">
         <%--<img src="images/telephone.jpg" alt="">--%>
         <h2>Edit Publication</h2>
-        <form method="POST" action="<%=request.getContextPath() %>/publication/editPublicationInfo?username=${username}&id=${publication.id}" enctype="multipart/form-data">
+        <form method="POST"
+              action="<%=request.getContextPath() %>/publication/editPublicationInfo?username=${username}&id=${publication.id}"
+              enctype="multipart/form-data">
             <label for="title"> <span>Title *</span>
                 <input type="text" name="title" id="title" value="${publication.title}">
             </label>
@@ -32,24 +34,49 @@
             <label for="organization"> <span>Organization*</span>
                 <input type="text" name="organization" id="organization" value="${publication.organization}">
             </label>
-            <label for="image"> <span>Image*</span>
+            <label for="description"> <span>Description*</span>
+                <textarea name="description" id="description" cols="10" rows="3">${publication.description}</textarea>
+            </label>
+            <label for="image"> <span>Image</span>
 
                 <a href="javascript:;" class="file">
-                    <input type="file" name="image" id="image" >
+                    <input type="file" name="image" id="image">
                 </a>
             </label>
             <label for="text"> <span>Text*</span>
 
                 <a href="javascript:;" class="file">
-                    <input type="file" name="text" id="text" >
+                    <input type="file" name="text" id="text">
                 </a>
             </label>
             <label for="slide"> <span>slide</span>
 
                 <a href="javascript:;" class="file">
-                    <input type="file" name="slide" id="slide" >
+                    <input type="file" name="slide" id="slide">
                 </a>
             </label>
+            <label for="video"> <span>video</span>
+
+                <a href="javascript:;" class="file">
+                    <input type="file" name="video" id="video">
+                </a>
+            </label>
+
+            <div class="multiple-choice">
+                <label for="members">
+                    <span>Members*</span>
+                    <input type="text" name="members" id="members">
+                    <div id="checkbox-pre">
+                    </div>
+                </label>
+                <span id="checkbox">
+                <c:forEach items="${users}" var="user">
+                    <input type="checkbox" value="${user.id}" name="${user.userName}" onclick="display()"/>
+                    ${user.userName}<br/>
+                </c:forEach>
+            </span>
+            </div>
+
             <input type="submit" value="" id="submit">
         </form>
     </div>
@@ -58,3 +85,30 @@
 <jsp:include page="../footer.jsp" flush="true"></jsp:include>
 </body>
 </html>
+
+<script>
+    function display() {
+        var objform = document.getElementById("checkbox");
+        var objtext = document.getElementById("members");
+        var objdisplay = document.getElementById("checkbox-pre");
+
+        var memberlist = objform.getElementsByTagName("input");
+        var idstr = "";
+        //remove all childs
+        while (objdisplay.hasChildNodes()) {
+            objdisplay.removeChild(objdisplay.firstChild);
+        }
+
+        //add new childs
+        for (var i = 0; i < memberlist.length; i++) {
+            if (memberlist[i].checked == true) {
+                var objp = document.createElement("p");
+                objp.innerText = memberlist[i].name;
+                idstr = idstr + String(memberlist[i].value) + ",";
+                objdisplay.appendChild(objp);
+            }
+        }
+        idstr = idstr.substring(0, idstr.length - 1);
+        objtext.value = idstr;
+    }
+</script>

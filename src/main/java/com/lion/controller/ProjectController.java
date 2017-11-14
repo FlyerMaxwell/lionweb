@@ -1,10 +1,7 @@
 package com.lion.controller;
 
 import com.lion.entity.*;
-import com.lion.service.ProjectPublicationService;
-import com.lion.service.ProjectService;
-import com.lion.service.ProjectUserService;
-import com.lion.service.UserService;
+import com.lion.service.*;
 import com.lion.util.FileHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,6 +36,9 @@ public class ProjectController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    PublicationService publicationService;
+
     //显示project主页面
     @RequestMapping(value = "")
     public String projectPage(HttpServletRequest request){
@@ -60,6 +60,10 @@ public class ProjectController {
     //显示project添加页面
     @RequestMapping(value = "addProject")
     public String addProject(String username,HttpServletRequest request){
+        List<User> users=userService.listAllUser();
+        List<Publication> publications=publicationService.listAllPublication();
+        request.setAttribute("users",users);
+        request.setAttribute("publications",publications);
         request.setAttribute("username",username);
         return "project/projectAdd";
     }
@@ -74,8 +78,8 @@ public class ProjectController {
                                      @RequestParam(value = "text", required = false) MultipartFile text,
                                      @RequestParam(value = "slide", required = false) MultipartFile slide,
                                      @RequestParam(value = "video", required = false) MultipartFile video,
-                                     @RequestParam(value = "authorList") List<Long> authorList,
-                                     @RequestParam(value = "pubList") List<Long> pubList,
+                                     @RequestParam(value = "members") List<Long> authorList,
+                                     @RequestParam(value = "refs") List<Long> pubList,
                                      HttpServletRequest request,
                                      RedirectAttributes redirectAttributes){
         Project project=new Project();
@@ -118,8 +122,8 @@ public class ProjectController {
 
         //添加文章作者关联记录
         //TODO 一次插入多条效率更高，此处不是非常需要
-        batchInsertProPub(authorList,project,username,request);
-        batchInsertProUser(pubList,project,username,request);
+        batchInsertProPub(pubList,project,username,request);
+        batchInsertProUser(authorList,project,username,request);
 
         redirectAttributes.addAttribute("username",project.getUserName());
         return "redirect:/project/userProfile";
@@ -128,7 +132,11 @@ public class ProjectController {
     //编辑project
     @RequestMapping (value = "editProject",method = RequestMethod.GET)
     public String editProject(String username,Long id,HttpServletRequest request){
+        List<User> users=userService.listAllUser();
+        List<Publication> publications=publicationService.listAllPublication();
         Project project=projectService.getProjectById(id);
+        request.setAttribute("users",users);
+        request.setAttribute("publications",publications);
         request.setAttribute("username",username);
         request.setAttribute("project",project);
         return "project/projectEdit";
@@ -144,8 +152,8 @@ public class ProjectController {
                                       @RequestParam(value = "text", required = false) MultipartFile text,
                                       @RequestParam(value = "slide", required = false) MultipartFile slide,
                                       @RequestParam(value = "video", required = false) MultipartFile video,
-                                      @RequestParam(value = "authorList") List<Long> authorList,
-                                      @RequestParam(value = "publicationList") List<Long> publicationList,
+                                      @RequestParam(value = "members") List<Long> authorList,
+                                      @RequestParam(value = "refs") List<Long> publicationList,
                                       HttpServletRequest request,
                                       RedirectAttributes redirectAttributes) {
         Project project=projectService.getProjectById(id);
@@ -191,25 +199,33 @@ public class ProjectController {
 
         //更新项目-用户关联记录
         List<Long> oldAuthorList=projectUserService.listUserIdByProId(id);
-        List<Long> tempList=authorList;
-        authorList.removeAll(oldAuthorList);
-        batchInsertProUser(authorList,project,username,request);
-        authorList=tempList;
-        oldAuthorList.removeAll(authorList);
+//        List<Long> tempList=authorList;
+//        authorList.removeAll(oldAuthorList);
+//        batchInsertProUser(authorList,project,username,request);
+//        authorList=tempList;
+//        oldAuthorList.removeAll(authorList);
+//        for(Long oldAuthorId:oldAuthorList){
+//            projectUserService.deleteRecordById(oldAuthorId,id);
+//        }
         for(Long oldAuthorId:oldAuthorList){
             projectUserService.deleteRecordById(oldAuthorId,id);
         }
+        batchInsertProUser(authorList,project,username,request);
 
         //更新项目-文章关联记录
         List<Long> oldPubList=projectPublicationService.listPubIdByProId(id);
-        tempList=publicationList;
-        publicationList.removeAll(oldPubList);
-        batchInsertProPub(publicationList,project,username,request);
-        publicationList=tempList;
-        oldPubList.removeAll(publicationList);
+//        tempList=publicationList;
+//        publicationList.removeAll(oldPubList);
+//        batchInsertProPub(publicationList,project,username,request);
+//        publicationList=tempList;
+//        oldPubList.removeAll(publicationList);
+//        for(Long oldPubId:oldPubList){
+//            projectPublicationService.deleteRecordById(oldPubId,id);
+//        }
         for(Long oldPubId:oldPubList){
             projectPublicationService.deleteRecordById(oldPubId,id);
         }
+        batchInsertProPub(publicationList,project,username,request);
 
         redirectAttributes.addAttribute("username",project.getUserName());
         return "redirect:/project/userProfile";

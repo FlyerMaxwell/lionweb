@@ -35,7 +35,9 @@
                             </td>
                             <td>
                                 <div class="text">
-                                    <div>${publication.title}</div>
+                                    <div>
+                                        <a href="<%=request.getContextPath() %>/publication/publicationDetail?id=${publication.id}">${publication.title}</a>
+                                    </div>
                                     <div>${publication.authors}</div>
                                     <div>${publication.organization}</div>
                                     <div>

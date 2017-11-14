@@ -167,7 +167,7 @@
                 authors = #{authors,jdbcType=VARCHAR},
             </if>
             <if test="description != null">
-                description = #{description, j}
+                description = #{description, jdbcType=VARCHAR},
             </if>
             <if test="organization != null">
                 organization = #{organization, jdbcType=VARCHAR},

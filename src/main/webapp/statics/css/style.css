@@ -605,10 +605,18 @@ body {
     height: 150px;
     padding-right: 150px;
 }
+#body table .photo > img{
+    width:100px;
+    height:150px;
+}
 #body table .picture{
     width: 200px;
     height: 150px;
     padding-right: 50px;
+}
+#body table .picture > img{
+    width:200px;
+    height:150px;
 }
 #body td{
     vertical-align: top;
@@ -774,19 +782,18 @@ body {
     text-decoration: underline;
 }
 
-#body #members{
+#body div.multiple-choice > label > input[type='text']{
     display: none;
 }
-#body #checkbox{
-    width:100px;
+#body .multiple-choice > span{
+    width:528px;
     height:100px;
-    color: black;
     margin-left: 130px;
     border:2px solid black;
     overflow:scroll;
     display: inline-block;
 }
-#body #checkbox input{
+#body .multiple-choice > span > input{
 
     width:21px;
     height:21px;
@@ -794,13 +801,12 @@ body {
     display: inline-block;
 }
 
-#body #checkbox-pre{
+#body .multiple-choice > label > div{
     padding-left:130px;
 }
-#body #checkbox-pre p{
+#body .multiple-choice > label > div p{
     height: 24px;
-    padding:0px;
-    padding-bottom:10px;
+    padding:0px 0px 10px 0px;
 }
 
 #footer {

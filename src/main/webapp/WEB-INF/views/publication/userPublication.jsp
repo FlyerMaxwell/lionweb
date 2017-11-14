@@ -23,8 +23,8 @@
         <ul>
             <a href="<%=request.getContextPath() %>/publication/addPublication?username=${user.userName}" class="add">New Publication</a>
         </ul>
-        <div>
-            <table width="100%" border="0" id="list">
+        <div class="container">
+            <table>
                 <c:choose>
                     <c:when test="${empty publications}">
                         <div align="left">
@@ -33,24 +33,32 @@
                     </c:when>
                     <c:otherwise>
                         <c:forEach items="${publications}" var="publication">
-                            <tr height="100px" width="100%">
-                                <td width="20%">
-                                    <img src="<%=request.getContextPath() %>/statics/images/button-submit.png">
+                            <tr>
+                                <td class="picture">
+                                    <img src="<%=request.getContextPath() %>/resource/showImage?imagePath=${publication.imageUrl}&type=1">
                                 </td>
-                                <td width="20%">
-                                        ${publication.title}
-                                </td>
+                                <td>
+                                    <div class="text">
+                                        <div>
+                                            <a href="<%=request.getContextPath() %>/publication/publicationDetail?id=${publication.id}">${publication.title}</a>
+                                        </div>
+                                        <div>${publication.authors}</div>
+                                        <div>${publication.organization}</div>
 
-                                <%--编辑操作--%>
-                                <td width="7%">
-                                    <a href="<%=request.getContextPath() %>/publication/editPublication?username=${user.userName}&id=${publication.id}">edit</a>
+                                    </div>
+
+
+                                <c:if test="${username!=null}">
+                                    <%--编辑操作--%>
+                                    <span width="7%">
+                                            <a href="<%=request.getContextPath() %>/publication/editPublication?username=${user.userName}&id=${publication.id}">edit</a>
+                                    </span>
+                                    <%--删除操作--%>
+                                    <span width="7%">
+                                            <a href="<%=request.getContextPath() %>/publication/deletePublicationInfo?username=${user.userName}&id=${publication.id}">delete</a>
+                                    </span>
+                                </c:if>
                                 </td>
-                                <%--&lt;%&ndash;管理员可进行删除操作&ndash;%&gt;--%>
-                                <%--<c:if test="${user.userType == 0}">--%>
-                                    <td width="7%">
-                                        <a href="<%=request.getContextPath() %>/publication/deletePublicationInfo?username=${user.userName}&id=${publication.id}">delete</a>
-                                    </td>
-                                <%--</c:if>--%>
                             </tr>
                         </c:forEach>
                     </c:otherwise>

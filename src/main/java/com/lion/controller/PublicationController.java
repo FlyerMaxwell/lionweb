@@ -77,7 +77,7 @@ public class PublicationController {
                                      @RequestParam(value="description") String description,
                                      @RequestParam(value="organization") String organization,
                                      @RequestParam(value = "image",required = false) MultipartFile image,
-                                     @RequestParam(value = "text", required = false) MultipartFile text,
+                                     @RequestParam(value = "text") MultipartFile text,
                                      @RequestParam(value = "slide", required = false) MultipartFile slide,
                                      @RequestParam(value = "video", required = false) MultipartFile video,
                                      @RequestParam(value = "members") String members,
@@ -137,7 +137,9 @@ public class PublicationController {
     //编辑publication
     @RequestMapping (value = "editPublication",method = RequestMethod.GET)
     public String editPublication(String username,Long id,HttpServletRequest request){
+        List<User> users=userService.listAllUser();
         Publication publication=publicationService.getPublicationById(id);
+        request.setAttribute("users",users);
         request.setAttribute("username",username);
         request.setAttribute("publication",publication);
         return "publication/publicationEdit";
@@ -201,14 +203,19 @@ public class PublicationController {
         for(String s:temp){
             authorList.add(Long.parseLong(s.trim()));
         }
-        List<Long> tempList=authorList;
-        authorList.removeAll(oldAuthorList);
-        batchInsertPubUser(authorList,publication,username,request);
-        authorList=tempList;
-        oldAuthorList.removeAll(authorList);
+        //此处注意使用深拷贝
+//        List<Long> tempList=authorList;
+//        authorList.removeAll(oldAuthorList);
+//        batchInsertPubUser(authorList,publication,username,request);
+//        authorList=tempList;
+//        oldAuthorList.removeAll(authorList);
+//        for(Long oldAuthorId:oldAuthorList){
+//            publicationUserService.deleteRecordById(oldAuthorId,id);
+//        }
         for(Long oldAuthorId:oldAuthorList){
             publicationUserService.deleteRecordById(oldAuthorId,id);
         }
+        batchInsertPubUser(authorList,publication,username,request);
 
         redirectAttributes.addAttribute("username",publication.getUserName());
         return "redirect:/publication/userProfile";

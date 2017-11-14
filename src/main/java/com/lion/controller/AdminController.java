@@ -8,6 +8,7 @@ import com.lion.service.PublicationUserService;
 import com.lion.service.UserLoginLogService;
 import com.lion.service.UserService;
 import com.lion.util.FileHandler;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,12 +59,12 @@ public class AdminController {
                                 @RequestParam(value = "username") String username,
                                 @RequestParam(value = "email") String userEmail,
                                 @RequestParam(value = "phone") String userPhone,
+                                @RequestParam(value = "description") String description,
                                 @RequestParam(value = "gender") Integer userSex,
                                 @RequestParam(value = "type") Integer userType,
                                 @RequestParam(value = "state") Integer userState,
-                                @RequestParam(value = "description") String description,
-                                @RequestParam(value = "detail",required = false) String detail,
                                 @RequestParam(value = "image",required = false) MultipartFile image,
+                                @RequestParam(value = "detail",required = false) String detail,
                                 HttpServletRequest request,
                                 RedirectAttributes redirectAttributes){
         User newUser=new User();
@@ -144,15 +145,15 @@ public class AdminController {
     }
 
     @RequestMapping(value="editMemberInfo",method = RequestMethod.POST)
-    public String editMemberInfo(String adminName,Long id,
+    public String editMemberInfo(Long id,
                                  @RequestParam(value = "email") String userEmail,
                                  @RequestParam(value = "phone") String userPhone,
+                                 @RequestParam(value = "description") String description,
                                  @RequestParam(value = "gender") Integer userSex,
                                  @RequestParam(value = "type") Integer userType,
                                  @RequestParam(value = "state") Integer userState,
-                                 @RequestParam(value = "description") String description,
-                                 @RequestParam(value = "detail",required = false) String detail,
                                  @RequestParam(value = "image",required = false) MultipartFile image,
+                                 @RequestParam(value = "detail",required = false) String detail,
                                  HttpServletRequest request){
         User updateUser=userService.getUserByUserId(id);
         //TODO 路径配置

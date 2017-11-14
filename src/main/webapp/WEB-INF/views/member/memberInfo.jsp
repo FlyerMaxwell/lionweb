@@ -26,7 +26,9 @@
                             </td>
                             <td>
                                 <div class="text">
-                                    <div>${user.userName}</div>
+                                    <div>
+                                        <a href="<%=request.getContextPath() %>/member/memberDetail?id=${user.id}">${user.userName}</a>
+                                    </div>
                                     <div>${user.userEmail}</div>
                                     <div>${user.description}</div>
                                 </div>
