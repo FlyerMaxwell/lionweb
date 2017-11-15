@@ -32,21 +32,21 @@
                 <textarea name="detail" id="detail" cols="30" rows="10">${user.detail}</textarea>
             </label>
             <label><span>Gender *</span>
-                <input id="gender0" type="radio" name="gender" value=1 checked="checked"/>
+                <input id="gender0" type="radio" name="gender" value="1" checked="checked"/>
                 <label for="gender0">Female</label>
-                <input id="gender1" type="radio" name="gender" value=2/>
+                <input id="gender1" type="radio" name="gender" value="2"/>
                 <label for="gender1">Male</label>
             </label>
             <label><span>User Type *</span>
-                <input id="type0" type="radio" name="type" value=0/>
+                <input id="type0" type="radio" name="type" value="0"/>
                 <label for="type0">Admin</label>
-                <input id="type1" type="radio" name="type" value=1 checked="checked"/>
+                <input id="type1" type="radio" name="type" value="1" checked="checked"/>
                 <label for="type1">Normal</label>
             </label>
             <label><span>User State *</span>
-                <input id="state0" type="radio" name="state" value=0 checked="checked"/>
+                <input id="state0" type="radio" name="state" value="0" checked="checked"/>
                 <label for="state0">unlocked</label>
-                <input id="state1" type="radio" name="state" value=1/>
+                <input id="state1" type="radio" name="state" value="1"/>
                 <label for="state1">locked</label>
             </label>
             <input type="submit" value="" id="submit">

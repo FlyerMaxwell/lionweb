@@ -32,9 +32,9 @@
                 <textarea name="detail" id="detail" cols="30" rows="10">${user.detail}</textarea>
             </label>
             <label><span>Gender *</span>
-                <input id="gender0" type="radio" name="gender" value=1 checked="checked"/>
+                <input id="gender0" type="radio" name="gender" value="1" checked="checked"/>
                 <label for="gender0">Female</label>
-                <input id="gender1" type="radio" name="gender" value=2/>
+                <input id="gender1" type="radio" name="gender" value="2"/>
                 <label for="gender1">Male</label>
             </label>
 
