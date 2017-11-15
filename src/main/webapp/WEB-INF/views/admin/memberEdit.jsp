@@ -12,7 +12,7 @@
     <jsp:include page="../sideMenu.jsp" flush="true"></jsp:include>
     <div class="content">
         <h2>Edit Member</h2>
-        <form method="POST" action="<%=request.getContextPath() %>/admin/editMemberInfo?&username=${username}"
+        <form method="POST" action="<%=request.getContextPath() %>/admin/editMemberInfo?&id=${user.id}"
               enctype="multipart/form-data">
             <label for="image"> <span>Image</span>
                 <a href="javascript:;" class="file">
@@ -32,7 +32,7 @@
                 <textarea name="detail" id="detail" cols="30" rows="10">${user.detail}</textarea>
             </label>
             <label><span>Gender *</span>
-                <input id="gender0" type="radio" name="gender" value="1" checked="checked"/>
+                <input id="gender0" type="radio" name="gender" value="1"/>
                 <label for="gender0">Female</label>
                 <input id="gender1" type="radio" name="gender" value="2"/>
                 <label for="gender1">Male</label>
@@ -40,11 +40,11 @@
             <label><span>User Type *</span>
                 <input id="type0" type="radio" name="type" value="0"/>
                 <label for="type0">Admin</label>
-                <input id="type1" type="radio" name="type" value="1" checked="checked"/>
+                <input id="type1" type="radio" name="type" value="1"/>
                 <label for="type1">Normal</label>
             </label>
             <label><span>User State *</span>
-                <input id="state0" type="radio" name="state" value="0" checked="checked"/>
+                <input id="state0" type="radio" name="state" value="0"/>
                 <label for="state0">unlocked</label>
                 <input id="state1" type="radio" name="state" value="1"/>
                 <label for="state1">locked</label>
@@ -57,3 +57,17 @@
 
 </body>
 </html>
+
+<script>
+    function checkRadio(radioName,radioValue) {
+        var rObj=document.getElementsByName(radioName);
+        for(var i=0;i<rObj.length;i++){
+            if(rObj[i].value==radioValue){
+                rObj[i].checked="checked";
+            }
+        }
+    }
+    checkRadio("gender",${user.userSex});
+    checkRadio("type",${user.userType});
+    checkRadio("state",${user.userState});
+</script>

@@ -32,7 +32,7 @@
                 <textarea name="detail" id="detail" cols="30" rows="10">${user.detail}</textarea>
             </label>
             <label><span>Gender *</span>
-                <input id="gender0" type="radio" name="gender" value="1" checked="checked"/>
+                <input id="gender0" type="radio" name="gender" value="1" />
                 <label for="gender0">Female</label>
                 <input id="gender1" type="radio" name="gender" value="2"/>
                 <label for="gender1">Male</label>
@@ -46,3 +46,15 @@
 
 </body>
 </html>
+
+<script>
+    function checkRadio(radioName,radioValue) {
+        var rObj=document.getElementsByName(radioName);
+        for(var i=0;i<rObj.length;i++){
+            if(rObj[i].value==radioValue){
+                rObj[i].checked="checked";
+            }
+        }
+    }
+    checkRadio("gender",${user.userSex});
+</script>
