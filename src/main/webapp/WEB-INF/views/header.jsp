@@ -23,24 +23,37 @@
 
 <div id="header">
     <a href="<%=request.getContextPath() %>/index" class="logo"><img src="<%=request.getContextPath() %>/statics/images/logo.png" alt=""></a>
-    <ul>
-        <li class="selected">
-            <a href="<%=request.getContextPath() %>/index">home</a>
+
+    <ul class="main-nav">
+        <li class="selected" >
+            <a href="<%=request.getContextPath() %>/index" onclick="change()">home</a>
         </li>
 
         <li>
-            <a href="<%=request.getContextPath() %>/news">News</a>
+            <a href="<%=request.getContextPath() %>/news" onclick="change()">News</a>
         </li>
         <li>
-            <a href="<%=request.getContextPath() %>/project/">Projects</a>
+            <a href="<%=request.getContextPath() %>/project/" onclick="change()">Projects</a>
         </li>
         <li>
-            <a href="<%=request.getContextPath() %>/publication">Publications</a>
+            <a href="<%=request.getContextPath() %>/publication" onclick="change()">Publications</a>
         </li>
         <li>
-            <a href="<%=request.getContextPath() %>/member">Members</a>
+            <a href="<%=request.getContextPath() %>/member" onclick="change()">Members</a>
         </li>
 
 
     </ul>
 </div>
+
+<script>
+    function change() {
+        var obj=document.getElementsByClassName("main-nav");
+        for(var i=0;i<obj.length;i++){
+            obj[i].removeClass('selected');
+        }
+        this.addClass('selected');
+    }
+</script>
+
+

@@ -71,7 +71,8 @@
                 </label>
                 <span id="checkbox">
                 <c:forEach items="${users}" var="user">
-                    <input type="checkbox" value="${user.id}" name="${user.userName}" onclick="display()"/>
+                    <input type="checkbox" value="${user.id}" id="${user.id}"
+                           name="${user.userName}" onclick="display()"/>
                     ${user.userName}<br/>
                 </c:forEach>
             </span>
@@ -111,4 +112,12 @@
         idstr = idstr.substring(0, idstr.length - 1);
         objtext.value = idstr;
     }
+    function scanCheckbox(list){
+        for(var i=0;i<list.length;i++){
+            document.getElementById(list[i]).checked=true;
+        }
+    }
+//    initialize checkbox
+    scanCheckbox(${oldAuthorList});
+    display()
 </script>

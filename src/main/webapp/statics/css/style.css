@@ -381,6 +381,7 @@ body {
     border-radius: 15px;
 
 }
+
 #body .content .container a{
     text-decoration: none;
 }
@@ -449,6 +450,11 @@ body {
     margin:20px;
     color: #5599FF;
     text-decoration: none;
+}
+#body .content-display .bar{
+    color:#0066CC;
+    margin:15px 0px 15px 0px;
+    font-size: 1.25em;
 }
 #body > ul {
     margin: 0;
@@ -617,6 +623,15 @@ body {
 #body table .picture > img{
     width:200px;
     height:150px;
+}
+#body table .detail{
+    width: 400px;
+    height: 300px;
+    padding-right: 5px;
+}
+#body table .detail > img{
+    width:400px;
+    height:300px;
 }
 #body td{
     vertical-align: top;

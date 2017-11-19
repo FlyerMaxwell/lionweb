@@ -60,7 +60,7 @@
                 </label>
                 <span id="checkbox">
                 <c:forEach items="${users}" var="user">
-                    <input type="checkbox" value="${user.id}"
+                    <input type="checkbox" value="${user.id}" id="${user.id}"
                            name="${user.userName}" onclick="display('checkbox','members','checkbox-pre')"/>
                     ${user.userName}<br/>
                 </c:forEach>
@@ -75,7 +75,7 @@
                 </label>
                 <span id="checkbox1">
                 <c:forEach items="${publications}" var="publication">
-                    <input type="checkbox" value="${publication.id}"
+                    <input type="checkbox" value="${publication.id}" id="${publication.id}"
                            name="${publication.title}" onclick="display('checkbox1','refs','checkbox-pre1')"/>
                     ${publication.title}<br/>
                 </c:forEach>
@@ -92,6 +92,7 @@
 </html>
 
 <script>
+
     function display(checkbox,list,pre) {
         var objform = document.getElementById(checkbox);
         var objtext = document.getElementById(list);
@@ -116,4 +117,17 @@
         idstr = idstr.substring(0, idstr.length - 1);
         objtext.value = idstr;
     }
+
+    function scanCheckbox(list){
+
+        for(var i=0;i<list.length;i++){
+            document.getElementById(list[i]).checked=true;
+        }
+    }
+    //    initialize checkbox
+    scanCheckbox(${oldAuthorList});
+    scanCheckbox(${oldPubList});
+    display('checkbox','members','checkbox-pre');
+    display('checkbox1','refs','checkbox-pre1');
+
 </script>

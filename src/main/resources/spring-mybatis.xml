@@ -14,7 +14,8 @@
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <!-- lion为数据库名 -->
         <!--添加serverTimezone=UTC是因为部署到windows server上会报错time zone unrecognized-->
-        <property name="url" value="jdbc:mysql://localhost:3306/lion?serverTimezone=UTC"/>
+        <!--时区对照在/usr/share/zoneinfo?目录下-->
+        <property name="url" value="jdbc:mysql://localhost:3306/lion?serverTimezone=Asia/Shanghai"/>
         <property name="username" value="root"/>
         <property name="password" value="9R07WY1U42I3P5QO8E"/>
     </bean>

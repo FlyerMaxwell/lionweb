@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -131,14 +132,17 @@ public class ProjectController {
 
     //编辑project
     @RequestMapping (value = "editProject",method = RequestMethod.GET)
-    public String editProject(String username,Long id,HttpServletRequest request){
+    public String editProject(Long id,HttpServletRequest request){
         List<User> users=userService.listAllUser();
         List<Publication> publications=publicationService.listAllPublication();
         Project project=projectService.getProjectById(id);
+        List<Long> oldAuthorList=projectUserService.listUserIdByProId(id);
+        List<Long> oldPubList=projectPublicationService.listPubIdByProId(id);
         request.setAttribute("users",users);
         request.setAttribute("publications",publications);
-        request.setAttribute("username",username);
         request.setAttribute("project",project);
+        request.setAttribute("oldAuthorList",oldAuthorList);
+        request.setAttribute("oldPubList",oldPubList);
         return "project/projectEdit";
     }
     //提交编辑后的project
@@ -250,6 +254,12 @@ public class ProjectController {
     public String projectDetail(Long id,HttpServletRequest request){
         Project project=projectService.getProjectById(id);
         request.setAttribute("project",project);
+        List<Long> publicationIds=projectPublicationService.listPubIdByProId(id);
+        List<Publication> publications=new ArrayList<Publication>();
+        for(Long pubId:publicationIds){
+            publications.add(publicationService.getPublicationById(pubId));
+        }
+        request.setAttribute("publications",publications);
         return "project/projectDetail";
     }
 

@@ -26,7 +26,9 @@
                             </td>
                             <td>
                                 <div class="text">
-                                    <div>${project.title}</div>
+                                    <div>
+                                        <a href="<%=request.getContextPath() %>/project/projectDetail?id=${project.id}">${project.title}</a>
+                                    </div>
                                     <div>${project.authors}</div>
                                     <div>${project.organization}</div>
                                 </div>

@@ -13,7 +13,7 @@
         <div class="container">
             <table>
                 <tr>
-                    <td class="picture">
+                    <td class="detail">
                         <img src="<%=request.getContextPath() %>/resource/showImage?imagePath=${project.imageUrl}&type=1">
                     </td>
                     <td>
@@ -47,6 +47,40 @@
                     </td>
                 </tr>
 
+            </table>
+        </div>
+        <div class="bar">
+            Related Publications
+        </div>
+        <div class="container">
+            <table>
+                <c:choose>
+                    <c:when test="${empty publications}">
+                        <div align="left">
+                            <span>No Related Publication!</span>
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+                        <c:forEach items="${publications}" var="publication">
+                            <tr>
+                                <td class="picture">
+                                    <img src="<%=request.getContextPath() %>/resource/showImage?imagePath=${publication.imageUrl}&type=1">
+                                </td>
+                                <td>
+                                    <div class="text">
+                                        <div>
+                                            <a href="<%=request.getContextPath() %>/publication/publicationDetail?id=${publication.id}">${publication.title}</a>
+                                        </div>
+                                        <div>${publication.authors}</div>
+                                        <div>${publication.organization}</div>
+
+                                    </div>
+
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </c:otherwise>
+                </c:choose>
             </table>
         </div>
     </div>

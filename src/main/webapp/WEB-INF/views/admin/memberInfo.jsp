@@ -43,7 +43,8 @@
                                         </span>
                                         <%--删除操作--%>
                                         <span width="7%">
-                                            <a href="<%=request.getContextPath() %>/admin/deleteMemberInfo?admin=${username}&id=${user.id}">delete</a>
+                                            <%--<a href="<%=request.getContextPath() %>/admin/deleteMemberInfo?admin=${username}&id=${user.id}">delete</a>--%>
+                                            <a href="#" onclick="sure(${project.id})">delete</a>
                                         </span>
                                     </c:if>
                                 </td>
@@ -58,3 +59,11 @@
 <jsp:include page="../footer.jsp" flush="true"></jsp:include>
 </body>
 </html>
+<script>
+    function sure(itemId) {
+        var conf=confirm("Confirm Deletion?");
+        if(conf==true){
+            window.location.href="<%=request.getContextPath() %>/admin/deleteMemberInfo?admin=${username}&id="+itemId;
+        }
+    }
+</script>

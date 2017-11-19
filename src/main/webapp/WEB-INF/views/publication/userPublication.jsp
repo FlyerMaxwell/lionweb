@@ -51,11 +51,11 @@
                                 <c:if test="${username!=null}">
                                     <%--编辑操作--%>
                                     <span width="7%">
-                                            <a href="<%=request.getContextPath() %>/publication/editPublication?username=${user.userName}&id=${publication.id}">edit</a>
+                                            <a href="<%=request.getContextPath() %>/publication/editPublication?username=${username}&id=${publication.id}">edit</a>
                                     </span>
                                     <%--删除操作--%>
                                     <span width="7%">
-                                            <a href="<%=request.getContextPath() %>/publication/deletePublicationInfo?username=${user.userName}&id=${publication.id}">delete</a>
+                                        <a href="#" onclick="sure(${publication.id})">delete</a>
                                     </span>
                                 </c:if>
                                 </td>
@@ -70,3 +70,11 @@
 <jsp:include page="../footer.jsp" flush="true"></jsp:include>
 </body>
 </html>
+<script>
+    function sure(itemId) {
+        var conf=confirm("Confirm Deletion?");
+        if(conf==true){
+            window.location.href="<%=request.getContextPath() %>/publication/deletePublicationInfo?username=${username}&id="+itemId;
+        }
+    }
+</script>

@@ -79,7 +79,7 @@
                            name="${publication.title}" onclick="display('checkbox1','refs','checkbox-pre1')"/>
                     ${publication.title}<br/>
                 </c:forEach>
-            </span>
+                </span>
             </div>
 
             <input type="submit" value="" id="submit">

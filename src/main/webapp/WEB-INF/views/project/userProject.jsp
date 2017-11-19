@@ -40,12 +40,12 @@
                                     <c:if test="${username!=null}">
                                         <%--编辑操作--%>
                                         <span width="7%">
-                                        <a href="<%=request.getContextPath() %>/project/editProject?username=${user.userName}&id=${project.id}">edit</a>
+                                        <a href="<%=request.getContextPath() %>/project/editProject?username=${username}&id=${project.id}">edit</a>
                                     </span>
                                         <%--删除操作--%>
                                         <span width="7%">
-                                        <a href="<%=request.getContextPath() %>/project/deleteProjectInfo?username=${user.userName}&id=${project.id}">delete</a>
-                                    </span>
+                                            <a href="#" onclick="sure(${project.id})">delete</a>
+                                        </span>
                                     </c:if>
                                 </td>
 
@@ -56,7 +56,16 @@
             </table>
         </div>
     </div>
+
 </div>
 <jsp:include page="../footer.jsp" flush="true"></jsp:include>
 </body>
 </html>
+<script>
+    function sure(itemId) {
+        var conf=confirm("Confirm Deletion?");
+        if(conf==true){
+            window.location.href="<%=request.getContextPath() %>/project/deleteProjectInfo?username=${username}&id="+itemId;
+        }
+    }
+</script>

@@ -136,12 +136,13 @@ public class PublicationController {
 
     //编辑publication
     @RequestMapping (value = "editPublication",method = RequestMethod.GET)
-    public String editPublication(String username,Long id,HttpServletRequest request){
+    public String editPublication(Long id,HttpServletRequest request){
         List<User> users=userService.listAllUser();
         Publication publication=publicationService.getPublicationById(id);
         request.setAttribute("users",users);
-        request.setAttribute("username",username);
         request.setAttribute("publication",publication);
+        List<Long> oldAuthorList=publicationUserService.listUserIdByPubId(id);
+        request.setAttribute("oldAuthorList",oldAuthorList);
         return "publication/publicationEdit";
     }
     //提交编辑后的publication

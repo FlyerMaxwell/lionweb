@@ -13,7 +13,7 @@
         <div class="container">
             <table>
                 <tr>
-                    <td class="picture">
+                    <td class="detail">
                         <img src="<%=request.getContextPath() %>/resource/showImage?imagePath=${news.imageUrl}&type=1">
                     </td>
                     <td>

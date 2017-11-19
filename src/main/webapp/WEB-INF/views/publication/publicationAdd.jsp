@@ -110,4 +110,5 @@
         idstr = idstr.substring(0, idstr.length - 1);
         objtext.value = idstr;
     }
+
 </script>
