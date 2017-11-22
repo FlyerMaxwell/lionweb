@@ -11,9 +11,9 @@
 <div class="sidebar">
     <h3>My Profile</h3>
     <ul>
-        <li>
-            <a href="<%=request.getContextPath() %>/member/memberEditPhoto?username=${username}">My Photo</a>
-        </li>
+        <%--<li>--%>
+            <%--<a href="<%=request.getContextPath() %>/member/memberEditPhoto?username=${username}">My Photo</a>--%>
+        <%--</li>--%>
         <li>
             <a href="<%=request.getContextPath() %>/user/userProfile?username=${username}">My Info</a>
         </li>
@@ -32,6 +32,15 @@
         <ul>
             <li>
                 <a href="<%=request.getContextPath() %>/admin/memberInfo">All Members</a>
+            </li>
+            <li>
+                <a href="<%=request.getContextPath() %>/admin/newsInfo">All News</a>
+            </li>
+            <li>
+                <a href="<%=request.getContextPath() %>/admin/projectInfo">All Projects</a>
+            </li>
+            <li>
+                <a href="<%=request.getContextPath() %>/admin/publicationInfo">All Publications</a>
             </li>
         </ul>
     </c:if>

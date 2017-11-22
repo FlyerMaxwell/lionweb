@@ -1,14 +1,8 @@
 package com.lion.controller;
 
-import com.lion.entity.ProjectUser;
-import com.lion.entity.User;
-import com.lion.entity.UserLoginLog;
-import com.lion.service.ProjectUserService;
-import com.lion.service.PublicationUserService;
-import com.lion.service.UserLoginLogService;
-import com.lion.service.UserService;
+import com.lion.entity.*;
+import com.lion.service.*;
 import com.lion.util.FileHandler;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,6 +35,15 @@ public class AdminController {
 
     @Autowired
     UserLoginLogService userLoginLogService;
+
+    @Autowired
+    NewsService newsService;
+
+    @Autowired
+    ProjectService projectService;
+
+    @Autowired
+    PublicationService publicationService;
 
     @RequestMapping(value="memberInfo",method = RequestMethod.GET)
     public String memberInfo(HttpServletRequest request){
@@ -204,5 +207,29 @@ public class AdminController {
         User user=userService.getUserByUserId(id);
         request.setAttribute("user",user);
         return "admin/memberDetail";
+    }
+
+    //所有news
+    @RequestMapping(value = "newsInfo")
+    public String allNews(HttpServletRequest request) {
+        List<News> newsList = newsService.listAllNews();
+        request.setAttribute("newsList", newsList);
+        return "admin/newsInfo";
+    }
+
+    //所有projects
+    @RequestMapping(value = "projectInfo")
+    public String allProject(HttpServletRequest request){
+        List<Project> projectList=projectService.listAllProject();
+        request.setAttribute("projects",projectList);
+        return "admin/projectInfo";
+    }
+
+    //所有publications
+    @RequestMapping(value = "publicationInfo")
+    public String allPublication(HttpServletRequest request){
+        List<Publication> publicationList=publicationService.listAllPublication();
+        request.setAttribute("publications",publicationList);
+        return "admin/publicationInfo";
     }
 }

@@ -61,9 +61,10 @@ public class NewsController {
     @RequestMapping(value = "addNewsInfo", method = RequestMethod.POST)
     public String addNewsInfo(String username,
                               @RequestParam(value = "title") String title,
-                              @RequestParam(value = "description") String description,
+                              @RequestParam(value = "description", required = false) String description,
                               @RequestParam(value = "image", required = false) MultipartFile image,
-                              @RequestParam(value = "text", required = false) MultipartFile text,
+//                              @RequestParam(value = "text", required = false) MultipartFile text,
+                              @RequestParam(value = "text", required = false) String text,
                               HttpServletRequest request,
                               RedirectAttributes redirectAttributes) {
         News news = new News();
@@ -81,15 +82,17 @@ public class NewsController {
                 String filePath1 = FileHandler.uploadFile(basePath + "/image", image, request);
                 news.setImageUrl(filePath1);
             }
-            if (text != null && !text.isEmpty()) {
-                String filePath2 = FileHandler.uploadFile(basePath + "/text", text, request);
-                news.setTextUrl(filePath2);
-            }
+//            if (text != null && !text.isEmpty()) {
+//                String filePath2 = FileHandler.uploadFile(basePath + "/text", text, request);
+//                news.setTextUrl(filePath2);
+//            }
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("Msg", "File Upload Failed!");
             return "error";
         }
+
+        news.setTextUrl(text);
 
         //添加news
         newsService.addNewNews(news);

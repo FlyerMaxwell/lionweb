@@ -16,6 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LION</title>
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/statics/css/styles.css">
+    <link rel="shortcut icon" href="<%=request.getContextPath() %>/statics/images/favicon.ico" type="image/x-icon" />
 </head>
 <body>
 <div id="header">

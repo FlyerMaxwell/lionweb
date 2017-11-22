@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>LION</title>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/statics/css/style.css" type="text/css">
+    <link rel="shortcut icon" href="<%=request.getContextPath() %>/statics/images/favicon.ico" type="image/x-icon" />
 </head>
 <body>
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
@@ -30,7 +31,7 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <div>${news.description}</div>
+                        <div>${news.textUrl}</div>
                     </td>
                 </tr>
 

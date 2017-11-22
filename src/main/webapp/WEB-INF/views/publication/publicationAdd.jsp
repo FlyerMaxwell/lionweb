@@ -14,8 +14,12 @@
     <meta charset="UTF-8">
     <title>LION</title>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/statics/css/style.css" type="text/css">
+    <link rel="shortcut icon" href="<%=request.getContextPath() %>/statics/images/favicon.ico" type="image/x-icon" />
 </head>
 <body>
+<c:if test="${sessionScope.userType==null}">
+    <jsp:forward page="../access.jsp"></jsp:forward>
+</c:if>
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
 <div id="body">
     <jsp:include page="../sideMenu.jsp" flush="true"></jsp:include>
@@ -23,6 +27,9 @@
         <h2>Add New Publication</h2>
         <form method="POST" action="<%=request.getContextPath() %>/publication/addPublicationInfo?username=${username}"
               enctype="multipart/form-data">
+            <label class="hint">
+                fields with * are required,while other are optional
+            </label>
             <label for="title"> <span>Title *</span>
                 <input type="text" name="title" id="title">
             </label>

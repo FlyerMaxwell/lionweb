@@ -8,6 +8,24 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<head>
+    <script src="<%=request.getContextPath() %>/statics/js/jquery-3.2.1.js"></script>
+</head>
+
+<script>
+    var urlstr = location.href;
+    var urlstatus=false;
+    $("#main-nav li").each(function () {
+        if ((urlstr + '/').indexOf($(this).attr('href')) > -1&&$(this).attr('href')!="") {
+            $(this).addClass('selected');
+            urlstatus = true;
+        } else {
+            $(this).removeClass('selected');
+        }
+    });
+    if (!urlstatus) {$("#main-nav li").eq(0).addClass('selected');}
+</script>
+
 <div id="nav">
     <c:choose>
         <c:when test="${username != null}">
@@ -24,36 +42,41 @@
 <div id="header">
     <a href="<%=request.getContextPath() %>/index" class="logo"><img src="<%=request.getContextPath() %>/statics/images/logo.png" alt=""></a>
 
-    <ul class="main-nav">
-        <li class="selected" >
-            <a href="<%=request.getContextPath() %>/index" onclick="change()">home</a>
+    <ul id="main-nav">
+        <li>
+            <a href="<%=request.getContextPath() %>/index" >home</a>
         </li>
 
         <li>
-            <a href="<%=request.getContextPath() %>/news" onclick="change()">News</a>
+            <a href="<%=request.getContextPath() %>/news" >News</a>
         </li>
         <li>
-            <a href="<%=request.getContextPath() %>/project/" onclick="change()">Projects</a>
+            <a href="<%=request.getContextPath() %>/project/" >Projects</a>
         </li>
         <li>
-            <a href="<%=request.getContextPath() %>/publication" onclick="change()">Publications</a>
+            <a href="<%=request.getContextPath() %>/publication">Publications</a>
         </li>
         <li>
-            <a href="<%=request.getContextPath() %>/member" onclick="change()">Members</a>
+            <a href="<%=request.getContextPath() %>/member" >Members</a>
         </li>
 
 
     </ul>
 </div>
 
-<script>
-    function change() {
-        var obj=document.getElementsByClassName("main-nav");
-        for(var i=0;i<obj.length;i++){
-            obj[i].removeClass('selected');
-        }
-        this.addClass('selected');
-    }
-</script>
+<%--<script>--%>
+    <%--function change() {--%>
+        <%--$("ul.main-nav li:active").removeClass('selected');--%>
+        <%--$(this).addClass('selected');--%>
+    <%--}--%>
+<%--</script>--%>
+<%--<script>--%>
+<%--$(function(){--%>
+    <%--$("#main-nav li").click(function() {--%>
+        <%--$(this).siblings('li').removeClass('selected');  // 删除其他兄弟元素的样式--%>
+        <%--$(this).addClass('selected');                            // 添加当前元素的样式--%>
+        <%--});--%>
+<%--});--%>
+<%--</script>--%>
 
 

@@ -1,14 +1,16 @@
 package com.lion.controller;
 
+import org.apache.commons.io.FileUtils;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedOutputStream;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 
 /**
  * @author DJ
@@ -45,5 +47,23 @@ public class ResourceController {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+    }
+
+    @RequestMapping("/downloadFile")
+    public ResponseEntity<byte[]> downloadFile(HttpServletRequest request,
+                                               String filePath) throws Exception{
+        //指定要下载的文件所在路径
+        //String path = request.getServletContext().getRealPath(filePath);
+        File file = new File(filePath);
+        HttpHeaders headers = new HttpHeaders();
+
+        //通知浏览器以下载的方式打开文件
+        headers.setContentDispositionFormData("attachment", filePath);
+
+        //定义以流的形式下载返回文件数据
+        headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+
+        //使用Spring MVC框架的ResponseEntity对象封装返回下载数据
+        return new ResponseEntity<byte[]>(FileUtils.readFileToByteArray(file),headers, HttpStatus.OK);
     }
 }

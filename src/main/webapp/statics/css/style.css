@@ -5,15 +5,16 @@
     
 }
 
-/*@font-face {
+font-face {
     font-family: 'Conv_Ubuntu-Light';
     src: url('../fonts/Ubuntu-Light.eot');
     src: url('../fonts/Ubuntu-Light.woff') format('woff'), url('../fonts/Ubuntu-Light.ttf') format('truetype'), url('../fonts/Ubuntu-Light.svg') format('svg');
-}*/
+}
 body {
     /*background: url(../../../images/bg-body.jpg) repeat;*/
-    /*font-family: 'Conv_Ubuntu-Light';*/
-    font-family: Comic Sans MS,sans-serif;
+    font-family: 'Conv_Ubuntu-Light';
+    /*font-family: Comic Sans MS,sans-serif;*/
+    /*font-family: Verdana, Arial, Helvetica, sans-serif;*/
     font-size: 14px;
     font-weight: normal;
     line-height: 1;
@@ -37,10 +38,14 @@ body {
 }
 #header {
     /*background: url(../../../images/bg-header.jpg) repeat-x;*/
+    background-color: #EEEEEE;
     margin: 0;
     /*padding: 18px 0 0;*/
     padding: 0;
     text-align: center;
+    border-color:#0066CC;
+    border-bottom-style: solid;
+    font-size: 1.2em;
 }
 #header a.logo {
     display: block;
@@ -453,7 +458,7 @@ body {
 }
 #body .content-display .bar{
     color:#0066CC;
-    margin:15px 0px 15px 0px;
+    margin:40px 0px 40px 0px;
     font-size: 1.25em;
 }
 #body > ul {
@@ -615,6 +620,15 @@ body {
     width:100px;
     height:150px;
 }
+#body table .portrait{
+    width: 160px;
+    height: 240px;
+    padding-right: 5px;
+}
+#body table .portrait > img{
+    width:160px;
+    height:240px;
+}
 #body table .picture{
     width: 200px;
     height: 150px;
@@ -633,6 +647,7 @@ body {
     width:400px;
     height:300px;
 }
+
 #body td{
     vertical-align: top;
 }
