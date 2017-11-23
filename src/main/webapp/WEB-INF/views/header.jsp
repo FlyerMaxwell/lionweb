@@ -41,7 +41,7 @@
 </div>
 
 <div id="header">
-    <a href="<%=request.getContextPath() %>/index" class="logo"><img src="<%=request.getContextPath() %>/statics/images/logo.png" alt=""></a>
+    <%--<a href="<%=request.getContextPath() %>/index" class="logo"><img src="<%=request.getContextPath() %>/statics/images/logo.png" alt=""></a>--%>
 
     <ul id="main-nav">
         <li>

@@ -29,11 +29,11 @@ body {
 
 #nav li{
 
-    color:var(--color1);
+    color:#000000;
 }
 
 #sidebar dl{
-    color:var(--color1);
+    color:#000000;
     font-size: 60px
 }
 #header {
@@ -43,7 +43,7 @@ body {
     /*padding: 18px 0 0;*/
     padding: 0;
     text-align: center;
-    border-color:#0066CC;
+    border-color:#000000;
     border-bottom-style: solid;
     font-size: 1.2em;
 }
@@ -78,7 +78,7 @@ body {
     margin: 0 0 0 15px;
 }*/
 #header ul li a {
-    color: var(--color1);
+    color: #000000;
     /*display: block;*/
     height: 37px;
     line-height: 40px;
@@ -612,21 +612,21 @@ body {
     background-position: 0 -43px;
 }
 #body table .photo{
-    width: 100px;
-    height: 150px;
+    width: 120px;
+    height: 160px;
     padding-right: 150px;
 }
 #body table .photo > img{
-    width:100px;
-    height:150px;
+    width:120px;
+    height:160px;
 }
 #body table .portrait{
-    width: 160px;
+    width: 180px;
     height: 240px;
     padding-right: 5px;
 }
 #body table .portrait > img{
-    width:160px;
+    width:180px;
     height:240px;
 }
 #body table .picture{

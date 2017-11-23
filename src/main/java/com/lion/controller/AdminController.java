@@ -94,7 +94,7 @@ public class AdminController {
                                 String filePath1 = FileHandler.uploadFile(basePath + "/"+username+"/image", image, request);
                                 newUser.setImageUrl(filePath1);
                             }
-                            if (cv != null && !image.isEmpty()) {
+                            if (cv != null && !cv.isEmpty()) {
                                 String filePath2 = FileHandler.uploadFile(basePath + "/"+username+"/cv", cv, request);
                                 newUser.setCvUrl(filePath2);
                             }

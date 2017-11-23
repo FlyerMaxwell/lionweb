@@ -35,9 +35,9 @@
 
     <!--multipart文件上传解析器-->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <!--最大上传文件大小5G（5*1024*1024）-->
-        <property name="maxUploadSize" value="5242880"/>
-        <property name="maxInMemorySize" value="5242880"/>
+        <!--最大上传文件大小500M（500*1024*1024）-->
+        <property name="maxUploadSize" value="524288000"/>
+        <property name="maxInMemorySize" value="524288000"/>
     </bean>
 
 </beans>

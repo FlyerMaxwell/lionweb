@@ -17,6 +17,8 @@ public class User {
 
     private String userName;
 
+    private String realName;
+
     private Long adminId;
 
     private String adminName;
@@ -26,6 +28,8 @@ public class User {
     private String imageUrl;
 
     private String webUrl;
+
+    private String prospect;
 
     private String cvUrl;
 
@@ -67,6 +71,14 @@ public class User {
         this.userName = userName == null ? null : userName.trim();
     }
 
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
+    }
+
     public Long getAdminId() {
         return adminId;
     }
@@ -105,6 +117,14 @@ public class User {
 
     public void setWebUrl(String webUrl) {
         this.webUrl = webUrl == null ? null : webUrl.trim();
+    }
+
+    public String getProspect() {
+        return prospect;
+    }
+
+    public void setProspect(String prospect) {
+        this.prospect = prospect;
     }
 
     public String getCvUrl() {
@@ -218,4 +238,5 @@ public class User {
                 ", lastLoginTime=" + lastLoginTime +
                 ", lastIp=" + lastIp + "}";
     }
+
 }

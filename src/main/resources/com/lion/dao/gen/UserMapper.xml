@@ -4,11 +4,13 @@
   <resultMap id="BaseResultMap" type="com.lion.entity.User">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="real_name" jdbcType="VARCHAR" property="realName"/>
     <result column="admin_id" jdbcType="BIGINT" property="adminId" />
     <result column="admin_name" jdbcType="VARCHAR" property="adminName" />
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="image_url" jdbcType="VARCHAR" property="imageUrl" />
     <result column="web_url" jdbcType="VARCHAR" property="webUrl" />
+    <result column="prospect" jdbcType="VARCHAR" property="prospect"/>
     <result column="cv_url" jdbcType="VARCHAR" property="cvUrl" />
     <result column="description" jdbcType="VARCHAR" property="description" />
     <result column="detail" jdbcType="VARCHAR" property="detail" />
@@ -23,7 +25,8 @@
     <result column="last_ip" jdbcType="VARCHAR" property="lastIp" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, user_name, admin_id, admin_name, password, image_url, web_url, cv_url, description, 
+    id, user_name, real_name, admin_id, admin_name, password,
+    image_url, web_url, prospect, cv_url, description,
     detail, user_email, user_sex, user_phone, create_time, user_type, user_state, user_role, 
     last_login_time, last_ip
   </sql>
@@ -38,16 +41,18 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.lion.entity.User">
-    insert into t_user (id, user_name, admin_id, 
+    insert into t_user (id, user_name, real_name, admin_id,
       admin_name, password, image_url, 
-      web_url, cv_url, description, 
+      web_url, prospect, cv_url, description,
       detail, user_email, user_sex, 
       user_phone, create_time, user_type, 
       user_state, user_role, last_login_time, 
       last_ip)
-    values (#{id,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{adminId,jdbcType=BIGINT}, 
-      #{adminName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{imageUrl,jdbcType=VARCHAR}, 
-      #{webUrl,jdbcType=VARCHAR}, #{cvUrl,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR},
+      #{realName,jdbcType=VARCHAR}, #{adminId,jdbcType=BIGINT},
+      #{adminName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+      #{imageUrl,jdbcType=VARCHAR}, #{webUrl,jdbcType=VARCHAR},
+      #{prospect,jdbcType=VARCHAR}, #{cvUrl,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR},
       #{detail,jdbcType=VARCHAR}, #{userEmail,jdbcType=VARCHAR}, #{userSex,jdbcType=INTEGER}, 
       #{userPhone,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{userType,jdbcType=INTEGER}, 
       #{userState,jdbcType=INTEGER}, #{userRole,jdbcType=INTEGER}, #{lastLoginTime,jdbcType=TIMESTAMP}, 
@@ -61,6 +66,9 @@
       </if>
       <if test="userName != null">
         user_name,
+      </if>
+      <if test="realName != null">
+        real_name
       </if>
       <if test="adminId != null">
         admin_id,
@@ -76,6 +84,9 @@
       </if>
       <if test="webUrl != null">
         web_url,
+      </if>
+      <if test="prospect != null">
+        prospect,
       </if>
       <if test="cvUrl != null">
         cv_url,
@@ -121,6 +132,9 @@
       <if test="userName != null">
         #{userName,jdbcType=VARCHAR},
       </if>
+      <if test="realName != null">
+        #{realName,jdbcType=VARCHAR},
+      </if>
       <if test="adminId != null">
         #{adminId,jdbcType=BIGINT},
       </if>
@@ -135,6 +149,9 @@
       </if>
       <if test="webUrl != null">
         #{webUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="prospect != null">
+        #{prospect,jdbcType=VARCHAR},
       </if>
       <if test="cvUrl != null">
         #{cvUrl,jdbcType=VARCHAR},
@@ -180,6 +197,9 @@
       <if test="userName != null">
         user_name = #{userName,jdbcType=VARCHAR},
       </if>
+      <if test="realName != null">
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
       <if test="adminId != null">
         admin_id = #{adminId,jdbcType=BIGINT},
       </if>
@@ -194,6 +214,9 @@
       </if>
       <if test="webUrl != null">
         web_url = #{webUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="prospect != null">
+        prospect = #{prospect,jdbcType=VARCHAR},
       </if>
       <if test="cvUrl != null">
         cv_url = #{cvUrl,jdbcType=VARCHAR},
@@ -237,11 +260,13 @@
   <update id="updateByPrimaryKey" parameterType="com.lion.entity.User">
     update t_user
     set user_name = #{userName,jdbcType=VARCHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
       admin_id = #{adminId,jdbcType=BIGINT},
       admin_name = #{adminName,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
       image_url = #{imageUrl,jdbcType=VARCHAR},
       web_url = #{webUrl,jdbcType=VARCHAR},
+      prospect = #{prospect,jdbcType=VARCHAR},
       cv_url = #{cvUrl,jdbcType=VARCHAR},
       description = #{description,jdbcType=VARCHAR},
       detail = #{detail,jdbcType=VARCHAR},
