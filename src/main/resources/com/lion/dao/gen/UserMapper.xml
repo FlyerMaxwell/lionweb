@@ -8,6 +8,8 @@
     <result column="admin_name" jdbcType="VARCHAR" property="adminName" />
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="image_url" jdbcType="VARCHAR" property="imageUrl" />
+    <result column="web_url" jdbcType="VARCHAR" property="webUrl" />
+    <result column="cv_url" jdbcType="VARCHAR" property="cvUrl" />
     <result column="description" jdbcType="VARCHAR" property="description" />
     <result column="detail" jdbcType="VARCHAR" property="detail" />
     <result column="user_email" jdbcType="VARCHAR" property="userEmail" />
@@ -16,12 +18,14 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="user_type" jdbcType="INTEGER" property="userType" />
     <result column="user_state" jdbcType="INTEGER" property="userState" />
+    <result column="user_role" jdbcType="INTEGER" property="userRole" />
     <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
     <result column="last_ip" jdbcType="VARCHAR" property="lastIp" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, user_name, admin_id, admin_name, password, image_url, description, detail, user_email, 
-    user_sex, user_phone, create_time, user_type, user_state, last_login_time, last_ip
+    id, user_name, admin_id, admin_name, password, image_url, web_url, cv_url, description, 
+    detail, user_email, user_sex, user_phone, create_time, user_type, user_state, user_role, 
+    last_login_time, last_ip
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
@@ -36,15 +40,17 @@
   <insert id="insert" parameterType="com.lion.entity.User">
     insert into t_user (id, user_name, admin_id, 
       admin_name, password, image_url, 
-      description, detail, user_email, 
-      user_sex, user_phone, create_time, 
-      user_type, user_state, last_login_time, 
+      web_url, cv_url, description, 
+      detail, user_email, user_sex, 
+      user_phone, create_time, user_type, 
+      user_state, user_role, last_login_time, 
       last_ip)
     values (#{id,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{adminId,jdbcType=BIGINT}, 
       #{adminName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{imageUrl,jdbcType=VARCHAR}, 
-      #{description,jdbcType=VARCHAR}, #{detail,jdbcType=VARCHAR}, #{userEmail,jdbcType=VARCHAR}, 
-      #{userSex,jdbcType=INTEGER}, #{userPhone,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{userType,jdbcType=INTEGER}, #{userState,jdbcType=INTEGER}, #{lastLoginTime,jdbcType=TIMESTAMP}, 
+      #{webUrl,jdbcType=VARCHAR}, #{cvUrl,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{detail,jdbcType=VARCHAR}, #{userEmail,jdbcType=VARCHAR}, #{userSex,jdbcType=INTEGER}, 
+      #{userPhone,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{userType,jdbcType=INTEGER}, 
+      #{userState,jdbcType=INTEGER}, #{userRole,jdbcType=INTEGER}, #{lastLoginTime,jdbcType=TIMESTAMP}, 
       #{lastIp,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.lion.entity.User">
@@ -67,6 +73,12 @@
       </if>
       <if test="imageUrl != null">
         image_url,
+      </if>
+      <if test="webUrl != null">
+        web_url,
+      </if>
+      <if test="cvUrl != null">
+        cv_url,
       </if>
       <if test="description != null">
         description,
@@ -91,6 +103,9 @@
       </if>
       <if test="userState != null">
         user_state,
+      </if>
+      <if test="userRole != null">
+        user_role,
       </if>
       <if test="lastLoginTime != null">
         last_login_time,
@@ -118,6 +133,12 @@
       <if test="imageUrl != null">
         #{imageUrl,jdbcType=VARCHAR},
       </if>
+      <if test="webUrl != null">
+        #{webUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="cvUrl != null">
+        #{cvUrl,jdbcType=VARCHAR},
+      </if>
       <if test="description != null">
         #{description,jdbcType=VARCHAR},
       </if>
@@ -141,6 +162,9 @@
       </if>
       <if test="userState != null">
         #{userState,jdbcType=INTEGER},
+      </if>
+      <if test="userRole != null">
+        #{userRole,jdbcType=INTEGER},
       </if>
       <if test="lastLoginTime != null">
         #{lastLoginTime,jdbcType=TIMESTAMP},
@@ -168,6 +192,12 @@
       <if test="imageUrl != null">
         image_url = #{imageUrl,jdbcType=VARCHAR},
       </if>
+      <if test="webUrl != null">
+        web_url = #{webUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="cvUrl != null">
+        cv_url = #{cvUrl,jdbcType=VARCHAR},
+      </if>
       <if test="description != null">
         description = #{description,jdbcType=VARCHAR},
       </if>
@@ -192,6 +222,9 @@
       <if test="userState != null">
         user_state = #{userState,jdbcType=INTEGER},
       </if>
+      <if test="userRole != null">
+        user_role = #{userRole,jdbcType=INTEGER},
+      </if>
       <if test="lastLoginTime != null">
         last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
       </if>
@@ -208,6 +241,8 @@
       admin_name = #{adminName,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
       image_url = #{imageUrl,jdbcType=VARCHAR},
+      web_url = #{webUrl,jdbcType=VARCHAR},
+      cv_url = #{cvUrl,jdbcType=VARCHAR},
       description = #{description,jdbcType=VARCHAR},
       detail = #{detail,jdbcType=VARCHAR},
       user_email = #{userEmail,jdbcType=VARCHAR},
@@ -216,6 +251,7 @@
       create_time = #{createTime,jdbcType=TIMESTAMP},
       user_type = #{userType,jdbcType=INTEGER},
       user_state = #{userState,jdbcType=INTEGER},
+      user_role = #{userRole,jdbcType=INTEGER},
       last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
       last_ip = #{lastIp,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}

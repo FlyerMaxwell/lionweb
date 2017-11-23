@@ -24,10 +24,6 @@
 <div id="body">
     <jsp:include page="../sideMenu.jsp" flush="true"></jsp:include>
     <div class="content">
-        <ul>
-            <a href="<%=request.getContextPath() %>/publication/addPublication?username=${user.userName}" class="add">New
-                Publication</a>
-        </ul>
         <div class="container">
             <table>
                 <c:choose>
@@ -56,7 +52,7 @@
                                     <c:if test="${username!=null&&userType==0}">
                                         <%--编辑操作--%>
                                         <span width="7%">
-                                            <a href="<%=request.getContextPath() %>/publication/editPublication?username=${username}&id=${publication.id}">edit</a>
+                                            <a href="<%=request.getContextPath() %>/publication/editPublication?username=${username}&panel=0&id=${publication.id}">edit</a>
                                         </span>
                                         <%--删除操作--%>
                                         <span width="7%">
@@ -79,7 +75,7 @@
     function sure(itemId) {
         var conf = confirm("Confirm Deletion?");
         if (conf == true) {
-            window.location.href = "<%=request.getContextPath() %>/publication/deletePublicationInfo?username=${username}&id=" + itemId;
+            window.location.href = "<%=request.getContextPath() %>/publication/deletePublicationInfo?username=${username}&panel=0&id=" + itemId;
         }
     }
 </script>

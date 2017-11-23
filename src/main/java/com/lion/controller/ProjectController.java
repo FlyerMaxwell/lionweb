@@ -132,7 +132,7 @@ public class ProjectController {
 
     //编辑project
     @RequestMapping (value = "editProject",method = RequestMethod.GET)
-    public String editProject(Long id,HttpServletRequest request){
+    public String editProject(Long id,Integer panel,HttpServletRequest request){
         List<User> users=userService.listAllUser();
         List<Publication> publications=publicationService.listAllPublication();
         Project project=projectService.getProjectById(id);
@@ -143,11 +143,12 @@ public class ProjectController {
         request.setAttribute("project",project);
         request.setAttribute("oldAuthorList",oldAuthorList);
         request.setAttribute("oldPubList",oldPubList);
+        request.setAttribute("panel",panel);
         return "project/projectEdit";
     }
     //提交编辑后的project
     @RequestMapping(value = "editProjectInfo",method = RequestMethod.POST)
-    public String editProjectInfo(String username,Long id,
+    public String editProjectInfo(String username,Long id,Integer panel,
                                       @RequestParam(value="title") String title,
                                       @RequestParam(value="authors") String authors,
                                       @RequestParam(value="description") String description,
@@ -231,12 +232,17 @@ public class ProjectController {
         }
         batchInsertProPub(publicationList,project,username,request);
 
-        redirectAttributes.addAttribute("username",project.getUserName());
-        return "redirect:/project/userProfile";
+        if(panel==null) {
+            redirectAttributes.addAttribute("username", project.getUserName());
+            return "redirect:/project/userProfile";
+        }
+        return "redirect:/admin/projectInfo";
     }
+
+    //TODO 信息可单独设表记录，此处预留username参数
     //删除project
     @RequestMapping(value="deleteProjectInfo",method = RequestMethod.GET)
-    public String deleteProjectInfo(String username,Long id,RedirectAttributes redirectAttributes){
+    public String deleteProjectInfo(String username,Long id,Integer panel,RedirectAttributes redirectAttributes){
         Project project=projectService.getProjectById(id);
         FileHandler.deleteFile(project.getImageUrl());
         FileHandler.deleteFile(project.getTextUrl());
@@ -245,8 +251,11 @@ public class ProjectController {
         projectService.deleteProject(id);
         projectPublicationService.deleteRecordByProId(id);
         projectUserService.deleteRecordByProId(id);
-        redirectAttributes.addAttribute("username",username);
-        return "redirect:/project/userProfile";
+        if(panel==null) {
+            redirectAttributes.addAttribute("username", username);
+            return "redirect:/project/userProfile";
+        }
+        return "redirect:/admin/projectInfo";
     }
 
     //显示project详情

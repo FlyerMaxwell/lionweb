@@ -20,9 +20,14 @@
             <label class="hint">
                 fields with * are required,while other are optional
             </label>
-            <label for="image"> <span>Image</span>
+            <label for="image"> <span>Photo</span>
                 <a href="javascript:;" class="file">
                     <input type="file" name="image" id="image" >
+                </a>
+            </label>
+            <label for="cv"> <span>CV</span>
+                <a href="javascript:;" class="file">
+                    <input type="file" name="cv" id="cv" >
                 </a>
             </label>
             <label for="username"> <span>Username *</span>
@@ -31,13 +36,16 @@
             <label for="email"> <span>Email *</span>
                 <input type="text" name="email" id="email">
             </label>
-            <label for="phone"> <span>Telephone *</span>
+            <label for="phone"> <span>Telephone</span>
                 <input type="text" name="phone" id="phone">
             </label>
-            <label for="description"> <span>Description *</span>
+            <label for="web"> <span>Web Page</span>
+                <input type="text" name="web" id="web">
+            </label>
+            <label for="description"> <span>Description</span>
                 <textarea name="description" id="description" cols="10" rows="3"></textarea>
             </label>
-            <label for="detail"> <span>Detail</span>
+            <label for="detail"> <span>Detail*</span>
                 <textarea name="detail" id="detail" cols="30" rows="10"></textarea>
             </label>
             <label><span>Gender *</span>
@@ -57,6 +65,16 @@
                 <label for="state0">unlocked</label>
                 <input id="state1" type="radio" name="state" value="1"/>
                 <label for="state1">locked</label>
+            </label>
+            <label><span>User Role *</span>
+                <input id="role0" type="radio" name="role" value="0"/>
+                <label for="role0">Professor</label>
+                <input id="role1" type="radio" name="role" value="1" checked="checked"/>
+                <label for="role1">graduate</label>
+                <input id="role2" type="radio" name="role" value="2"/>
+                <label for="role2">undergraduate</label>
+                <input id="role3" type="radio" name="role" value="2"/>
+                <label for="role3">alumni</label>
             </label>
             <input type="submit" value="" id="submit">
         </form>

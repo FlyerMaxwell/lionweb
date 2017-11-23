@@ -283,28 +283,28 @@ body {
     margin: 0;
     padding: 10px 0;
 }
-#body .sidebar ul li span {
-    background: url(../images/icons.png) no-repeat;
-    display: block;
-    margin: 0;
-    padding: 0 0 0 23px;
-    text-transform: uppercase;
-}
-#body .sidebar ul li span.address {
-    background-position: 0 -141px;
-}
-#body .sidebar ul li span.phone {
-    background-position: 0 -166px;
-}
-#body .sidebar ul li span.email {
-    background-position: 0 -191px;
-}
-#body .sidebar ul li span.twitter {
-    background-position: 0 -216px;
-}
-#body .sidebar ul li span.facebook {
-    background-position: 0 -241px;
-}
+/*#body .container {*/
+    /*background: url(../images/icons.png) no-repeat;*/
+    /*display: block;*/
+    /*margin: 0;*/
+    /*padding: 0 0 0 23px;*/
+    /*text-transform: uppercase;*/
+/*}*/
+/*#body .container div.web_page {*/
+    /*background-position: 0 -141px;*/
+/*}*/
+/*#body .container div.phone {*/
+    /*background-position: 0 -166px;*/
+/*}*/
+/*#body .container div.email {*/
+    /*background-position: 0 -191px;*/
+/*}*/
+/*#body .sidebar ul li span.twitter {*/
+    /*background-position: 0 -216px;*/
+/*}*/
+/*#body .sidebar ul li span.facebook {*/
+    /*background-position: 0 -241px;*/
+/*}*/
 #body .sidebar ul ul {
     margin: 0;
     padding: 0;

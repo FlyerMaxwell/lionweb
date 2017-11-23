@@ -25,6 +25,10 @@ public class User {
 
     private String imageUrl;
 
+    private String webUrl;
+
+    private String cvUrl;
+
     private String description;
 
     private String detail;
@@ -40,6 +44,8 @@ public class User {
     private Integer userType;
 
     private Integer userState;
+
+    private Integer userRole;
 
     private Date lastLoginTime;
 
@@ -91,6 +97,22 @@ public class User {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl == null ? null : imageUrl.trim();
+    }
+
+    public String getWebUrl() {
+        return webUrl;
+    }
+
+    public void setWebUrl(String webUrl) {
+        this.webUrl = webUrl == null ? null : webUrl.trim();
+    }
+
+    public String getCvUrl() {
+        return cvUrl;
+    }
+
+    public void setCvUrl(String cvUrl) {
+        this.cvUrl = cvUrl == null ? null : cvUrl.trim();
     }
 
     public String getDescription() {
@@ -155,6 +177,14 @@ public class User {
 
     public void setUserState(Integer userState) {
         this.userState = userState;
+    }
+
+    public Integer getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(Integer userRole) {
+        this.userRole = userRole;
     }
 
     public Date getLastLoginTime() {

@@ -16,7 +16,7 @@
     <jsp:include page="../sideMenu.jsp" flush="true"></jsp:include>
     <div class="content">
         <h2>Edit News</h2>
-        <form method="POST" action="<%=request.getContextPath() %>/news/editNewsInfo?username=${username}&id=${news.id}" enctype="multipart/form-data">
+        <form method="POST" action="<%=request.getContextPath() %>/news/editNewsInfo?username=${username}&panel=${panel}&id=${news.id}" enctype="multipart/form-data">
             <label class="hint">
                 fields with * are required,while other are optional
             </label>

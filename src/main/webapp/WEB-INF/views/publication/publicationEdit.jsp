@@ -27,7 +27,7 @@
         <%--<img src="images/telephone.jpg" alt="">--%>
         <h2>Edit Publication</h2>
         <form method="POST"
-              action="<%=request.getContextPath() %>/publication/editPublicationInfo?username=${username}&id=${publication.id}"
+              action="<%=request.getContextPath() %>/publication/editPublicationInfo?username=${username}&panel=${panel}&id=${publication.id}"
               enctype="multipart/form-data">
             <label class="hint">
                 fields with * are required,while other are optional

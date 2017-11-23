@@ -10,6 +10,7 @@
 
 <head>
     <script src="<%=request.getContextPath() %>/statics/js/jquery-3.2.1.js"></script>
+    <link rel="shortcut icon" href="<%=request.getContextPath() %>/statics/images/favicon.ico" type="image/x-icon" />
 </head>
 
 <script>

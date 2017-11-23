@@ -95,10 +95,13 @@ public class UserController {
     public String editUserInfo(String username,
                                @RequestParam(value = "email") String userEmail,
                                @RequestParam(value = "phone") String userPhone,
-                               @RequestParam(value = "description") String description,
+                               @RequestParam(value = "description",required = false) String description,
                                @RequestParam(value = "gender") Integer userSex,
+                               @RequestParam(value = "role") Integer userRole,
                                @RequestParam(value = "image", required = false) MultipartFile image,
-                               @RequestParam(value = "detail", required = false) String detail,
+                               @RequestParam(value = "detail") String detail,
+                               @RequestParam(value = "web", required=false) String web,
+                               @RequestParam(value = "cv", required = false) MultipartFile cv,
                                HttpServletRequest request, RedirectAttributes redirectAttributes) {
         User updateUser = userService.getUserByUserName(username);
         //TODO 路径配置
@@ -106,8 +109,15 @@ public class UserController {
         try {
             if (image != null && !image.isEmpty()) {
                 FileHandler.deleteFile(updateUser.getImageUrl());
-                String filePath1 = FileHandler.uploadFile(basePath + "/image", image, request);
+                String filePath1 = FileHandler.uploadFile(basePath + "/"+username+"/image", image, request);
                 updateUser.setImageUrl(filePath1);
+
+            }
+            if (cv != null && !cv.isEmpty()) {
+                FileHandler.deleteFile(updateUser.getImageUrl());
+                String filePath2 = FileHandler.uploadFile(basePath + "/"+username+"/cv", cv, request);
+                updateUser.setCvUrl(filePath2);
+
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -117,8 +127,10 @@ public class UserController {
         updateUser.setUserEmail(userEmail);
         updateUser.setUserPhone(userPhone);
         updateUser.setUserSex(userSex);
+        updateUser.setUserRole(userRole);
         updateUser.setDescription(description);
         updateUser.setDetail(detail);
+        updateUser.setWebUrl(web);
         userService.updateUserByUserId(updateUser);
 
         redirectAttributes.addAttribute("username", username);

@@ -35,8 +35,8 @@ public class MemberController {
 
     //显示用户详细信息
     @RequestMapping(value = "memberDetail")
-    public String memberDetail(String username,HttpServletRequest request){
-        User user=userService.getUserByUserName(username);
+    public String memberDetail(Long id,HttpServletRequest request){
+        User user=userService.getUserByUserId(id);
         request.setAttribute("user",user);
         return "member/memberDetail";
     }

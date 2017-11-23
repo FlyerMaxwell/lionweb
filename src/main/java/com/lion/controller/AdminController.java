@@ -34,6 +34,9 @@ public class AdminController {
     ProjectUserService projectUserService;
 
     @Autowired
+    ProjectPublicationService projectPublicationService;
+
+    @Autowired
     UserLoginLogService userLoginLogService;
 
     @Autowired
@@ -62,12 +65,15 @@ public class AdminController {
                                 @RequestParam(value = "username") String username,
                                 @RequestParam(value = "email") String userEmail,
                                 @RequestParam(value = "phone") String userPhone,
-                                @RequestParam(value = "description") String description,
+                                @RequestParam(value = "description",required = false) String description,
                                 @RequestParam(value = "gender") Integer userSex,
                                 @RequestParam(value = "type") Integer userType,
                                 @RequestParam(value = "state") Integer userState,
+                                @RequestParam(value = "role") Integer userRole,
                                 @RequestParam(value = "image",required = false) MultipartFile image,
-                                @RequestParam(value = "detail",required = false) String detail,
+                                @RequestParam(value = "detail") String detail,
+                                @RequestParam(value = "web",required = false) String web,
+                                @RequestParam(value = "cv",required = false) MultipartFile cv,
                                 HttpServletRequest request,
                                 RedirectAttributes redirectAttributes){
         User newUser=new User();
@@ -85,8 +91,12 @@ public class AdminController {
                         String basePath = "D:/lion/member";
                         try {
                             if (image != null && !image.isEmpty()) {
-                                String filePath1 = FileHandler.uploadFile(basePath + "/image", image, request);
+                                String filePath1 = FileHandler.uploadFile(basePath + "/"+username+"/image", image, request);
                                 newUser.setImageUrl(filePath1);
+                            }
+                            if (cv != null && !image.isEmpty()) {
+                                String filePath2 = FileHandler.uploadFile(basePath + "/"+username+"/cv", cv, request);
+                                newUser.setCvUrl(filePath2);
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -102,7 +112,9 @@ public class AdminController {
                         newUser.setUserPhone(userPhone);
                         newUser.setUserType(userType);
                         newUser.setUserState(userState);
+                        newUser.setUserRole(userRole);
                         newUser.setDescription(description);
+                        newUser.setWebUrl(web.trim());
                         if(detail!=null){
                             newUser.setDetail(detail);
                         }
@@ -151,12 +163,15 @@ public class AdminController {
     public String editMemberInfo(Long id,
                                  @RequestParam(value = "email") String userEmail,
                                  @RequestParam(value = "phone") String userPhone,
-                                 @RequestParam(value = "description") String description,
+                                 @RequestParam(value = "description",required = false) String description,
                                  @RequestParam(value = "gender") Integer userSex,
                                  @RequestParam(value = "type") Integer userType,
                                  @RequestParam(value = "state") Integer userState,
+                                 @RequestParam(value = "role") Integer userRole,
                                  @RequestParam(value = "image",required = false) MultipartFile image,
-                                 @RequestParam(value = "detail",required = false) String detail,
+                                 @RequestParam(value = "detail") String detail,
+                                 @RequestParam(value = "web",required = false) String web,
+                                 @RequestParam(value = "cv",required = false) MultipartFile cv,
                                  HttpServletRequest request){
         User updateUser=userService.getUserByUserId(id);
         //TODO 路径配置
@@ -164,8 +179,13 @@ public class AdminController {
         try {
             if (image != null && !image.isEmpty()) {
                 FileHandler.deleteFile(updateUser.getImageUrl());
-                String filePath1 = FileHandler.uploadFile(basePath + "/image", image, request);
+                String filePath1 = FileHandler.uploadFile(basePath + "/"+updateUser.getUserName()+"/image", image, request);
                 updateUser.setImageUrl(filePath1);
+            }
+            if (cv != null && !cv.isEmpty()) {
+                FileHandler.deleteFile(updateUser.getCvUrl());
+                String filePath2 = FileHandler.uploadFile(basePath + "/"+updateUser.getUserName()+"/cv", cv, request);
+                updateUser.setCvUrl(filePath2);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -177,8 +197,10 @@ public class AdminController {
         updateUser.setUserSex(userSex);
         updateUser.setUserType(userType);
         updateUser.setUserState(userState);
+        updateUser.setUserRole(userRole);
         updateUser.setDescription(description);
         updateUser.setDetail(detail);
+        updateUser.setWebUrl(web);
         userService.updateUserByUserId(updateUser);
 
         return "redirect:/admin/memberInfo";
@@ -232,4 +254,5 @@ public class AdminController {
         request.setAttribute("publications",publicationList);
         return "admin/publicationInfo";
     }
+
 }

@@ -26,11 +26,19 @@
                     <input type="file" name="image" id="image">
                 </a>
             </label>
+            <label for="cv"> <span>CV</span>
+                <a href="javascript:;" class="file">
+                    <input type="file" name="cv" id="cv" >
+                </a>
+            </label>
             <label for="email"> <span>Email *</span>
                 <input type="text" name="email" id="email" value="${user.userEmail}">
             </label>
             <label for="phone"> <span>Telephone *</span>
                 <input type="text" name="phone" id="phone" value="${user.userPhone}">
+            </label>
+            <label for="web"> <span>Web Page</span>
+                <input type="text" name="web" id="web" value="${user.webUrl}">
             </label>
             <label for="description"> <span>Description *</span>
                 <textarea name="description" id="description" cols="10" rows="3">${user.description}</textarea>
@@ -44,7 +52,16 @@
                 <input id="gender1" type="radio" name="gender" value="2"/>
                 <label for="gender1">Male</label>
             </label>
-
+            <label><span>User Role *</span>
+                <input id="role0" type="radio" name="role" value="0"/>
+                <label for="role0">Professor</label>
+                <input id="role1" type="radio" name="role" value="1" checked="checked"/>
+                <label for="role1">graduate</label>
+                <input id="role2" type="radio" name="role" value="2"/>
+                <label for="role2">undergraduate</label>
+                <input id="role3" type="radio" name="role" value="2"/>
+                <label for="role3">alumni</label>
+            </label>
             <input type="submit" value="" id="submit">
         </form>
     </div>
@@ -64,4 +81,5 @@
         }
     }
     checkRadio("gender",${user.userSex});
+    checkRadio("role",${user.userRole});
 </script>

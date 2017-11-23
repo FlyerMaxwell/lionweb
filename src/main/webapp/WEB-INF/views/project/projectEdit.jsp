@@ -16,7 +16,7 @@
     <jsp:include page="../sideMenu.jsp" flush="true"></jsp:include>
     <div class="content">
         <h2>Edit Project</h2>
-        <form method="POST" action="<%=request.getContextPath() %>/project/editProjectInfo?username=${username}&id=${project.id}"
+        <form method="POST" action="<%=request.getContextPath() %>/project/editProjectInfo?username=${username}&panel=${panel}&id=${project.id}"
               enctype="multipart/form-data">
             <label class="hint">
                 fields with * are required,while other are optional

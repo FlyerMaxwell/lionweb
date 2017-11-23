@@ -103,16 +103,17 @@ public class NewsController {
 
     //编辑news
     @RequestMapping(value = "editNews", method = RequestMethod.GET)
-    public String editNews(String username, Long id, HttpServletRequest request) {
+    public String editNews(String username, Long id, Integer panel,HttpServletRequest request) {
         News news = newsService.getNewsById(id);
 //        request.setAttribute("username", username);
         request.setAttribute("news", news);
+        request.setAttribute("panel",panel);
         return "news/newsEdit";
     }
 
     //提交编辑后的news
     @RequestMapping(value = "editNewsInfo", method = RequestMethod.POST)
-    public String editNewsInfo(String username, Long id,
+    public String editNewsInfo(String username, Long id,Integer panel,
                                @RequestParam(value = "title") String title,
                                @RequestParam(value = "description") String description,
                                @RequestParam(value = "image", required = false) MultipartFile image,
@@ -147,20 +148,27 @@ public class NewsController {
         //更新news
         newsService.editNews(news);
 
-        redirectAttributes.addAttribute("username", news.getUserName());
-        return "redirect:/news/userProfile";
+        if(panel==null) {
+            redirectAttributes.addAttribute("username", news.getUserName());
+            return "redirect:/news/userProfile";
+        }
+        return "redirect:/admin/newsInfo";
     }
 
     //删除news
     @RequestMapping(value = "deleteNewsInfo", method = RequestMethod.GET)
-    public String deleteNewsInfo(String username, Long id, RedirectAttributes redirectAttributes) {
+    public String deleteNewsInfo(String username, Long id, Integer panel,RedirectAttributes redirectAttributes) {
         News news = newsService.getNewsById(id);
         FileHandler.deleteFile(news.getImageUrl());
         FileHandler.deleteFile(news.getTextUrl());
         newsService.deleteNews(id);
-        redirectAttributes.addAttribute("username", username);
-        return "redirect:/news/userProfile";
+        if(panel==null){
+            redirectAttributes.addAttribute("username", username);
+            return "redirect:/news/userProfile";
+        }
+        return "redirect:/admin/newsInfo";
     }
+
 
     //news详情页
     @RequestMapping(value = "newsDetail", method = RequestMethod.GET)

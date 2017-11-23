@@ -136,18 +136,19 @@ public class PublicationController {
 
     //编辑publication
     @RequestMapping (value = "editPublication",method = RequestMethod.GET)
-    public String editPublication(Long id,HttpServletRequest request){
+    public String editPublication(Long id,Integer panel,HttpServletRequest request){
         List<User> users=userService.listAllUser();
         Publication publication=publicationService.getPublicationById(id);
         request.setAttribute("users",users);
         request.setAttribute("publication",publication);
         List<Long> oldAuthorList=publicationUserService.listUserIdByPubId(id);
         request.setAttribute("oldAuthorList",oldAuthorList);
+        request.setAttribute("panel",panel);
         return "publication/publicationEdit";
     }
     //提交编辑后的publication
     @RequestMapping(value = "editPublicationInfo",method = RequestMethod.POST)
-    public String editPublicationInfo(String username,Long id,
+    public String editPublicationInfo(String username,Long id,Integer panel,
                                       @RequestParam(value="title") String title,
                                       @RequestParam(value="authors") String authors,
                                       @RequestParam(value="description") String description,
@@ -218,12 +219,15 @@ public class PublicationController {
         }
         batchInsertPubUser(authorList,publication,username,request);
 
-        redirectAttributes.addAttribute("username",publication.getUserName());
-        return "redirect:/publication/userProfile";
+        if(panel==null) {
+            redirectAttributes.addAttribute("username", publication.getUserName());
+            return "redirect:/publication/userProfile";
+        }
+        return "redirect:/admin/publicationInfo";
     }
     //删除publication
     @RequestMapping(value="deletePublicationInfo",method = RequestMethod.GET)
-    public String deletePublicationInfo(String username,Long id,RedirectAttributes redirectAttributes){
+    public String deletePublicationInfo(String username,Long id,Integer panel,RedirectAttributes redirectAttributes){
         Publication publication=publicationService.getPublicationById(id);
         FileHandler.deleteFile(publication.getImageUrl());
         FileHandler.deleteFile(publication.getTextUrl());
@@ -232,8 +236,11 @@ public class PublicationController {
         publicationService.deletePublication(id);
         publicationUserService.deleteRecordByPubId(id);
         projectPublicationService.deleteRecordByPubId(id);
-        redirectAttributes.addAttribute("username",username);
-        return "redirect:/publication/userProfile";
+        if(panel==null) {
+            redirectAttributes.addAttribute("username", username);
+            return "redirect:/publication/userProfile";
+        }
+        return "redirect:/admin/publicationInfo";
     }
 
     //显示publication详情

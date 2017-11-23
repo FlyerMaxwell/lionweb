@@ -30,8 +30,15 @@
                                     <div>
                                         <a href="<%=request.getContextPath() %>/member/memberDetail?id=${user.id}">${user.userName}</a>
                                     </div>
-                                    <div>${user.userEmail}</div>
-                                    <div>${user.description}</div>
+                                    <c:if test="${user.webUrl!=null && user.webUrl!=''}">
+                                        <div class="web_page">${user.webUrl}</div>
+                                    </c:if>
+                                    <div class="phone">${user.userPhone}</div>
+                                    <div class="email">${user.userEmail}</div>
+                                        <%--<div class="web">Web Page:<a></a></div>--%>
+                                    <c:if test="${user.description!=null && user.description!=''}">
+                                        <div>${user.description}</div>
+                                    </c:if>
                                 </div>
                             </td>
                         </tr>
