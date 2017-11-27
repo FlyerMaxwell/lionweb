@@ -1,5 +1,6 @@
 package com.lion.controller;
 
+import com.lion.constant.ConfigConstant;
 import com.lion.entity.News;
 import com.lion.entity.Project;
 import com.lion.entity.Publication;
@@ -24,28 +25,17 @@ public class HomeController {
     @Autowired
     NewsService newsService;
 
-    @Autowired
-    ProjectService projectService;
-
-    @Autowired
-    PublicationService publicationService;
 
     //显示首页
     @RequestMapping("/index")
     public String index(HttpServletRequest request){
 
         //TODO 数量配置
-        int num=5;
+        int num= ConfigConstant.FOCUS_NEWS_NUM;
 
         List<News> newsList=newsService.listLatestNews(num);
 
-        List<Publication> publicationList=publicationService.listLatestPub(num);
-
-        List<Project> projectList=projectService.listLatestPro(num);
-
         request.setAttribute("newsList",newsList);
-        request.setAttribute("publicationList",publicationList);
-        request.setAttribute("projectList",projectList);
 
         return "index";
     }

@@ -16,6 +16,16 @@
         <%--</li>--%>
         <li>
             <a href="<%=request.getContextPath() %>/user/userProfile?username=${username}">My Info</a>
+            <ul>
+                <li>
+                    <a href="<%=request.getContextPath() %>/user/editPhoto?username=${username}">Change Photo</a>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a href="<%=request.getContextPath() %>/user/editPassword?username=${username}">Change Password</a>
+                </li>
+            </ul>
         </li>
         <li>
             <a href="<%=request.getContextPath() %>/news/userProfile?username=${username}">My News</a>

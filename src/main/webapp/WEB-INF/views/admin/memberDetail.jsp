@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>LION</title>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/statics/css/style.css" type="text/css">
+    <link rel="shortcut icon" href="<%=request.getContextPath() %>/statics/images/favicon.ico" type="image/x-icon" />
 </head>
 <body>
 <c:if test="${sessionScope.userType!=0}">
@@ -14,32 +15,57 @@
 <div id="body">
     <div class="content">
         <div class="container">
-            <table>
+            <table class="member">
                 <tr height="100px">
-                    <td class="photo">
+                    <td class="portrait">
                         <img src="<%=request.getContextPath() %>/resource/showImage?imagePath=${user.imageUrl}&type=0">
                     </td>
                     <td>
                         <div class="text">
-                            <div>${user.userName}</div>
+                            <div>Username: ${user.userName}</div>
+                            <div>Real Name: ${user.realName}</div>
+                            <div>${user.description}</div>
+                            <div class="email">Email: ${user.userEmail}</div>
+                            <c:if test="${user.userPhone!=null && user.userPhone!=''}">
+                                <div class="phone">Tel: ${user.userPhone}</div>
+                            </c:if>
                             <c:if test="${user.webUrl!=null && user.webUrl!=''}">
-                                <div class="web_page">${user.webUrl}</div>
+                                <div class="web_page">Web page :${user.webUrl}</div>
                             </c:if>
-                            <div class="phone">${user.userPhone}</div>
-                            <div class="email">${user.userEmail}</div>
-                            <%--<div class="web">Web Page:<a></a></div>--%>
-                            <c:if test="${user.description!=null && user.description!=''}">
-                                <div>${user.description}</div>
-                            </c:if>
+
                         </div>
                     </td>
                 </tr>
-                <tr >
+                <tr><td colspan="2"><br/></td></tr>
+                <c:if test="${user.detail!=null && user.detail!=''}">
+                <tr>
+                    <td colspan="2">
+                        <h3>
+                            Biography
+                        </h3>
+                    </td>
+                </tr>
+                <tr>
                     <td colspan="2">
                         ${user.detail}
                     </td>
                 </tr>
+                </c:if>
+                <tr><td colspan="2"><br/></td></tr>
+                <br/>
                 <c:if test="${user.cvUrl!=null && user.cvUrl!=''}">
+                    <tr>
+                        <td colspan="2">
+                            <h3>CV</h3>
+                        </td>
+                    </tr>
+                    <c:if test="${user.prospect!=null && user.prospect!=''}">
+                        <tr>
+                            <td colspan="2">
+                                    ${user.prospect}
+                            </td>
+                        </tr>
+                    </c:if>
                     <tr>
                         <td colspan="2">
                             Here is my <a href="<%=request.getContextPath() %>/resource/downloadFile?filePath=${user.cvUrl}">CV</a>!

@@ -18,6 +18,14 @@ public interface UserDao extends UserMapper{
 
     List<User> selectAllUser();
 
+    List<User> selectAllProfessor();
+
+    List<User> selectAllGraduate();
+
+    List<User> selectAllUndergraduate();
+
+    List<User> selectAllAlumni();
+
     public User findUserByUserName(String username);
 
     public User findUserByUserId(int id);

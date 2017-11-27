@@ -1,5 +1,6 @@
 package com.lion.controller;
 
+import com.lion.constant.ConfigConstant;
 import com.lion.entity.*;
 import com.lion.service.*;
 import com.lion.util.FileHandler;
@@ -63,19 +64,27 @@ public class AdminController {
     @RequestMapping(value="addMemberInfo",method = RequestMethod.POST)
     public String addMemberInfo(String adminName,
                                 @RequestParam(value = "username") String username,
+                                @RequestParam(value = "realName") String realName,
                                 @RequestParam(value = "email") String userEmail,
-                                @RequestParam(value = "phone") String userPhone,
-                                @RequestParam(value = "description",required = false) String description,
+                                @RequestParam(value = "phone",required = false) String userPhone,
+                                @RequestParam(value = "description",required=false) String description,
                                 @RequestParam(value = "gender") Integer userSex,
                                 @RequestParam(value = "type") Integer userType,
                                 @RequestParam(value = "state") Integer userState,
                                 @RequestParam(value = "role") Integer userRole,
                                 @RequestParam(value = "image",required = false) MultipartFile image,
-                                @RequestParam(value = "detail") String detail,
+                                @RequestParam(value = "detail",required = false) String detail,
                                 @RequestParam(value = "web",required = false) String web,
+                                @RequestParam(value = "prospect",required = false) String prospect,
                                 @RequestParam(value = "cv",required = false) MultipartFile cv,
                                 HttpServletRequest request,
                                 RedirectAttributes redirectAttributes){
+        if(username.trim().length()==0||realName.trim().length()==0||userEmail.trim().length()==0||userSex==null||userType==null
+                ||userState==null||userRole==null){
+            request.setAttribute("Msg","You should fill in all fields with *!");
+            return "error";
+        }
+
         User newUser=new User();
 
         if(newUser!=null) {
@@ -104,6 +113,7 @@ public class AdminController {
                             return "error";
                         }
                         User admin=userService.getUserByUserName(adminName);
+                        newUser.setRealName(realName);
                         newUser.setUserName(username);
                         newUser.setAdminId(admin.getAdminId());
                         newUser.setAdminName(adminName);
@@ -115,6 +125,7 @@ public class AdminController {
                         newUser.setUserRole(userRole);
                         newUser.setDescription(description);
                         newUser.setWebUrl(web.trim());
+                        newUser.setProspect(prospect);
                         if(detail!=null){
                             newUser.setDetail(detail);
                         }
@@ -161,6 +172,7 @@ public class AdminController {
 
     @RequestMapping(value="editMemberInfo",method = RequestMethod.POST)
     public String editMemberInfo(Long id,
+                                 @RequestParam(value = "realName") String realName,
                                  @RequestParam(value = "email") String userEmail,
                                  @RequestParam(value = "phone") String userPhone,
                                  @RequestParam(value = "description",required = false) String description,
@@ -172,8 +184,14 @@ public class AdminController {
                                  @RequestParam(value = "detail") String detail,
                                  @RequestParam(value = "web",required = false) String web,
                                  @RequestParam(value = "cv",required = false) MultipartFile cv,
+                                 @RequestParam(value = "prospect",required = false) String prospect,
                                  HttpServletRequest request){
         User updateUser=userService.getUserByUserId(id);
+        if(realName.trim().length()==0||userEmail.trim().length()==0||userSex==null||userType==null
+                ||userState==null||userRole==null){
+            request.setAttribute("Msg","You should fill in all fields with *!");
+            return "error";
+        }
         //TODO 路径配置
         String basePath = "D:/lion/members";
         try {
@@ -192,6 +210,7 @@ public class AdminController {
             request.setAttribute("Msg", "File Upload Failed!");
             return "error";
         }
+        updateUser.setRealName(realName);
         updateUser.setUserEmail(userEmail);
         updateUser.setUserPhone(userPhone);
         updateUser.setUserSex(userSex);
@@ -201,6 +220,7 @@ public class AdminController {
         updateUser.setDescription(description);
         updateUser.setDetail(detail);
         updateUser.setWebUrl(web);
+        updateUser.setProspect(prospect);
         userService.updateUserByUserId(updateUser);
 
         return "redirect:/admin/memberInfo";
@@ -223,11 +243,24 @@ public class AdminController {
         return "error";
     }
 
+    //重置用户密码
+    @RequestMapping(value = "resetPassword")
+    public String resetPassword(Long id,HttpServletRequest request){
+        User user=userService.getUserByUserId(id);
+        user.setPassword(ConfigConstant.DEFAULT_PASSWORD);
+        userService.updateUserByUserId(user);
+        return "redirect:/admin/memberInfo";
+    }
+
     //member详情
     @RequestMapping(value = "memberDetail",method = RequestMethod.GET)
     public String memberDetail(Long id,HttpServletRequest request){
         User user=userService.getUserByUserId(id);
         request.setAttribute("user",user);
+        List<Publication> publications=publicationService.listPublicationByUserId(id);
+        request.setAttribute("publications",publications);
+        List<Project> projects=projectService.listProjectByUserId(id);
+        request.setAttribute("projects",projects);
         return "admin/memberDetail";
     }
 

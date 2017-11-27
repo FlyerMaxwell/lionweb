@@ -12,6 +12,14 @@ public interface UserService {
 
     List<User> listAllUser();
 
+    List<User> listAllProfessor();
+
+    List<User> listAllGraduate();
+
+    List<User> listAllUndergraduate();
+
+    List<User> listAllAlumni();
+
     User getUserByUserName(String name);
 
     User getUserByUserId(Long id);

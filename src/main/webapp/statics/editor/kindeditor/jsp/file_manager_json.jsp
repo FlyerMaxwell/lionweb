@@ -2,6 +2,7 @@
 <%@ page import="java.util.*,java.io.*" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="org.json.simple.*" %>
+<%@ page import="com.lion.constant.ConfigConstant" %>
 <%
 
 /**
@@ -13,7 +14,7 @@
  */
 
 //根目录路径，可以指定绝对路径，比如 /var/www/attached/
-String rootPath = pageContext.getServletContext().getRealPath("/") + "attached/";
+String rootPath = ConfigConstant.RESOURCE_ROOT_PATH+"news/";
 //根目录URL，可以指定绝对路径，比如 http://www.yoursite.com/attached/
 String rootUrl  = request.getContextPath() + "/attached/";
 //图片扩展名

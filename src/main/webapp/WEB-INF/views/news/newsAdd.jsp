@@ -8,18 +8,23 @@
     <link rel="shortcut icon" href="<%=request.getContextPath() %>/statics/images/favicon.ico" type="image/x-icon" />
 </head>
 <script type="text/javascript" charset="utf-8" src="<%=request.getContextPath() %>/statics/editor/kindeditor/kindeditor-all-min.js"></script>
-<script type="text/javascript" charset="utf-8" src="<%=request.getContextPath() %>/statics/editor/kindeditor/lang/zh_CN.js"></script>
+<script type="text/javascript" charset="utf-8" src="<%=request.getContextPath() %>/statics/editor/kindeditor/lang/zh-CN.js"></script>
 <script>
     var editor;
+    <%--可定义options用于K.create()的第二个参数--%>
+    <%--var options = {--%>
+    <%--cssPath : '<%=request.getContextPath() %>/statics/css/style.css',--%>
+    <%--filterMode : true--%>
+    <%--};--%>
     KindEditor.ready(function(K) {
-        editor=window.editor = K.create("textarea[id='text']", {
+        editor=window.editor = K.create("textarea[id='description']", {
             resizeType: 1,
             allowPreviewEmoticons:false,
             allowImageUpload:true,
             allowFileManager:true,
             //上传图片和管理文件的java代码，放在jsp文件中？KindEditor的示例代码
-            uploadJson:'<%=request.getContextPath() %>/statics/editor/kindeditor/jsp/upload_json.jsp',
-            fileManagerJson:'<%=request.getContextPath() %>/statics/editor/kindeditor/jsp/file_manager_json.jsp',
+            uploadJson:'<%=request.getContextPath() %>/kindEditor/fileUpload',
+            fileManagerJson:'<%=request.getContextPath() %>/kindEditor/fileManager',
             //图片上传或失去焦点后，将上传内容同步到textarea中
             afterUpload:function () {
                 this.sync();
@@ -28,16 +33,13 @@
                 this.sync();
             },
             items:[
-                'fontname','fontsize','|','forecolor','hilitecolor','bold','italic','underline',
-                'removeformat','|','justifyleft','justifycenter','justifyright','insertorderedlist',
-                'insertunorderedlist','|','emoticons','link','media','|','image'
+                'fontname','fontsize','forecolor','hilitecolor','/','bold','italic','underline',
+                'removeformat','/','justifyleft','justifycenter','justifyright','/','insertorderedlist',
+                'insertunorderedlist','/','emoticons','image'
             ]
         });
     });
-    var options = {
-        cssPath : '<%=request.getContextPath() %>/statics/css/style.css',
-        filterMode : true
-    };
+
 </script>
 <body>
 <c:if test="${sessionScope.userType==null}">
@@ -49,15 +51,12 @@
         <h2>Add New News</h2>
         <form method="POST" action="<%=request.getContextPath() %>/news/addNewsInfo?username=${username}" enctype="multipart/form-data">
             <label class="hint">
-                fields with * are required,while other are optional
+                Fields with * are required,while other are optional
             </label>
             <label for="title"> <span>Title *</span>
                 <input type="text" name="title" id="title">
             </label>
-            <label for="description"> <span>Description</span>
-                <input type="text" name="description" id="description">
-            </label>
-            <label for="image"> <span>Image</span>
+            <label for="image"> <span>Image<br/>(scale 4:3,<br/>used on home page)</span>
 
                 <a href="javascript:;" class="file">
                     <input type="file" name="image" id="image" >
@@ -69,8 +68,8 @@
                     <%--<input type="file" name="text" id="text" >--%>
                 <%--</a>--%>
             <%--</label>--%>
-            <label for="text"> <span>Text</span>
-                <textarea id="text" name="text" class="ckeditor" style="width:95%; height:580px;visibility:hidden;"></textarea>
+            <label for="description"> <span>Text</span>
+                <textarea id="description" name="description" class="ckeditor" style="width:95%; height:580px;visibility:hidden;"></textarea>
                 <br/>
             </label>
             <input type="submit" value="" id="submit">

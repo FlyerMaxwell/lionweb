@@ -7,6 +7,40 @@
     <link rel="stylesheet" href="<%=request.getContextPath() %>/statics/css/style.css" type="text/css">
     <link rel="shortcut icon" href="<%=request.getContextPath() %>/statics/images/favicon.ico" type="image/x-icon" />
 </head>
+<script type="text/javascript" charset="utf-8" src="<%=request.getContextPath() %>/statics/editor/kindeditor/kindeditor-all-min.js"></script>
+<script type="text/javascript" charset="utf-8" src="<%=request.getContextPath() %>/statics/editor/kindeditor/lang/zh-CN.js"></script>
+<script>
+    var editor;
+    <%--可定义options用于K.create()的第二个参数--%>
+    <%--var options = {--%>
+        <%--cssPath : '<%=request.getContextPath() %>/statics/css/style.css',--%>
+        <%--filterMode : true--%>
+    <%--};--%>
+    KindEditor.ready(function(K) {
+        editor=window.editor = K.create("textarea[id='description']", {
+            resizeType: 1,
+            allowPreviewEmoticons:false,
+            allowImageUpload:true,
+            allowFileManager:true,
+            //上传图片和管理文件的java代码，放在jsp文件中？KindEditor的示例代码
+            uploadJson:'<%=request.getContextPath() %>/kindEditor/fileUpload',
+            fileManagerJson:'<%=request.getContextPath() %>/kindEditor/fileManager',
+            //图片上传或失去焦点后，将上传内容同步到textarea中
+            afterUpload:function () {
+                this.sync();
+            },
+            afterBlur:function () {
+                this.sync();
+            },
+            items:[
+                'fontname','fontsize','forecolor','hilitecolor','/','bold','italic','underline',
+                'removeformat','/','justifyleft','justifycenter','justifyright','/','insertorderedlist',
+                'insertunorderedlist','/','emoticons','image'
+            ]
+        });
+    });
+
+</script>
 <body>
 <c:if test="${sessionScope.userType==null}">
     <jsp:forward page="../access.jsp"></jsp:forward>
@@ -23,18 +57,15 @@
             <label for="title"> <span>Title *</span>
                 <input type="text" name="title" id="title" value="${news.title}">
             </label>
-            <label for="description"> <span>Description*</span>
-                <input type="text" name="description" id="description" value="${news.description}">
-            </label>
-            <label for="image"> <span>Image*</span>
+
+            <label for="image"> <span>Image *<br/>(scale 4:3,<br/>used on home page)</span>
                 <a href="javascript:;" class="file">
                     <input type="file" name="image" id="image" >
                 </a>
             </label>
-            <label for="text"> <span>Text*</span>
-                <a href="javascript:;" class="file">
-                    <input type="file" name="text" id="text" >
-                </a>
+            <label for="description"> <span>Text</span>
+                <textarea id="description" name="description" class="ckeditor" style="width:95%; height:580px;visibility:hidden;">${news.description}</textarea>
+                <br/>
             </label>
             <input type="submit" value="" id="submit">
         </form>

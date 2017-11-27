@@ -9,7 +9,9 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 
 
 public class FileHandler {
@@ -21,7 +23,17 @@ public class FileHandler {
             dir.mkdirs();
         }
         //写文件到服务器
-        File serverFile=new File(dir.getAbsolutePath()+File.separator+file.getOriginalFilename());
+        String originalFileName=file.getOriginalFilename();
+
+        //取文件扩展名
+        String fileExt = originalFileName.substring(
+                originalFileName.lastIndexOf(".") + 1).toLowerCase();
+
+        //避免文件名冲突，利用时戳和随机数生成新文件名（也可以用IP地址，hash等方法）
+        SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
+        String newFileName = df.format(new Date()) + "_" + new Random().nextInt(1000) + "." + fileExt;
+
+        File serverFile=new File(dir.getAbsolutePath()+"/"+newFileName);
         file.transferTo(serverFile);
 //        return rootPath+File.separator+serverFile.getName();
         return rootPath+"/"+serverFile.getName();

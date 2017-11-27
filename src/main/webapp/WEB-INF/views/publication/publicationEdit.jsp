@@ -44,7 +44,7 @@
             <label for="description"> <span>Description*</span>
                 <textarea name="description" id="description" cols="10" rows="3">${publication.description}</textarea>
             </label>
-            <label for="image"> <span>Image</span>
+            <label for="image"> <span>Image<br/>(scale 4:3)</span>
 
                 <a href="javascript:;" class="file">
                     <input type="file" name="image" id="image">

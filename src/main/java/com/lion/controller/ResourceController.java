@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,11 +22,14 @@ import java.io.*;
 public class ResourceController {
     @RequestMapping("/showImage")
     public void showPicture(HttpServletRequest request,
-                            HttpServletResponse response, String imagePath,int type) throws IOException {
+                            HttpServletResponse response, String imagePath,
+                            @RequestParam(value = "type",required = false) Integer type)
+            throws IOException {
         //如果没有图片显示默认图片
-        if(imagePath == null || imagePath.equals("")){
-
-            imagePath = request.getSession().getServletContext().getRealPath("/statics/images/default_"+(type==0?"0":"1")+".png");
+        if(type!=null) {
+            if (imagePath == null || imagePath.equals("")) {
+                imagePath = request.getSession().getServletContext().getRealPath("/statics/images/default_" + (type == 0 ? "0" : "1") + ".png");
+            }
         }
         FileInputStream in;
         response.setContentType("application/octet-stream;charset=UTF-8");

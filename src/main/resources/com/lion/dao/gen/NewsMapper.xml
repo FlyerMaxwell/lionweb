@@ -8,19 +8,26 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="title" jdbcType="VARCHAR" property="title" />
-    <result column="description" jdbcType="VARCHAR" property="description" />
     <result column="image_url" jdbcType="VARCHAR" property="imageUrl" />
     <result column="text_url" jdbcType="VARCHAR" property="textUrl" />
     <result column="last_modifier" jdbcType="VARCHAR" property="lastModifier" />
     <result column="last_ip" jdbcType="VARCHAR" property="lastIp" />
   </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.lion.entity.News">
+    <result column="description" jdbcType="LONGVARCHAR" property="description" />
+  </resultMap>
   <sql id="Base_Column_List">
-    id, user_name, status, create_time, update_time, title, description, image_url, text_url, 
-    last_modifier, last_ip
+    id, user_name, status, create_time, update_time, title, image_url, text_url, last_modifier, 
+    last_ip
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  <sql id="Blob_Column_List">
+    description
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
     from t_news
     where id = #{id,jdbcType=BIGINT}
   </select>
@@ -31,12 +38,12 @@
   <insert id="insert" parameterType="com.lion.entity.News">
     insert into t_news (id, user_name, status, 
       create_time, update_time, title, 
-      description, image_url, text_url, 
-      last_modifier, last_ip)
+      image_url, text_url, last_modifier, 
+      last_ip, description)
     values (#{id,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{title,jdbcType=VARCHAR}, 
-      #{description,jdbcType=VARCHAR}, #{imageUrl,jdbcType=VARCHAR}, #{textUrl,jdbcType=VARCHAR}, 
-      #{lastModifier,jdbcType=VARCHAR}, #{lastIp,jdbcType=VARCHAR})
+      #{imageUrl,jdbcType=VARCHAR}, #{textUrl,jdbcType=VARCHAR}, #{lastModifier,jdbcType=VARCHAR}, 
+      #{lastIp,jdbcType=VARCHAR}, #{description,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.lion.entity.News">
     insert into t_news
@@ -59,9 +66,6 @@
       <if test="title != null">
         title,
       </if>
-      <if test="description != null">
-        description,
-      </if>
       <if test="imageUrl != null">
         image_url,
       </if>
@@ -73,6 +77,9 @@
       </if>
       <if test="lastIp != null">
         last_ip,
+      </if>
+      <if test="description != null">
+        description,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -94,9 +101,6 @@
       <if test="title != null">
         #{title,jdbcType=VARCHAR},
       </if>
-      <if test="description != null">
-        #{description,jdbcType=VARCHAR},
-      </if>
       <if test="imageUrl != null">
         #{imageUrl,jdbcType=VARCHAR},
       </if>
@@ -108,6 +112,9 @@
       </if>
       <if test="lastIp != null">
         #{lastIp,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -129,9 +136,6 @@
       <if test="title != null">
         title = #{title,jdbcType=VARCHAR},
       </if>
-      <if test="description != null">
-        description = #{description,jdbcType=VARCHAR},
-      </if>
       <if test="imageUrl != null">
         image_url = #{imageUrl,jdbcType=VARCHAR},
       </if>
@@ -144,7 +148,24 @@
       <if test="lastIp != null">
         last_ip = #{lastIp,jdbcType=VARCHAR},
       </if>
+      <if test="description != null">
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
     </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.lion.entity.News">
+    update t_news
+    set user_name = #{userName,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      title = #{title,jdbcType=VARCHAR},
+      image_url = #{imageUrl,jdbcType=VARCHAR},
+      text_url = #{textUrl,jdbcType=VARCHAR},
+      last_modifier = #{lastModifier,jdbcType=VARCHAR},
+      last_ip = #{lastIp,jdbcType=VARCHAR},
+      description = #{description,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.lion.entity.News">
@@ -154,7 +175,6 @@
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       title = #{title,jdbcType=VARCHAR},
-      description = #{description,jdbcType=VARCHAR},
       image_url = #{imageUrl,jdbcType=VARCHAR},
       text_url = #{textUrl,jdbcType=VARCHAR},
       last_modifier = #{lastModifier,jdbcType=VARCHAR},

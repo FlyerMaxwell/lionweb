@@ -29,16 +29,16 @@
                     <c:otherwise>
                         <c:forEach items="${newsList}" var="news">
                             <tr>
-                                <td class="picture">
-                                    <img src="<%=request.getContextPath() %>/resource/showImage?imagePath=${news.imageUrl}&type=1">
-                                </td>
+                                <%--<td class="picture">--%>
+                                    <%--<img src="<%=request.getContextPath() %>/resource/showImage?imagePath=${news.imageUrl}&type=1">--%>
+                                <%--</td>--%>
                                 <td>
                                     <div class="text">
                                         <div>
                                             <a href="<%=request.getContextPath() %>/news/newsDetail?id=${news.id}">${news.title}</a>
                                         </div>
-                                        <div>${news.createTime}</div>
-                                    </>
+                                        <%--<div>${news.createTime}</div>--%>
+                                    </div>
 
                                 <c:if test="${username!=null}">
                                     <%--编辑操作--%>

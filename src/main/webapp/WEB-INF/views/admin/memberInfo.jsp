@@ -19,7 +19,7 @@
     </ul>
     <div class="content">
         <div class="container">
-            <table>
+            <table class="member">
                 <c:choose>
                     <c:when test="${empty users}">
                         <div align="left">
@@ -28,23 +28,21 @@
                     </c:when>
                     <c:otherwise>
                         <c:forEach items="${users}" var="user">
-                            <tr>
+                            <tr class="list-display">
                                 <td class="photo">
                                     <img src="<%=request.getContextPath() %>/resource/showImage?imagePath=${user.imageUrl}&type=0">
                                 </td>
-                                <td>
+                                <td class="text-display">
                                     <div class="text">
-                                        <div>
-                                            <a href="<%=request.getContextPath() %>/admin/memberDetail?id=${user.id}">${user.userName}</a>
-                                        </div>
-                                        <c:if test="${user.webUrl!=null && user.webUrl!=''}">
-                                            <div class="web_page">${user.webUrl}</div>
+                                        <div>Username: ${user.userName}</div>
+                                        <div><a href="<%=request.getContextPath() %>/admin/memberDetail?id=${user.id}">Real Name: ${user.realName}</a></div>
+                                        <div>${user.description}</div>
+                                        <div class="email">Email: ${user.userEmail}</div>
+                                        <c:if test="${user.userPhone!=null && user.userPhone!=''}">
+                                            <div class="phone">Tel: ${user.userPhone}</div>
                                         </c:if>
-                                        <div class="phone">${user.userPhone}</div>
-                                        <div class="email">${user.userEmail}</div>
-                                            <%--<div class="web">Web Page:<a></a></div>--%>
-                                        <c:if test="${user.description!=null && user.description!=''}">
-                                            <div>${user.description}</div>
+                                        <c:if test="${user.webUrl!=null && user.webUrl!=''}">
+                                            <div class="web_page">Web page :${user.webUrl}</div>
                                         </c:if>
                                     </div>
                                     <c:if test="${username!=null&&userType==0}">

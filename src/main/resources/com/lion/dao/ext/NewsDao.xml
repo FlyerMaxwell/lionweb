@@ -5,8 +5,11 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-    id, user_name, status, create_time, update_time, title, description, image_url, text_url,
+    id, user_name, status, create_time, update_time, title, image_url, text_url,
     last_modifier, last_ip
+    </sql>
+    <sql id="Blob_Column_List">
+        description
     </sql>
 
     <select id="selectAllNews" resultMap="BaseResultMap">

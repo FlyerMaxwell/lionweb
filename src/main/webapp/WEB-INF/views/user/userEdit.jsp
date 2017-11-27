@@ -19,35 +19,36 @@
         <form method="POST" action="<%=request.getContextPath() %>/user/editUserInfo?username=${username}"
               enctype="multipart/form-data">
             <label class="hint">
-                fields with * are required,while other are optional
+                Fields with * are required,while other are optional
             </label>
-            <label for="image"> <span>Image</span>
-                <a href="javascript:;" class="file">
-                    <input type="file" name="image" id="image">
-                </a>
-            </label>
-            <label for="cv"> <span>CV</span>
-                <a href="javascript:;" class="file">
-                    <input type="file" name="cv" id="cv" >
-                </a>
+            <label for="realName"> <span>Real Name *</span>
+                <input type="text" name="realName" id="realName" value="${user.realName}">
             </label>
             <label for="email"> <span>Email *</span>
                 <input type="text" name="email" id="email" value="${user.userEmail}">
             </label>
-            <label for="phone"> <span>Telephone *</span>
+            <label for="phone"> <span>Telephone</span>
                 <input type="text" name="phone" id="phone" value="${user.userPhone}">
             </label>
             <label for="web"> <span>Web Page</span>
                 <input type="text" name="web" id="web" value="${user.webUrl}">
             </label>
-            <label for="description"> <span>Description *</span>
+            <label for="description"> <span>Title*<br/>(Your school and role,<br/>eg:SEIEE,PhD,<br/><200 bytes)</span>
                 <textarea name="description" id="description" cols="10" rows="3">${user.description}</textarea>
             </label>
-            <label for="detail"> <span>Detail</span>
+            <label for="detail"> <span>Biography*<br/>(Your own description,such as academic experience and research experience)</span>
                 <textarea name="detail" id="detail" cols="30" rows="10">${user.detail}</textarea>
             </label>
+            <label for="prospect"><span>CV<br/>(Your recent plan,<br/><500 bytes)</span>
+                <input type="text" name="prospect" id="prospect" value="${user.prospect}">
+            </label>
+            <label for="cv"> <span>CV File</span>
+                <a href="javascript:;" class="file">
+                    <input type="file" name="cv" id="cv" >
+                </a>
+            </label>
             <label><span>Gender *</span>
-                <input id="gender0" type="radio" name="gender" value="1" />
+                <input id="gender0" type="radio" name="gender" value="1"/>
                 <label for="gender0">Female</label>
                 <input id="gender1" type="radio" name="gender" value="2"/>
                 <label for="gender1">Male</label>
@@ -55,7 +56,7 @@
             <label><span>User Role *</span>
                 <input id="role0" type="radio" name="role" value="0"/>
                 <label for="role0">Professor</label>
-                <input id="role1" type="radio" name="role" value="1" checked="checked"/>
+                <input id="role1" type="radio" name="role" value="1"/>
                 <label for="role1">graduate</label>
                 <input id="role2" type="radio" name="role" value="2"/>
                 <label for="role2">undergraduate</label>

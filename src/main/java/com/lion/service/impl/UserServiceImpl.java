@@ -24,6 +24,22 @@ public class UserServiceImpl implements UserService {
         return userDao.selectAllUser();
     }
 
+    public List<User> listAllProfessor() {
+        return userDao.selectAllProfessor();
+    }
+
+    public List<User> listAllGraduate() {
+        return userDao.selectAllGraduate();
+    }
+
+    public List<User> listAllUndergraduate() {
+        return userDao.selectAllUndergraduate();
+    }
+
+    public List<User> listAllAlumni() {
+        return userDao.selectAllAlumni();
+    }
+
     public User getUserByUserName(String name) {
         return userDao.selectByUserName(name);
     }

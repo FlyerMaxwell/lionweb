@@ -1,6 +1,10 @@
 package com.lion.controller;
 
+import com.lion.entity.Project;
+import com.lion.entity.Publication;
 import com.lion.entity.User;
+import com.lion.service.ProjectService;
+import com.lion.service.PublicationService;
 import com.lion.service.UserService;
 import com.lion.util.FileHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +28,10 @@ public class MemberController {
 
     @Autowired
     UserService userService;
+    @Autowired
+    PublicationService publicationService;
+    @Autowired
+    ProjectService projectService;
 
     //显示所有用户信息
     @RequestMapping(value = "")
@@ -38,6 +46,10 @@ public class MemberController {
     public String memberDetail(Long id,HttpServletRequest request){
         User user=userService.getUserByUserId(id);
         request.setAttribute("user",user);
+        List<Publication> publications=publicationService.listPublicationByUserId(id);
+        request.setAttribute("publications",publications);
+        List<Project> projects=projectService.listProjectByUserId(id);
+        request.setAttribute("projects",projects);
         return "member/memberDetail";
     }
 }

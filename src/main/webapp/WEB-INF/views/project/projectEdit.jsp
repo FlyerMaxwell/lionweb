@@ -24,17 +24,17 @@
             <label for="title"> <span>Title *</span>
                 <input type="text" name="title" id="title" value="${project.title}">
             </label>
-            <label for="authors"> <span>Authors*</span>
+            <label for="authors"> <span>Authors *</span>
                 <input type="text" name="authors" id="authors" value="${project.authors}">
             </label>
-            <label for="organization"> <span>Organization*</span>
+            <label for="organization"> <span>Organization *</span>
                 <input type="text" name="organization" id="organization" value="${project.organization}">
             </label>
             <label for="description"> <span>Description*</span>
                 <textarea name="description" id="description" cols="10" rows="3">${project.description}</textarea>
             </label>
 
-            <label for="image"> <span>Image</span>
+            <label for="image"> <span>Image<br/>(scale 4:3)</span>
 
                 <a href="javascript:;" class="file">
                     <input type="file" name="image" id="image">

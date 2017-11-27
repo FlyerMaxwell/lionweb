@@ -1,5 +1,6 @@
 package com.lion.controller;
 
+import com.lion.constant.ConfigConstant;
 import com.lion.entity.News;
 import com.lion.entity.User;
 import com.lion.service.NewsService;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import sun.security.krb5.Config;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Timestamp;
@@ -61,16 +63,14 @@ public class NewsController {
     @RequestMapping(value = "addNewsInfo", method = RequestMethod.POST)
     public String addNewsInfo(String username,
                               @RequestParam(value = "title") String title,
-                              @RequestParam(value = "description", required = false) String description,
+                              @RequestParam(value = "description") String description,
                               @RequestParam(value = "image", required = false) MultipartFile image,
-//                              @RequestParam(value = "text", required = false) MultipartFile text,
-                              @RequestParam(value = "text", required = false) String text,
                               HttpServletRequest request,
                               RedirectAttributes redirectAttributes) {
         News news = new News();
         news.setUserName(username);
         //TODO 路径配置
-        String basePath = "D:/lion/news";
+        String basePath = ConfigConstant.RESOURCE_ROOT_PATH+"/news";
         news.setTitle(title);
         news.setDescription(description);
         news.setLastModifier(username);
@@ -82,17 +82,11 @@ public class NewsController {
                 String filePath1 = FileHandler.uploadFile(basePath + "/image", image, request);
                 news.setImageUrl(filePath1);
             }
-//            if (text != null && !text.isEmpty()) {
-//                String filePath2 = FileHandler.uploadFile(basePath + "/text", text, request);
-//                news.setTextUrl(filePath2);
-//            }
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("Msg", "File Upload Failed!");
             return "error";
         }
-
-        news.setTextUrl(text);
 
         //添加news
         newsService.addNewNews(news);

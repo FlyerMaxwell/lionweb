@@ -1,7 +1,11 @@
 package com.lion.controller;
 
+import com.lion.entity.Project;
+import com.lion.entity.Publication;
 import com.lion.entity.User;
 import com.lion.entity.UserLoginLog;
+import com.lion.service.ProjectService;
+import com.lion.service.PublicationService;
 import com.lion.service.UserLoginLogService;
 import com.lion.service.UserService;
 import com.lion.util.FileHandler;
@@ -16,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author DJ
@@ -28,6 +33,10 @@ public class UserController {
 
     @Autowired
     UserService userService;
+    @Autowired
+    PublicationService publicationService;
+    @Autowired
+    ProjectService projectService;
     @Autowired
     UserLoginLogService loginLogService;
 
@@ -79,6 +88,10 @@ public class UserController {
     public String displayUserProfile(String username, HttpServletRequest request) {
         User user = userService.getUserByUserName(username);
         request.setAttribute("user", user);
+        List<Publication> publications=publicationService.listPublicationByUserId(user.getId());
+        request.setAttribute("publications",publications);
+        List<Project> projects=projectService.listProjectByUserId(user.getId());
+        request.setAttribute("projects",projects);
         return "user/userProfile";
     }
 
@@ -93,18 +106,67 @@ public class UserController {
     //编辑用户信息提交
     @RequestMapping(value = "editUserInfo", method = RequestMethod.POST)
     public String editUserInfo(String username,
+                               @RequestParam(value = "realName") String realName,
                                @RequestParam(value = "email") String userEmail,
-                               @RequestParam(value = "phone") String userPhone,
-                               @RequestParam(value = "description",required = false) String description,
+                               @RequestParam(value = "phone",required = false) String userPhone,
+                               @RequestParam(value = "description",required=false) String description,
                                @RequestParam(value = "gender") Integer userSex,
                                @RequestParam(value = "role") Integer userRole,
-                               @RequestParam(value = "image", required = false) MultipartFile image,
-                               @RequestParam(value = "detail") String detail,
-                               @RequestParam(value = "web", required=false) String web,
-                               @RequestParam(value = "cv", required = false) MultipartFile cv,
+                               @RequestParam(value = "detail",required = false) String detail,
+                               @RequestParam(value = "web",required = false) String web,
+                               @RequestParam(value = "prospect",required = false) String prospect,
+                               @RequestParam(value = "cv",required = false) MultipartFile cv,
                                HttpServletRequest request, RedirectAttributes redirectAttributes) {
+        if(realName.trim().length()==0||userEmail.trim().length()==0||description.trim().length()==0
+                ||userSex==null||userRole==null||detail.trim().length()==0){
+            request.setAttribute("Msg","You should fill in all fields with *!");
+            return "error";
+        }
         User updateUser = userService.getUserByUserName(username);
         //TODO 路径配置
+        String basePath = "D:/lion/members";
+        try {
+            if (cv != null && !cv.isEmpty()) {
+                FileHandler.deleteFile(updateUser.getCvUrl());
+                String filePath1 = FileHandler.uploadFile(basePath + "/"+username+"/cv", cv, request);
+                updateUser.setCvUrl(filePath1);
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.setAttribute("Msg", "File Upload Failed!");
+            return "error";
+        }
+        updateUser.setRealName(realName);
+        updateUser.setUserEmail(userEmail);
+        updateUser.setUserPhone(userPhone);
+        updateUser.setUserSex(userSex);
+        updateUser.setUserRole(userRole);
+        updateUser.setDescription(description);
+        updateUser.setDetail(detail);
+        updateUser.setWebUrl(web);
+        updateUser.setProspect(prospect);
+        userService.updateUserByUserId(updateUser);
+
+        redirectAttributes.addAttribute("username", username);
+        return "redirect:/user/userProfile";
+    }
+
+    //显示照片修改页面
+    @RequestMapping(value = "/editPhoto")
+    public String editPhoto(String username,HttpServletRequest request){
+        User user=userService.getUserByUserName(username);
+        request.setAttribute("imgUrl",user.getImageUrl());
+        return "user/photoEdit";
+    }
+
+    //提交照片修改
+    @RequestMapping(value = "/editPhotoInfo",method = RequestMethod.POST)
+    public String editPhotoInfo(String username,
+                                @RequestParam(value = "image") MultipartFile image,
+                                HttpServletRequest request,
+                                RedirectAttributes redirectAttributes){
+        User updateUser=userService.getUserByUserName(username);
         String basePath = "D:/lion/members";
         try {
             if (image != null && !image.isEmpty()) {
@@ -113,26 +175,39 @@ public class UserController {
                 updateUser.setImageUrl(filePath1);
 
             }
-            if (cv != null && !cv.isEmpty()) {
-                FileHandler.deleteFile(updateUser.getImageUrl());
-                String filePath2 = FileHandler.uploadFile(basePath + "/"+username+"/cv", cv, request);
-                updateUser.setCvUrl(filePath2);
-
-            }
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("Msg", "File Upload Failed!");
             return "error";
         }
-        updateUser.setUserEmail(userEmail);
-        updateUser.setUserPhone(userPhone);
-        updateUser.setUserSex(userSex);
-        updateUser.setUserRole(userRole);
-        updateUser.setDescription(description);
-        updateUser.setDetail(detail);
-        updateUser.setWebUrl(web);
         userService.updateUserByUserId(updateUser);
+        redirectAttributes.addAttribute("username", username);
+        return "redirect:/user/userProfile";
+    }
 
+    //显示密码修改页面
+    @RequestMapping(value = "/editPassword")
+    public String editPassword(String username,HttpServletRequest request){
+        User user=userService.getUserByUserName(username);
+        request.setAttribute("user",user);
+        return "user/passwordEdit";
+    }
+
+    //提交密码修改
+    @RequestMapping(value = "/editPasswordInfo",method = RequestMethod.POST)
+    public String editPasswordInfo(String username,String oldPass,String newPass0,String newPass1,
+            HttpServletRequest request,RedirectAttributes redirectAttributes){
+        User user=userService.getUserByUserName(username);
+        if(!(oldPass.trim().equals(user.getPassword()))){
+            request.setAttribute("Msg","Please input correct old password!");
+            return "error";
+        }
+        if(!(newPass0.trim().equals(newPass1.trim()))){
+            request.setAttribute("Msg","Two inputs of new password is inconsistent!");
+            return "error";
+        }
+        user.setPassword(newPass0.trim());
+        userService.updateUserByUserId(user);
         redirectAttributes.addAttribute("username", username);
         return "redirect:/user/userProfile";
     }

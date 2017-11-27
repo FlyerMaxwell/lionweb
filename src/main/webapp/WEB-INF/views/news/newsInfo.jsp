@@ -21,16 +21,16 @@
                 </c:when>
                 <c:otherwise>
                     <c:forEach items="${newsList}" var="news">
-                        <tr>
-                            <td class="picture">
-                                <img src="<%=request.getContextPath() %>/resource/showImage?imagePath=${news.imageUrl}&type=1">
-                            </td>
-                            <td>
+                        <tr class="list-display">
+                            <%--<td class="picture">--%>
+                                <%--<img src="<%=request.getContextPath() %>/resource/showImage?imagePath=${news.imageUrl}&type=1">--%>
+                            <%--</td>--%>
+                            <td class="text-display">
                                 <div class="text">
                                     <div>
                                         <a href="<%=request.getContextPath() %>/news/newsDetail?id=${news.id}">${news.title}</a>
                                     </div>
-                                    <div>${news.createTime}</div>
+                                    <%--<div>${news.createTime}</div>--%>
                                 </div>
                             </td>
                         </tr>
