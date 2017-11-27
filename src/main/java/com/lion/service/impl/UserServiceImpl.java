@@ -1,5 +1,6 @@
 package com.lion.service.impl;
 
+import com.lion.constant.UserConstant;
 import com.lion.dao.ext.UserDao;
 import com.lion.entity.User;
 import com.lion.service.UserService;
@@ -24,20 +25,8 @@ public class UserServiceImpl implements UserService {
         return userDao.selectAllUser();
     }
 
-    public List<User> listAllProfessor() {
-        return userDao.selectAllProfessor();
-    }
-
-    public List<User> listAllGraduate() {
-        return userDao.selectAllGraduate();
-    }
-
-    public List<User> listAllUndergraduate() {
-        return userDao.selectAllUndergraduate();
-    }
-
-    public List<User> listAllAlumni() {
-        return userDao.selectAllAlumni();
+    public List<User> listUserByRole(Integer role) {
+        return userDao.selectUserByRole(role);
     }
 
     public User getUserByUserName(String name) {

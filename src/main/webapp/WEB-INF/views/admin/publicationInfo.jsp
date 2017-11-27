@@ -35,12 +35,12 @@
                     <c:otherwise>
                         <c:forEach items="${publications}" var="publication">
                             <tr class="list-display">
-                                <td class="picture">
+                                <td class="pub-picture">
                                     <img src="<%=request.getContextPath() %>/resource/showImage?imagePath=${publication.imageUrl}&type=1">
                                 </td>
                                 <td class="text-display">
                                     <div class="text">
-                                        <div>
+                                        <div class="title">
                                             <a href="<%=request.getContextPath() %>/publication/publicationDetail?id=${publication.id}">${publication.title}</a>
                                         </div>
                                         <div>${publication.authors}</div>
@@ -51,12 +51,12 @@
 
                                     <c:if test="${username!=null&&userType==0}">
                                         <%--编辑操作--%>
-                                        <span width="7%">
-                                            <a href="<%=request.getContextPath() %>/publication/editPublication?username=${username}&panel=0&id=${publication.id}">edit</a>
+                                        <span class="edit">
+                                            <a class="edit" href="<%=request.getContextPath() %>/publication/editPublication?username=${username}&panel=0&id=${publication.id}">edit</a>
                                         </span>
                                         <%--删除操作--%>
-                                        <span width="7%">
-                                        <a href="#" onclick="sure(${publication.id})">delete</a>
+                                        <span class="delete">
+                                        <a class="delete" href="#" onclick="sure(${publication.id})">delete</a>
                                         </span>
                                     </c:if>
                                 </td>

@@ -1,7 +1,6 @@
 :root{
-  --color1:#0066CC;
-  --color2:#5599FF;
-  --color3:#0066;
+  --color1:#000;
+  --color2:#EEE;
 }
 @font-face {
   font-family: 'Conv_Ubuntu-Light';
@@ -117,7 +116,7 @@ form input:hover {
 form input:focus {
   background-color: white;
   width: 300px;
-  color: #5599FF;
+  color: #333;
 }
 form button {
   -webkit-appearance: none;
@@ -127,7 +126,7 @@ form button {
   background-color: white;
   border: 0;
   padding: 10px 15px;
-  color: #5599FF;
+  color: #333;
   border-radius: 3px;
   width: 250px;
   cursor: pointer;

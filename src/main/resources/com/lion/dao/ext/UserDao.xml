@@ -13,6 +13,12 @@
         <include refid="Base_Column_List" />
         FROM t_user
     </select>
+    <select id="selectUserByRole" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM t_user
+        WHERE user_role=#{role,jdbcType=INTEGER}
+    </select>
     <select id="selectByUserName" parameterType="java.lang.String" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />

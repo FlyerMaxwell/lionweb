@@ -12,13 +12,7 @@ public interface UserService {
 
     List<User> listAllUser();
 
-    List<User> listAllProfessor();
-
-    List<User> listAllGraduate();
-
-    List<User> listAllUndergraduate();
-
-    List<User> listAllAlumni();
+    List<User> listUserByRole(Integer role);
 
     User getUserByUserName(String name);
 

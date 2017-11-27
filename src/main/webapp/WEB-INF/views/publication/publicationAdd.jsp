@@ -28,18 +28,18 @@
         <form method="POST" action="<%=request.getContextPath() %>/publication/addPublicationInfo?username=${username}"
               enctype="multipart/form-data">
             <label class="hint">
-                fields with * are required,while other are optional
+                Fields with * are required,while other are optional
             </label>
             <label for="title"> <span>Title *</span>
                 <input type="text" name="title" id="title">
             </label>
-            <label for="authors"> <span>Authors*</span>
+            <label for="authors"> <span>Authors *</span>
                 <input type="text" name="authors" id="authors">
             </label>
-            <label for="organization"> <span>Organization*</span>
+            <label for="organization"> <span>Conference/<br/>Magazine *</span>
                 <input type="text" name="organization" id="organization">
             </label>
-            <label for="description"> <span>Description*</span>
+            <label for="description"> <span>Abstract *</span>
                 <textarea name="description" id="description" cols="10" rows="3"></textarea>
             </label>
 
@@ -49,7 +49,7 @@
                     <input type="file" name="image" id="image">
                 </a>
             </label>
-            <label for="text"> <span>Text*</span>
+            <label for="text"> <span>Text</span>
 
                 <a href="javascript:;" class="file">
                     <input type="file" name="text" id="text">
@@ -70,7 +70,7 @@
 
             <div class="multiple-choice">
                 <label for="members">
-                    <span>Members*</span>
+                    <span>Members *</span>
                     <input type="text" name="members" id="members">
                     <div id="checkbox-pre"></div>
                 </label>

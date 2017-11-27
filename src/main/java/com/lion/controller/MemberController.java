@@ -1,5 +1,6 @@
 package com.lion.controller;
 
+import com.lion.constant.UserConstant;
 import com.lion.entity.Project;
 import com.lion.entity.Publication;
 import com.lion.entity.User;
@@ -36,8 +37,14 @@ public class MemberController {
     //显示所有用户信息
     @RequestMapping(value = "")
     public String memberPage(HttpServletRequest request){
-        List<User> users=userService.listAllUser();
-        request.setAttribute("users",users);
+        List<User> professorList=userService.listUserByRole(UserConstant.PROFESSOR);
+        List<User> graduateList=userService.listUserByRole(UserConstant.GRADUATE);
+        List<User> undergraduateList=userService.listUserByRole(UserConstant.UNDERGRADUATE);
+        List<User> alumniList=userService.listUserByRole(UserConstant.ALUMNI);
+        request.setAttribute("professorList",professorList);
+        request.setAttribute("graduateList",graduateList);
+        request.setAttribute("undergraduateList",undergraduateList);
+        request.setAttribute("alumniList",alumniList);
         return "member/memberInfo";
     }
 

@@ -83,6 +83,11 @@ public class PublicationController {
                                      @RequestParam(value = "members") String members,
                                      HttpServletRequest request,
                                      RedirectAttributes redirectAttributes){
+        if(title.trim().length()==0||authors.trim().length()==0||description.trim().length()==0||organization.trim().length()==0||
+                members.trim().length()==0){
+            request.setAttribute("Msg","You should fill in all fields with *!");
+            return "error";
+        }
         Publication publication=new Publication();
         publication.setUserName(username);
         //TODO 路径配置
@@ -160,6 +165,11 @@ public class PublicationController {
                                       @RequestParam(value = "members") String members,
                                       HttpServletRequest request,
                                       RedirectAttributes redirectAttributes) {
+        if(title.trim().length()==0||authors.trim().length()==0||description.trim().length()==0||organization.trim().length()==0||
+                members.trim().length()==0){
+            request.setAttribute("Msg","You should fill in all fields with *!");
+            return "error";
+        }
         Publication publication=publicationService.getPublicationById(id);
         //TODO路径配置
         String basePath="D:/lion/publication";

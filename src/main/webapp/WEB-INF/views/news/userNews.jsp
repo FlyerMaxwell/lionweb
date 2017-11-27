@@ -16,7 +16,8 @@
     <jsp:include page="../sideMenu.jsp" flush="true"></jsp:include>
     <div class="content">
         <ul>
-            <a href="<%=request.getContextPath() %>/news/addNews?username=${username}" class="add">New News</a>
+            <span class="add">Add News</span>
+            <a href="<%=request.getContextPath() %>/news/addNews?username=${username}" class="add">+</a>
         </ul>
         <div class="container">
             <table>
@@ -34,7 +35,7 @@
                                 <%--</td>--%>
                                 <td>
                                     <div class="text">
-                                        <div>
+                                        <div class="title">
                                             <a href="<%=request.getContextPath() %>/news/newsDetail?id=${news.id}">${news.title}</a>
                                         </div>
                                         <%--<div>${news.createTime}</div>--%>
@@ -42,12 +43,12 @@
 
                                 <c:if test="${username!=null}">
                                     <%--编辑操作--%>
-                                    <span width="7%">
-                                        <a href="<%=request.getContextPath() %>/news/editNews?username=${username}&id=${news.id}">edit</a>
+                                    <span class="edit">
+                                        <a class="edit" href="<%=request.getContextPath() %>/news/editNews?username=${username}&id=${news.id}">edit</a>
                                     </span>
                                     <%--删除操作--%>
-                                    <span width="7%">
-                                        <a href="#" onclick="sure(${news.id})">delete</a>
+                                    <span class="delete">
+                                        <a class="delete" href="#" onclick="sure(${news.id})">delete</a>
                                     </span>
                                 </c:if>
                                 </td>

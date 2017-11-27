@@ -1,6 +1,7 @@
 package com.lion.controller;
 
 import com.lion.constant.ConfigConstant;
+import com.lion.constant.UserConstant;
 import com.lion.entity.*;
 import com.lion.service.*;
 import com.lion.util.FileHandler;
@@ -51,8 +52,14 @@ public class AdminController {
 
     @RequestMapping(value="memberInfo",method = RequestMethod.GET)
     public String memberInfo(HttpServletRequest request){
-        List<User> users=userService.listAllUser();
-        request.setAttribute("users",users);
+        List<User> professorList=userService.listUserByRole(UserConstant.PROFESSOR);
+        List<User> graduateList=userService.listUserByRole(UserConstant.GRADUATE);
+        List<User> undergraduateList=userService.listUserByRole(UserConstant.UNDERGRADUATE);
+        List<User> alumniList=userService.listUserByRole(UserConstant.ALUMNI);
+        request.setAttribute("professorList",professorList);
+        request.setAttribute("graduateList",graduateList);
+        request.setAttribute("undergraduateList",undergraduateList);
+        request.setAttribute("alumniList",alumniList);
         return "admin/memberInfo";
     }
 

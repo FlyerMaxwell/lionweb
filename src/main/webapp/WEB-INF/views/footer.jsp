@@ -12,19 +12,20 @@
         <p>
             <span>Lab of Innovation on Networking</span>
         </p>
-        <ul>
-            <li id="facebook">
-                <a href="#">facebook</a>
-            </li>
-            <li id="twitter">
-                <a href="#">twitter</a>
-            </li>
-            <li id="googleplus">
-                <a href="#">googleplus</a>
-            </li>
-            <li id="rss">
-                <a href="#" >rss</a>
-            </li>
-        </ul>
+        <%--社交账号链接添加处--%>
+        <%--<ul>--%>
+            <%--<li id="facebook">--%>
+                <%--<a href="#">facebook</a>--%>
+            <%--</li>--%>
+            <%--<li id="twitter">--%>
+                <%--<a href="#">twitter</a>--%>
+            <%--</li>--%>
+            <%--<li id="googleplus">--%>
+                <%--<a href="#">googleplus</a>--%>
+            <%--</li>--%>
+            <%--<li id="rss">--%>
+                <%--<a href="#" >rss</a>--%>
+            <%--</li>--%>
+        <%--</ul>--%>
     </div>
 </div>

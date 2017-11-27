@@ -13,7 +13,7 @@
 </c:if>
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
 <div id="body">
-    <div class="content">
+    <div class="content-display">
         <div class="container">
             <table class="member">
                 <tr height="100px">
@@ -74,6 +74,34 @@
                 </c:if>
 
             </table>
+        </div>
+        <div class="container">
+            <c:if test="${!empty publications}">
+                <div class="bar">
+                    <h3 class="bar">Related Publications</h3>
+                </div>
+                <table>
+                    <c:forEach items="${publications}" var="publication">
+                        <tr>
+                            <td class="pub-picture">
+                                <img src="<%=request.getContextPath() %>/resource/showImage?imagePath=${publication.imageUrl}&type=1">
+                            </td>
+                            <td>
+                                <div class="text">
+                                    <div>
+                                        <a href="<%=request.getContextPath() %>/publication/publicationDetail?id=${publication.id}">${publication.title}</a>
+                                    </div>
+                                    <div>${publication.authors}</div>
+                                    <div>${publication.organization}</div>
+
+                                </div>
+
+                            </td>
+                        </tr>
+                    </c:forEach>
+
+                </table>
+            </c:if>
         </div>
     </div>
 </div>

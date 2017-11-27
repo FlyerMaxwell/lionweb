@@ -19,15 +19,15 @@
         <form method="POST" action="<%=request.getContextPath() %>/project/editProjectInfo?username=${username}&panel=${panel}&id=${project.id}"
               enctype="multipart/form-data">
             <label class="hint">
-                fields with * are required,while other are optional
+                Fields with * are required,while other are optional
             </label>
             <label for="title"> <span>Title *</span>
                 <input type="text" name="title" id="title" value="${project.title}">
             </label>
-            <label for="authors"> <span>Authors *</span>
+            <label for="authors"> <span>Participants *</span>
                 <input type="text" name="authors" id="authors" value="${project.authors}">
             </label>
-            <label for="organization"> <span>Organization *</span>
+            <label for="organization"> <span>Sponsor *</span>
                 <input type="text" name="organization" id="organization" value="${project.organization}">
             </label>
             <label for="description"> <span>Description*</span>
@@ -61,7 +61,7 @@
 
             <div class="multiple-choice">
                 <label for="members">
-                    <span>Members*</span>
+                    <span>Members *</span>
                     <input type="text" name="members" id="members">
                     <div id="checkbox-pre"></div>
                 </label>
@@ -76,7 +76,7 @@
 
             <div class="multiple-choice">
                 <label for="refs">
-                    <span>Publications*</span>
+                    <span>Publications *</span>
                     <input type="text" name="refs" id="refs">
                     <div id="checkbox-pre1"></div>
                 </label>

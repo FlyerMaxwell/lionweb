@@ -30,12 +30,12 @@
 <div id="nav">
     <c:choose>
         <c:when test="${username != null}">
-            <a class="mdl-navigation__link mdl-color-text--pink-400"
-               href="<%=request.getContextPath() %>/user/userProfile?username=${username}">${username}|</a>
-            <a class="mdl-navigation__link mdl-color-text--black" href="<%=request.getContextPath() %>/user/loginOut">Log out</a>
+            <a class="nav-link-black"
+               href="<%=request.getContextPath() %>/user/userProfile?username=${username}">${username}</a>
+            <a class="nav-link-white" href="<%=request.getContextPath() %>/user/loginOut">Log out</a>
         </c:when>
         <c:when test="${username == null}">
-            <a class="mdl-navigation__link mdl-color-text--pink-400" href="<%=request.getContextPath() %>/login">Log in</a>
+            <a class="nav-link-black" href="<%=request.getContextPath() %>/login">Log in</a>
         </c:when>
     </c:choose>
 </div>

@@ -83,6 +83,11 @@ public class ProjectController {
                                      @RequestParam(value = "refs") List<Long> pubList,
                                      HttpServletRequest request,
                                      RedirectAttributes redirectAttributes){
+        if(title.trim().length()==0||authors.trim().length()==0||description.trim().length()==0||organization.trim().length()==0||
+                authorList==null||authorList.size()==0||pubList==null||pubList.size()==0){
+            request.setAttribute("Msg","You should fill in all fields with *!");
+            return "error";
+        }
         Project project=new Project();
         project.setUserName(username);
         //TODO 路径配置
@@ -161,6 +166,11 @@ public class ProjectController {
                                       @RequestParam(value = "refs") List<Long> publicationList,
                                       HttpServletRequest request,
                                       RedirectAttributes redirectAttributes) {
+        if(title.trim().length()==0||authors.trim().length()==0||description.trim().length()==0||organization.trim().length()==0||
+                authorList==null||authorList.size()==0||publicationList==null||publicationList.size()==0){
+            request.setAttribute("Msg","You should fill in all fields with *!");
+            return "error";
+        }
         Project project=projectService.getProjectById(id);
         //TODO路径配置
         String basePath="D:/lion/project";

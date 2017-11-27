@@ -35,8 +35,8 @@
                         </div>
                         <c:if test="${username!=null&&username==user.userName}">
                             <%--编辑操作--%>
-                            <span width="7%">
-                                <a href="<%=request.getContextPath() %>/user/editUser?username=${username}">edit</a>
+                            <span class="edit">
+                                <a class="edit" href="<%=request.getContextPath() %>/user/editUser?username=${username}">edit</a>
                             </span>
                         </c:if>
                     </td>
@@ -45,7 +45,7 @@
                 <c:if test="${user.detail!=null && user.detail!=''}">
                 <tr>
                     <td colspan="2">
-                        <h3>
+                        <h3 class="category">
                             Biography
                         </h3>
                     </td>
@@ -61,7 +61,7 @@
                 <c:if test="${user.cvUrl!=null && user.cvUrl!=''}">
                     <tr>
                         <td colspan="2">
-                            <h3>CV</h3>
+                            <h3 class="category">CV</h3>
                         </td>
                     </tr>
                     <c:if test="${user.prospect!=null && user.prospect!=''}">

@@ -18,25 +18,7 @@ public interface UserDao extends UserMapper{
 
     List<User> selectAllUser();
 
-    List<User> selectAllProfessor();
-
-    List<User> selectAllGraduate();
-
-    List<User> selectAllUndergraduate();
-
-    List<User> selectAllAlumni();
-
-    public User findUserByUserName(String username);
-
-    public User findUserByUserId(int id);
-
-    public void addUser(User user);
-
-    public void deleteUserByUserName(String username);
-
-    public void updateUserByUserName(User user);
-
-    public String getUserPasswordByUserName(String username);
+    List<User> selectUserByRole(@Param("role") Integer role);
 
     User selectByUserName(@Param("username") String username);
 

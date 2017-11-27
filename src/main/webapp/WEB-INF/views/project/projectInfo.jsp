@@ -22,12 +22,12 @@
                 <c:otherwise>
                     <c:forEach items="${projects}" var="project">
                         <tr class="list-display">
-                            <td class="picture">
+                            <td class="pro-picture">
                                 <img src="<%=request.getContextPath() %>/resource/showImage?imagePath=${project.imageUrl}&type=1">
                             </td>
                             <td class="text-display">
                                 <div class="text">
-                                    <div>
+                                    <div class="title">
                                         <a href="<%=request.getContextPath() %>/project/projectDetail?id=${project.id}">${project.title}</a>
                                     </div>
                                     <div>${project.authors}</div>
