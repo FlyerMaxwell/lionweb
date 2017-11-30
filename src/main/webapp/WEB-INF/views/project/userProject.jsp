@@ -29,11 +29,11 @@
                     </c:when>
                     <c:otherwise>
                         <c:forEach items="${projects}" var="project">
-                            <tr>
+                            <tr class="list-display">
                                 <td class="pro-picture">
                                     <img src="<%=request.getContextPath() %>/resource/showImage?imagePath=${project.imageUrl}&type=1">
                                 </td>
-                                <td>
+                                <td class="text-display">
                                     <div class="text">
                                         <div class="title">
                                             <a href="<%=request.getContextPath() %>/project/projectDetail?id=${project.id}">${project.title}</a>

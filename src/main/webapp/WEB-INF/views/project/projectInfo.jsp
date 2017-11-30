@@ -10,6 +10,7 @@
 <body>
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
 <div id="body">
+    <h3 class="large-category">PROJECTS</h3>
     <div class="content-display">
         <div class="container">
         <table>
@@ -32,6 +33,23 @@
                                     </div>
                                     <div>${project.authors}</div>
                                     <div>${project.organization}</div>
+                                    <div>
+                                        <c:if test="${project.textUrl != ''}">
+                                        <span>
+                                            <a class="download" href="<%=request.getContextPath() %>/resource/downloadFile?filePath=${project.textUrl}">PDF</a>
+                                        </span>
+                                        </c:if>
+                                        <c:if test="${project.slideUrl != ''}">
+                                        <span>
+                                            <a class="download" href="<%=request.getContextPath() %>/resource/downloadFile?filePath=${project.slideUrl}">Slide</a>
+                                        </span>
+                                        </c:if>
+                                        <c:if test="${project.videoUrl != ''}">
+                                        <span>
+                                            <a class="download" href="<%=request.getContextPath() %>/resource/downloadFile?filePath=${project.videoUrl}">Video</a>
+                                        </span>
+                                        </c:if>
+                                    </div>
                                 </div>
                             </td>
                         </tr>

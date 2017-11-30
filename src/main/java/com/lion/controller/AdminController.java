@@ -97,9 +97,9 @@ public class AdminController {
         if(newUser!=null) {
             try{
                 String ip=request.getRemoteAddr();
-
+                User user=userService.getUserByUserName(username);
                 //判断用户名是否已注册，未注册则进入后续流程
-                if(userService.getUserByUserName(username)==null){
+                if(user==null||!user.getUserName().equals(username)){
                     //判断邮箱是否注册
                     if(userService.getUserByEmail(userEmail)==null) {
                         //添加用户
@@ -197,6 +197,11 @@ public class AdminController {
         if(realName.trim().length()==0||userEmail.trim().length()==0||userSex==null||userType==null
                 ||userState==null||userRole==null){
             request.setAttribute("Msg","You should fill in all fields with *!");
+            return "error";
+        }
+        User oldUser=userService.getUserByEmail(userEmail);
+        if(oldUser!=null&&!oldUser.getUserName().equals(updateUser.getUserName())){
+            request.setAttribute("Msg","Email address has been registered!");
             return "error";
         }
         //TODO 路径配置

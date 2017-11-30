@@ -59,7 +59,7 @@
                 <input id="role1" type="radio" name="role" value="1"/>
                 <label for="role1">graduate</label>
                 <input id="role2" type="radio" name="role" value="2"/>
-                <label for="role2">undergraduate</label>
+                <label for="role2" class="long">undergraduate</label>
                 <input id="role3" type="radio" name="role" value="3"/>
                 <label for="role3">alumni</label>
             </label>

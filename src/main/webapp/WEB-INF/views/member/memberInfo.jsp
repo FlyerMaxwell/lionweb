@@ -10,6 +10,7 @@
 <body>
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
 <div id="body">
+    <h3 class="large-category">MEMBERS</h3>
     <div class="content-display">
         <div class="container">
             <table class="member">

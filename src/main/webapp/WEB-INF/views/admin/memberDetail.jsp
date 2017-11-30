@@ -40,7 +40,7 @@
                 <c:if test="${user.detail!=null && user.detail!=''}">
                 <tr>
                     <td colspan="2">
-                        <h3>
+                        <h3 class="category">
                             Biography
                         </h3>
                     </td>
@@ -56,7 +56,7 @@
                 <c:if test="${user.cvUrl!=null && user.cvUrl!=''}">
                     <tr>
                         <td colspan="2">
-                            <h3>CV</h3>
+                            <h3 class="category">CV</h3>
                         </td>
                     </tr>
                     <c:if test="${user.prospect!=null && user.prospect!=''}">
@@ -74,6 +74,34 @@
                 </c:if>
 
             </table>
+        </div>
+        <div class="container">
+            <c:if test="${!empty projects}">
+                <div class="bar">
+                    <h3 class="bar">Related Projects</h3>
+                </div>
+                <table>
+                    <c:forEach items="${projects}" var="project">
+                        <tr>
+                            <td class="pro-picture">
+                                <img src="<%=request.getContextPath() %>/resource/showImage?imagePath=${project.imageUrl}&type=1">
+                            </td>
+                            <td>
+                                <div class="text">
+                                    <div>
+                                        <a href="<%=request.getContextPath() %>/project/projectDetail?id=${project.id}">${project.title}</a>
+                                    </div>
+                                    <div>${project.authors}</div>
+                                    <div>${project.organization}</div>
+
+                                </div>
+
+                            </td>
+                        </tr>
+                    </c:forEach>
+
+                </table>
+            </c:if>
         </div>
         <div class="container">
             <c:if test="${!empty publications}">

@@ -56,13 +56,16 @@
                                         <c:if test="${username!=null&&userType==0}">
                                             <%--编辑操作--%>
                                             <span class="edit">
-                                            <a class="edit" href="<%=request.getContextPath() %>/admin/editMember?id=${professor.id}">edit</a>
-                                        </span>
+                                                <a class="edit" href="<%=request.getContextPath() %>/admin/editMember?id=${professor.id}">edit</a>
+                                            </span>
                                             <%--删除操作--%>
                                             <span class="delete">
                                             <%--<a href="<%=request.getContextPath() %>/admin/deleteMemberInfo?admin=${username}&id=${user.id}">delete</a>--%>
-                                            <a class="delete" href="#" onclick="sure(${professor.id})">delete</a>
-                                        </span>
+                                                <a class="delete" href="#" onclick="sure(${professor.id})">delete</a>
+                                            </span>
+                                            <span class="reset">
+                                                <a class="reset" href="#" onclick="confirmReset(${professor.id})">reset</a>
+                                            </span>
                                         </c:if>
                                     </td>
                                 </tr>
@@ -94,13 +97,16 @@
                                         <c:if test="${username!=null&&userType==0}">
                                             <%--编辑操作--%>
                                             <span class="edit">
-                                            <a class="edit" href="<%=request.getContextPath() %>/admin/editMember?id=${graduate.id}">edit</a>
-                                        </span>
+                                                <a class="edit" href="<%=request.getContextPath() %>/admin/editMember?id=${graduate.id}">edit</a>
+                                            </span>
                                             <%--删除操作--%>
                                             <span class="delete">
                                             <%--<a href="<%=request.getContextPath() %>/admin/deleteMemberInfo?admin=${username}&id=${user.id}">delete</a>--%>
-                                            <a class="delete" href="#" onclick="sure(${graduate.id})">delete</a>
-                                        </span>
+                                                <a class="delete" href="#" onclick="sure(${graduate.id})">delete</a>
+                                            </span>
+                                            <span class="reset">
+                                                <a class="reset" href="#" onclick="confirmReset(${graduate.id})">reset</a>
+                                            </span>
                                         </c:if>
                                     </td>
                                 </tr>
@@ -132,13 +138,17 @@
                                         <c:if test="${username!=null&&userType==0}">
                                             <%--编辑操作--%>
                                             <span class="edit">
-                                            <a class="edit" href="<%=request.getContextPath() %>/admin/editMember?id=${undergraduate.id}">edit</a>
-                                        </span>
+                                                <a class="edit" href="<%=request.getContextPath() %>/admin/editMember?id=${undergraduate.id}">edit</a>
+                                            </span>
                                             <%--删除操作--%>
                                             <span class="delete">
                                             <%--<a href="<%=request.getContextPath() %>/admin/deleteMemberInfo?admin=${username}&id=${user.id}">delete</a>--%>
-                                            <a class="delete" href="#" onclick="sure(${undergraduate.id})">delete</a>
-                                        </span>
+                                                <a class="delete" href="#" onclick="sure(${undergraduate.id})">delete</a>
+                                            </span>
+                                            <span class="reset">
+                                                <a class="reset" href="#" onclick="confirmReset(${undergraduate.id})">reset</a>
+                                            </span>
+
                                         </c:if>
                                     </td>
                                 </tr>
@@ -170,13 +180,16 @@
                                         <c:if test="${username!=null&&userType==0}">
                                             <%--编辑操作--%>
                                             <span class="edit">
-                                            <a class="edit" href="<%=request.getContextPath() %>/admin/editMember?id=${alumni.id}">edit</a>
-                                        </span>
+                                                <a class="edit" href="<%=request.getContextPath() %>/admin/editMember?id=${alumni.id}">edit</a>
+                                            </span>
                                             <%--删除操作--%>
                                             <span class="delete">
                                             <%--<a href="<%=request.getContextPath() %>/admin/deleteMemberInfo?admin=${username}&id=${user.id}">delete</a>--%>
-                                            <a class="delete" href="#" onclick="sure(${alumni.id})">delete</a>
-                                        </span>
+                                                <a class="delete" href="#" onclick="sure(${alumni.id})">delete</a>
+                                            </span>
+                                            <span class="reset">
+                                                <a class="reset" href="#" onclick="confirmReset(${alumni.id})">reset</a>
+                                            </span>
                                         </c:if>
                                     </td>
                                 </tr>
@@ -197,6 +210,12 @@
         var conf = confirm("Confirm Deletion?");
         if (conf == true) {
             window.location.href = "<%=request.getContextPath() %>/admin/deleteMemberInfo?admin=${username}&id=" + itemId;
+        }
+    }
+    function confirmReset(itemId){
+        var conf=confirm("Confirm Reset User Password?");
+        if (conf==true){
+            window.location.href="<%=request.getContextPath() %>/admin/resetPassword?id="+itemId;
         }
     }
 </script>

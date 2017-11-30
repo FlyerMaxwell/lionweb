@@ -33,7 +33,7 @@
                         <div>
                             <c:if test="${publication.textUrl != ''}">
                                         <span>
-                                            <a class="download" href="<%=request.getContextPath() %>/resource/downloadFile?filePath=${publication.textUrl}">Paper</a>
+                                            <a class="download" href="<%=request.getContextPath() %>/resource/downloadFile?filePath=${publication.textUrl}">PDF</a>
                                         </span>
                             </c:if>
                             <c:if test="${publication.slideUrl != ''}">
@@ -49,6 +49,7 @@
                         </div>
                     </td>
                 </tr>
+                <tr><td colspan="2"><br/></td> </tr>
 
             </table>
         </div>

@@ -69,7 +69,7 @@
                 <c:forEach items="${users}" var="user">
                     <input type="checkbox" value="${user.id}" id="${user.id}"
                            name="${user.userName}" onclick="display('checkbox','members','checkbox-pre')"/>
-                    ${user.userName}<br/>
+                    ${user.userName}(${user.realName})<br/>
                 </c:forEach>
                 </span>
             </div>

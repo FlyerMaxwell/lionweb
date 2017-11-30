@@ -171,6 +171,7 @@
 <body>
 <jsp:include page="header.jsp" flush="true"></jsp:include>
 <div id="body">
+    <h3 class="large-category">HOT NEWS !</h3>
     <div class="content-display">
         <div class="container">
             <%--最初显示为news,publications,projects最近五项--%>

@@ -14,21 +14,11 @@
         <div class="container">
             <table>
                 <tr>
-                    <%--<td class="detail">--%>
-                        <%--<img src="<%=request.getContextPath() %>/resource/showImage?imagePath=${news.imageUrl}&type=1">--%>
-                    <%--</td>--%>
                     <td>
-                        <div class="text">
-                            <div>${news.title}</div>
-                            <%--<div>${news.createTime}</div>--%>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
                         <div>${news.description}</div>
                     </td>
                 </tr>
+                <tr><td colspan="2"><br/></td> </tr>
 
             </table>
         </div>

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>LION</title>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/statics/css/style.css" type="text/css">
-    <link rel="shortcut icon" href="<%=request.getContextPath() %>/statics/images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="<%=request.getContextPath() %>/statics/images/favicon.ico" type="image/x-icon"/>
 </head>
 <body>
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
@@ -34,58 +34,57 @@
                         <div>
                             <c:if test="${project.textUrl != ''}">
                                         <span>
-                                            <a class="download" href="<%=request.getContextPath() %>/resource/downloadFile?filePath=${project.textUrl}">Text</a>
+                                            <a class="download"
+                                               href="<%=request.getContextPath() %>/resource/downloadFile?filePath=${project.textUrl}">PDF</a>
                                         </span>
                             </c:if>
                             <c:if test="${project.slideUrl != ''}">
                                         <span>
-                                            <a class="download" href="<%=request.getContextPath() %>/resource/downloadFile?filePath=${project.slideUrl}">Slide</a>
+                                            <a class="download"
+                                               href="<%=request.getContextPath() %>/resource/downloadFile?filePath=${project.slideUrl}">Slide</a>
                                         </span>
                             </c:if>
                             <c:if test="${project.videoUrl != ''}">
                                         <span>
-                                            <a class="download" href="<%=request.getContextPath() %>/resource/downloadFile?filePath=${project.videoUrl}">Video</a>
+                                            <a class="download"
+                                               href="<%=request.getContextPath() %>/resource/downloadFile?filePath=${project.videoUrl}">Video</a>
                                         </span>
                             </c:if>
                         </div>
                     </td>
                 </tr>
+                <tr><td colspan="2"><br/></td> </tr>
 
             </table>
         </div>
-        <div class="bar">
-            <h3 class="bar">Related Publications</h3>
-        </div>
+
         <div class="container">
-            <table>
-                <c:choose>
-                    <c:when test="${empty publications}">
-                        <%--<div align="left">--%>
-                            <%--<span>No Related Publication!</span>--%>
-                        <%--</div>--%>
-                    </c:when>
-                    <c:otherwise>
-                        <c:forEach items="${publications}" var="publication">
-                            <tr>
-                                <td class="pub-picture">
-                                    <img src="<%=request.getContextPath() %>/resource/showImage?imagePath=${publication.imageUrl}&type=1">
-                                </td>
-                                <td>
-                                    <div class="text">
-                                        <div>
-                                            <a href="<%=request.getContextPath() %>/publication/publicationDetail?id=${publication.id}">${publication.title}</a>
-                                        </div>
-                                        <div>${publication.authors}</div>
-                                        <div>${publication.organization}</div>
+            <c:if test="${!empty publications}">
+                <div class="bar">
+                    <h3 class="bar">Related Publications</h3>
+                </div>
+                <table>
 
+                    <c:forEach items="${publications}" var="publication">
+                        <tr>
+                            <td class="pub-picture">
+                                <img src="<%=request.getContextPath() %>/resource/showImage?imagePath=${publication.imageUrl}&type=1">
+                            </td>
+                            <td>
+                                <div class="text">
+                                    <div>
+                                        <a href="<%=request.getContextPath() %>/publication/publicationDetail?id=${publication.id}">${publication.title}</a>
                                     </div>
+                                    <div>${publication.authors}</div>
+                                    <div>${publication.organization}</div>
 
-                                </td>
-                            </tr>
-                        </c:forEach>
-                    </c:otherwise>
-                </c:choose>
-            </table>
+                                </div>
+
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </c:if>
         </div>
     </div>
 </div>

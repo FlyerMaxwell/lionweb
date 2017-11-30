@@ -19,6 +19,7 @@
 <body>
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
 <div id="body">
+    <h3 class="large-category">PUBLICATIONS</h3>
     <div class="content-display">
         <div class="container">
         <table>
@@ -44,17 +45,17 @@
                                     <div>
                                     <c:if test="${publication.textUrl != ''}">
                                         <span>
-                                            <a href="<%=request.getContextPath() %>/resource/downloadFile?filePath=${publication.textUrl}">Paper</a>
+                                            <a class="download" href="<%=request.getContextPath() %>/resource/downloadFile?filePath=${publication.textUrl}">PDF</a>
                                         </span>
                                     </c:if>
                                     <c:if test="${publication.slideUrl != ''}">
                                         <span>
-                                            <a href="<%=request.getContextPath() %>/resource/downloadFile?filePath=${publication.slideUrl}">Slide</a>
+                                            <a class="download" href="<%=request.getContextPath() %>/resource/downloadFile?filePath=${publication.slideUrl}">Slide</a>
                                         </span>
                                     </c:if>
                                     <c:if test="${publication.videoUrl != ''}">
                                         <span>
-                                            <a href="<%=request.getContextPath() %>/resource/downloadFile?filePath=${publication.videoUrl}">Video</a>
+                                            <a class="download" href="<%=request.getContextPath() %>/resource/downloadFile?filePath=${publication.videoUrl}">Video</a>
                                         </span>
                                     </c:if>
                                     </div>

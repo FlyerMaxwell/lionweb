@@ -51,7 +51,7 @@ public class UserController {
         }
 
         // 判断登录信息是否正确
-        if (user != null && loginUser.getPassword().equals(password)) {
+        if (user != null &&loginUser.getUserName().equals(user.getUserName())&&loginUser.getPassword().equals(password)) {
 
             // 获取登录基本信息
             String lastIp = request.getRemoteAddr();
@@ -79,7 +79,7 @@ public class UserController {
         }
 
         // 登录失败，跳转页面
-        request.setAttribute("Msg", "Login Fail!");
+        request.setAttribute("Msg", "Login Fail(Incorrect username/password)!");
         return "error";
     }
 
@@ -122,7 +122,14 @@ public class UserController {
             request.setAttribute("Msg","You should fill in all fields with *!");
             return "error";
         }
+        User oldUser=userService.getUserByEmail(userEmail);
+        if(oldUser!=null&&!oldUser.getUserName().equals(username)){
+            request.setAttribute("Msg","Email address has been registered!");
+            return "error";
+        }
         User updateUser = userService.getUserByUserName(username);
+
+
         //TODO 路径配置
         String basePath = "D:/lion/members";
         try {

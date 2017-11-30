@@ -77,8 +77,8 @@
                 <label for="role0">Professor</label>
                 <input id="role1" type="radio" name="role" value="1" checked="checked"/>
                 <label for="role1">graduate</label>
-                <input id="role2" type="radio" name="role" value="2" width="60"/>
-                <label for="role2">undergraduate</label>
+                <input id="role2" type="radio" name="role" value="2"/>
+                <label for="role2" class="long">undergraduate</label>
                 <input id="role3" type="radio" name="role" value="3"/>
                 <label for="role3">alumni</label>
             </label>
