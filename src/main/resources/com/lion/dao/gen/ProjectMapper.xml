@@ -18,13 +18,21 @@
     <result column="last_modifier" jdbcType="VARCHAR" property="lastModifier" />
     <result column="last_ip" jdbcType="VARCHAR" property="lastIp" />
   </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.lion.entity.Project">
+    <result column="rich_text" jdbcType="LONGVARCHAR" property="richText" />
+  </resultMap>
   <sql id="Base_Column_List">
     id, user_name, status, create_time, update_time, title, authors, description, organization, 
     image_url, text_url, slide_url, video_url, last_modifier, last_ip
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  <sql id="Blob_Column_List">
+    rich_text
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
     from t_project
     where id = #{id,jdbcType=BIGINT}
   </select>
@@ -35,15 +43,16 @@
   <insert id="insert" parameterType="com.lion.entity.Project">
     insert into t_project (id, user_name, status, 
       create_time, update_time, title, 
-      authors, description, organization, 
+      authors, description, organization,
       image_url, text_url, slide_url, 
-      video_url, last_modifier, last_ip
+      video_url, last_modifier, last_ip, rich_text
       )
     values (#{id,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{title,jdbcType=VARCHAR}, 
       #{authors,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR}, 
       #{imageUrl,jdbcType=VARCHAR}, #{textUrl,jdbcType=VARCHAR}, #{slideUrl,jdbcType=VARCHAR}, 
-      #{videoUrl,jdbcType=VARCHAR}, #{lastModifier,jdbcType=VARCHAR}, #{lastIp,jdbcType=VARCHAR}
+      #{videoUrl,jdbcType=VARCHAR}, #{lastModifier,jdbcType=VARCHAR}, #{lastIp,jdbcType=VARCHAR},
+      #{richText,jdbcType=LONGVARCHAR}
       )
   </insert>
   <!--将生成的主键返回到传回的对象中-->
@@ -76,6 +85,9 @@
       </if>
       <if test="organization != null">
         organization,
+      </if>
+      <if test="richText != null">
+        rich_text,
       </if>
       <if test="imageUrl != null">
         image_url,
@@ -124,6 +136,9 @@
       <if test="organization != null">
         #{organization,jdbcType=VARCHAR},
       </if>
+      <if test="richText != null">
+        #{richText,jdbcType=LONGVARCHAR},
+      </if>
       <if test="imageUrl != null">
         #{imageUrl,jdbcType=VARCHAR},
       </if>
@@ -171,6 +186,9 @@
       <if test="organization != null">
         organization = #{organization,jdbcType=VARCHAR},
       </if>
+      <if test="richText != null">
+        rich_text = #{richText,jdbcType=LONGVARCHAR},
+      </if>
       <if test="imageUrl != null">
         image_url = #{imageUrl,jdbcType=VARCHAR},
       </if>
@@ -190,6 +208,25 @@
         last_ip = #{lastIp,jdbcType=VARCHAR},
       </if>
     </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.lion.entity.Project">
+    update t_project
+    set user_name = #{userName,jdbcType=VARCHAR},
+    status = #{status,jdbcType=INTEGER},
+    create_time = #{createTime,jdbcType=TIMESTAMP},
+    update_time = #{updateTime,jdbcType=TIMESTAMP},
+    title = #{title,jdbcType=VARCHAR},
+    authors = #{authors,jdbcType=VARCHAR},
+    description = #{description,jdbcType=VARCHAR},
+    organization = #{organization,jdbcType=VARCHAR},
+    rich_text = #{richText,jdbcType=LONGVARCHAR},
+    image_url = #{imageUrl,jdbcType=VARCHAR},
+    text_url = #{textUrl,jdbcType=VARCHAR},
+    slide_url = #{slideUrl,jdbcType=VARCHAR},
+    video_url = #{videoUrl,jdbcType=VARCHAR},
+    last_modifier = #{lastModifier,jdbcType=VARCHAR},
+    last_ip = #{lastIp,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.lion.entity.Project">

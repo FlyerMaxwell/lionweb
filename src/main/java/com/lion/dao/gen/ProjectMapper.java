@@ -14,5 +14,7 @@ public interface ProjectMapper {
 
     int updateByPrimaryKeySelective(Project record);
 
+    int updateByPrimaryKeyWithBLOBs(Project record);
+
     int updateByPrimaryKey(Project record);
 }

@@ -565,11 +565,12 @@ body {
 }
 #body div.container div.text h2{
     color:#000;
-    font-size:3em;
+    font-size:2.5em;
 }
 #body div.container div.text h3{
     color:#333;
-    font-size:1.5em;
+    font-size:1.2em;
+    margin:5px;
 }
 #body div.container a.download{
     text-decoration: none;
@@ -579,11 +580,12 @@ body {
     background: #000;
     font-weight: normal;
 }
-#body div.container table tr td h3.category{
-    border-bottom:#DDD 1px solid;
-    font-size:1.5em;
-    padding-bottom: 5px;
-}
+/*#body div.container table tr td h3.category{*/
+    /*border-bottom:#DDD 1px solid;*/
+    /*font-size:1.5em;*/
+    /*padding-bottom: 5px;*/
+/*}*/
+
 #body > ul {
     margin: 0;
     padding: 0;

@@ -21,6 +21,8 @@ public class Project {
 
     private String organization;
 
+    private String richText;
+
     private String imageUrl;
 
     private String textUrl;
@@ -105,6 +107,14 @@ public class Project {
         this.organization = organization == null ? null : organization.trim();
     }
 
+    public String getRichText() {
+        return richText;
+    }
+
+    public void setRichText(String richText) {
+        this.richText = richText;
+    }
+
     public String getImageUrl() {
         return imageUrl;
     }
@@ -152,4 +162,5 @@ public class Project {
     public void setLastIp(String lastIp) {
         this.lastIp = lastIp == null ? null : lastIp.trim();
     }
+
 }

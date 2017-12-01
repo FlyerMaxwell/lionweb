@@ -81,6 +81,7 @@ public class ProjectController {
                                      @RequestParam(value = "video", required = false) MultipartFile video,
                                      @RequestParam(value = "members") List<Long> authorList,
                                      @RequestParam(value = "refs") List<Long> pubList,
+                                     @RequestParam(value = "richText") String richText,
                                      HttpServletRequest request,
                                      RedirectAttributes redirectAttributes){
         if(title.trim().length()==0||authors.trim().length()==0||description.trim().length()==0||organization.trim().length()==0||
@@ -96,6 +97,7 @@ public class ProjectController {
         project.setAuthors(authors);
         project.setDescription(description);
         project.setOrganization(organization);
+        project.setRichText(richText);
         project.setLastModifier(username);
         project.setLastIp(request.getRemoteAddr());
         project.setCreateTime(new Timestamp(new Date().getTime()));
@@ -164,6 +166,7 @@ public class ProjectController {
                                       @RequestParam(value = "video", required = false) MultipartFile video,
                                       @RequestParam(value = "members") List<Long> authorList,
                                       @RequestParam(value = "refs") List<Long> publicationList,
+                                      @RequestParam(value = "richText") String richText,
                                       HttpServletRequest request,
                                       RedirectAttributes redirectAttributes) {
         if(title.trim().length()==0||authors.trim().length()==0||description.trim().length()==0||organization.trim().length()==0||
@@ -178,6 +181,7 @@ public class ProjectController {
         project.setAuthors(authors);
         project.setDescription(description);
         project.setOrganization(organization);
+        project.setRichText(richText);
         project.setLastModifier(username);
         project.setLastIp(request.getRemoteAddr());
         project.setUpdateTime(new Timestamp(new Date().getTime()));
