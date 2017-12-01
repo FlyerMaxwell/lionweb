@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
@@ -198,6 +199,32 @@ public class UserController {
         User user=userService.getUserByUserName(username);
         request.setAttribute("user",user);
         return "user/passwordEdit";
+    }
+
+    //删除照片
+    @RequestMapping(value = "/deletePhotoInfo")
+    public String deletePhotoInfo(String username,RedirectAttributes redirectAttributes){
+        User user=userService.getUserByUserName(username);
+        if(user.getImageUrl().trim().length()!=0){
+            FileHandler.deleteFile(user.getImageUrl());
+            user.setImageUrl("");
+            userService.updateUserByUserId(user);
+        }
+        redirectAttributes.addAttribute("username",username);
+        return "redirect:/user/userProfile";
+    }
+
+    //删除CV
+    @RequestMapping(value = "/deleteCVInfo")
+    public String deleteCVInfo(String username,RedirectAttributes redirectAttributes){
+        User user=userService.getUserByUserName(username);
+        if(user.getCvUrl().trim().length()==0){
+            FileHandler.deleteFile(user.getCvUrl());
+            user.setCvUrl("");
+            userService.updateUserByUserId(user);
+        }
+        redirectAttributes.addAttribute("username",username);
+        return "redirect:/user/userProfile";
     }
 
     //提交密码修改

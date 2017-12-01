@@ -22,6 +22,9 @@
                 <a href="javascript:;" class="file">
                     <input type="file" name="image" id="image">
                 </a>
+                <span class="delete">
+                    <a class="delete" href="#" onclick="sureImage()">delete</a>
+                </span>
             </label>
             <input type="submit" value="" id="submit">
         </form>
@@ -30,3 +33,11 @@
 <jsp:include page="../footer.jsp" flush="true"></jsp:include>
 </body>
 </html>
+<script>
+    function sureImage() {
+        var conf=confirm("Confirm Photo Deletion?");
+        if(conf==true){
+            window.location.href="<%=request.getContextPath() %>/user/deletePhotoInfo?username=${username}";
+        }
+    }
+</script>

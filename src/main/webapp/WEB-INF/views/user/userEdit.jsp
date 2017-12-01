@@ -46,6 +46,9 @@
                 <a href="javascript:;" class="file">
                     <input type="file" name="cv" id="cv" >
                 </a>
+                <span class="delete">
+                    <a class="delete" href="#" onclick="sureCV()">delete</a>
+                </span>
             </label>
             <label><span>Gender *</span>
                 <input id="gender0" type="radio" name="gender" value="1"/>
@@ -83,4 +86,10 @@
     }
     checkRadio("gender",${user.userSex});
     checkRadio("role",${user.userRole});
+    function sureCV() {
+        var conf=confirm("Confirm CV Deletion?");
+        if(conf==true){
+            window.location.href="<%=request.getContextPath() %>/user/deleteCVInfo?username=${username}";
+        }
+    }
 </script>

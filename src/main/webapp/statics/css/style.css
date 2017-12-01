@@ -681,6 +681,10 @@ body {
     padding:10px;
 }
 
+#body .content form a.file{
+    float: left;
+}
+
 #body .content form {
     margin: 0;
     padding: 0;
