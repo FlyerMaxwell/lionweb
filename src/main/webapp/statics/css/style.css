@@ -901,8 +901,8 @@ table tr.member-title div {
 
 /*首页动态展示新闻图片相关*/
 #body #picfocus {
-    width:870px;
-    height:490px;
+    width:910px;
+    height:550px;
     border:1px solid #EEE;
     margin:5px;
 }
@@ -910,7 +910,7 @@ table tr.member-title div {
     position: relative;
     float:left;
     width:720px;
-    height:480px;
+    height:540px;
     overflow:hidden;
     margin:5px 0px 0px 9px;
     display:inline;
@@ -925,11 +925,11 @@ table tr.member-title div {
 #body #pic li{
     overflow:hidden;
     width:720px;
-    height:480px;
+    height:540px;
 }
 #body #pic img{
     width:720px;
-    height:480px;
+    height:540px;
 }
 #body #pictxtbg{
     position:absolute;
@@ -963,13 +963,13 @@ table tr.member-title div {
 }
 #body #picbtn li{
     cursor:pointer;
-    height:96px;
+    height:138px;
     opacity:0.5;
     filter:alpha(opacity=50);
 }
 #body #picbtn img{
-    width:120px;
-    height:90px;
+    width:160px;
+    height:120px;
     margin:3px 0px 3px 11px;
 }
 #body #picbtn .current{

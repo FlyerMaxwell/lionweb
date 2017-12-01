@@ -10,7 +10,7 @@
 </head>
 <script type="text/javascript">
     //单张展示图片高度
-    var height=480;
+    var height=540;
     //加载window.onload
     function addEventLoad(func){
         var oldonload = window.onload;
@@ -118,13 +118,6 @@
                 classCurrent('picbtn','pictxt',3);
             }
         }
-        if(picnums >= 5){
-            picbtns[4].onmouseover = function(){
-                movePic('pic',0,-height*4,5);
-                classNormal('picbtn','pictxt');
-                classCurrent('picbtn','pictxt',4);
-            }
-        }
     }
     //自动切换图片
     var autokey = false;
@@ -154,11 +147,6 @@
             classCurrent('picbtn','pictxt',3);
         }
         if(currentNum == 3 && len >= 4){
-            movePic('pic',0,-height*4,5);
-            classNormal('picbtn','pictxt');
-            classCurrent('picbtn','pictxt',4);
-        }
-        if(currentNum == 4 && len >= 5){
             movePic('pic',0,0,5);
             classNormal('picbtn','pictxt');
             classCurrent('picbtn','pictxt',0);
