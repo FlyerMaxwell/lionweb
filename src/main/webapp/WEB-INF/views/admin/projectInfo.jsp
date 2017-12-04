@@ -34,8 +34,8 @@
                                         <div class="title">
                                             <a href="<%=request.getContextPath() %>/project/projectDetail?id=${project.id}">${project.title}</a>
                                         </div>
-                                        <div>${project.authors}</div>
-                                        <div>${project.organization}</div>
+                                        <div>Participants:${project.authors}</div>
+                                        <div>Sponsors:${project.organization}</div>
                                     </div>
 
                                     <c:if test="${username!=null&&userType==0}">
