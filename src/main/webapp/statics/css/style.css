@@ -79,7 +79,13 @@ body {
     border: 0;
     display: block;
 }
+#header h2{
+    text-align: left;
+    padding: 10px 0;
+    margin: 0 70px;
+    font-size: 2.5em;
 
+}
 #header ul {
     margin: 0 auto;
     overflow: hidden;
