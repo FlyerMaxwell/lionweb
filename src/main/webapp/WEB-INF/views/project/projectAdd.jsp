@@ -115,7 +115,7 @@
 
             <div class="multiple-choice">
                 <label for="refs">
-                    <span>Publications *</span>
+                    <span>Publications</span>
                     <input type="text" name="refs" id="refs">
                     <div id="checkbox-pre1"></div>
                 </label>

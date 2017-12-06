@@ -3,6 +3,7 @@ package com.lion.controller;
 import com.lion.entity.*;
 import com.lion.service.*;
 import com.lion.util.FileHandler;
+import com.lion.util.TextHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -85,7 +86,7 @@ public class ProjectController {
                                      HttpServletRequest request,
                                      RedirectAttributes redirectAttributes){
         if(title.trim().length()==0||authors.trim().length()==0||description.trim().length()==0||organization.trim().length()==0||
-                authorList==null||authorList.size()==0||pubList==null||pubList.size()==0){
+                authorList==null||authorList.size()==0){
             request.setAttribute("Msg","You should fill in all fields with *!");
             return "error";
         }
@@ -95,7 +96,7 @@ public class ProjectController {
         String basePath="D:/lion/project";
         project.setTitle(title);
         project.setAuthors(authors);
-        project.setDescription(description);
+        project.setDescription(TextHandler.toHtml(description));
         project.setOrganization(organization);
         project.setRichText(richText);
         project.setLastModifier(username);
@@ -170,7 +171,7 @@ public class ProjectController {
                                       HttpServletRequest request,
                                       RedirectAttributes redirectAttributes) {
         if(title.trim().length()==0||authors.trim().length()==0||description.trim().length()==0||organization.trim().length()==0||
-                authorList==null||authorList.size()==0||publicationList==null||publicationList.size()==0){
+                authorList==null||authorList.size()==0){
             request.setAttribute("Msg","You should fill in all fields with *!");
             return "error";
         }
@@ -179,7 +180,7 @@ public class ProjectController {
         String basePath="D:/lion/project";
         project.setTitle(title);
         project.setAuthors(authors);
-        project.setDescription(description);
+        project.setDescription(TextHandler.toHtml(description));
         project.setOrganization(organization);
         project.setRichText(richText);
         project.setLastModifier(username);

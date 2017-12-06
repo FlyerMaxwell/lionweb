@@ -9,6 +9,7 @@ import com.lion.service.PublicationService;
 import com.lion.service.UserLoginLogService;
 import com.lion.service.UserService;
 import com.lion.util.FileHandler;
+import com.lion.util.TextHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -150,10 +151,10 @@ public class UserController {
         updateUser.setUserPhone(userPhone);
         updateUser.setUserSex(userSex);
         updateUser.setUserRole(userRole);
-        updateUser.setDescription(description);
-        updateUser.setDetail(detail);
+        updateUser.setDescription(TextHandler.toHtml(description));
+        updateUser.setDetail(TextHandler.toHtml(detail));
         updateUser.setWebUrl(web);
-        updateUser.setProspect(prospect);
+        updateUser.setProspect(TextHandler.toHtml(prospect));
         userService.updateUserByUserId(updateUser);
 
         redirectAttributes.addAttribute("username", username);

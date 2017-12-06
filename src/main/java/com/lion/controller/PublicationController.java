@@ -9,6 +9,7 @@ import com.lion.service.PublicationService;
 import com.lion.service.PublicationUserService;
 import com.lion.service.UserService;
 import com.lion.util.FileHandler;
+import com.lion.util.TextHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -94,7 +95,7 @@ public class PublicationController {
         String basePath="D:/lion/publication";
         publication.setTitle(title);
         publication.setAuthors(authors);
-        publication.setDescription(description);
+        publication.setDescription(TextHandler.toHtml(description));
         publication.setOrganization(organization);
         publication.setLastModifier(username);
         publication.setLastIp(request.getRemoteAddr());
@@ -175,7 +176,7 @@ public class PublicationController {
         String basePath="D:/lion/publication";
         publication.setTitle(title);
         publication.setAuthors(authors);
-        publication.setDescription(description);
+        publication.setDescription(TextHandler.toHtml(description));
         publication.setOrganization(organization);
         publication.setLastModifier(username);
         publication.setLastIp(request.getRemoteAddr());

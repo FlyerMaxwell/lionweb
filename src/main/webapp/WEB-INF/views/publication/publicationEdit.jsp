@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="<%=request.getContextPath() %>/statics/css/style.css" type="text/css">
     <link rel="shortcut icon" href="<%=request.getContextPath() %>/statics/images/favicon.ico" type="image/x-icon" />
 </head>
+<script src="<%=request.getContextPath() %>/statics/js/transfer.js" type="text/javascript"></script>
 <body>
 <c:if test="${sessionScope.userType==null}">
     <jsp:forward page="../access.jsp"></jsp:forward>
@@ -42,7 +43,7 @@
                 <input type="text" name="organization" id="organization" value="${publication.organization}">
             </label>
             <label for="description"> <span>Abstract *</span>
-                <textarea name="description" id="description" cols="10" rows="3">${publication.description}</textarea>
+                <textarea name="description" id="description" cols="10" rows="3"></textarea>
             </label>
             <label for="image"> <span>Image<br/>(scale 4:3)</span>
 
@@ -127,4 +128,6 @@
 //    initialize checkbox
     scanCheckbox(${oldAuthorList});
     display()
+    var description=toText("${publication.description}");
+    document.getElementById("description").value=description;
 </script>

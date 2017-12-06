@@ -133,9 +133,9 @@ public class AdminController {
                         newUser.setUserRole(userRole);
                         newUser.setDescription(TextHandler.toHtml(description));
                         newUser.setWebUrl(web.trim());
-                        newUser.setProspect(prospect);
+                        newUser.setProspect(TextHandler.toHtml(prospect));
                         if(detail!=null){
-                            newUser.setDetail(detail);
+                            newUser.setDetail(TextHandler.toHtml(detail));
                         }
 
 
@@ -230,10 +230,10 @@ public class AdminController {
         updateUser.setUserType(userType);
         updateUser.setUserState(userState);
         updateUser.setUserRole(userRole);
-        updateUser.setDescription(description);
-        updateUser.setDetail(detail);
+        updateUser.setDescription(TextHandler.toHtml(description));
+        updateUser.setDetail(TextHandler.toHtml(detail));
         updateUser.setWebUrl(web);
-        updateUser.setProspect(prospect);
+        updateUser.setProspect(TextHandler.toHtml(prospect));
         userService.updateUserByUserId(updateUser);
 
         return "redirect:/admin/memberInfo";

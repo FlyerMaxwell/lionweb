@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="<%=request.getContextPath() %>/statics/css/style.css" type="text/css">
     <link rel="shortcut icon" href="<%=request.getContextPath() %>/statics/images/favicon.ico" type="image/x-icon" />
 </head>
+<script src="<%=request.getContextPath() %>/statics/js/transfer.js" type="text/javascript"></script>
 <body>
 <c:if test="${sessionScope.userType==null}">
     <jsp:forward page="../access.jsp"></jsp:forward>
@@ -34,13 +35,13 @@
                 <input type="text" name="web" id="web" value="${user.webUrl}">
             </label>
             <label for="description"> <span>Title*<br/>(Your school and role,<br/>eg:SEIEE,PhD,<br/><200 bytes)</span>
-                <textarea name="description" id="description" cols="10" rows="3">${user.description}</textarea>
+                <textarea name="description" id="description" cols="10" rows="3"></textarea>
             </label>
             <label for="detail"> <span>Biography*<br/>(Your own description,such as academic experience and research experience)</span>
-                <textarea name="detail" id="detail" cols="30" rows="10">${user.detail}</textarea>
+                <textarea name="detail" id="detail" cols="30" rows="10"></textarea>
             </label>
             <label for="prospect"><span>CV<br/>(Your recent plan,<br/><500 bytes)</span>
-                <input type="text" name="prospect" id="prospect" value="${user.prospect}">
+                <textarea name="prospect" id="prospect" cols="30" rows="10"></textarea>
             </label>
             <label for="cv"> <span>CV File</span>
                 <a href="javascript:;" class="file">
@@ -92,4 +93,11 @@
             window.location.href="<%=request.getContextPath() %>/user/deleteCVInfo?username=${username}";
         }
     }
+    <%--textarea默认值--%>
+    var description=toText("${user.description}");
+    document.getElementById("description").value=description;
+    var detail=toText("${user.detail}");
+    document.getElementById("detail").value=detail;
+    var prospect=toText("${user.prospect}");
+    document.getElementById("prospect").value=prospect;
 </script>

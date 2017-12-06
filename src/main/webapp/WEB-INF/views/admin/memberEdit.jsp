@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="<%=request.getContextPath() %>/statics/css/style.css" type="text/css">
     <link rel="shortcut icon" href="<%=request.getContextPath() %>/statics/images/favicon.ico" type="image/x-icon" />
 </head>
+<script src="<%=request.getContextPath() %>/statics/js/transfer.js" type="text/javascript"></script>
 <body>
 <c:if test="${sessionScope.userType!=0}">
     <jsp:forward page="../access.jsp"></jsp:forward>
@@ -39,14 +40,14 @@
                 <input type="text" name="web" id="web" value="${user.webUrl}">
             </label>
             <label for="description"> <span>Title<br/>(User's school and role,<br/>eg:SEIEE,PhD,<br/><200 bytes)</span>
-                <textarea name="description" id="description" cols="10" rows="3">${user.description}</textarea>
+                <textarea name="description" id="description" cols="10" rows="3"></textarea>
             </label>
             <label for="detail"> <span>Biography<br/>(User's own description,such as academic experience and research experience)</span>
-                <textarea name="detail" id="detail" cols="30" rows="10">${user.detail}</textarea>
+                <textarea name="detail" id="detail" cols="30" rows="10"></textarea>
             </label>
 
             <label for="prospect"> <span>CV<br/>(User's recent plan,<br/><500 bytes)</span>
-                <textarea name="prospect" id="prospect" cols="30" rows="10">${user.prospect}</textarea>
+                <textarea name="prospect" id="prospect" cols="30" rows="10"></textarea>
             </label>
             <label for="cv"> <span>CV File</span>
                 <a href="javascript:;" class="file">
@@ -75,7 +76,7 @@
             <label><span>User Role *</span>
                 <input id="role0" type="radio" name="role" value="0"/>
                 <label for="role0">Professor</label>
-                <input id="role1" type="radio" name="role" value="1" checked="checked"/>
+                <input id="role1" type="radio" name="role" value="1"/>
                 <label for="role1">graduate</label>
                 <input id="role2" type="radio" name="role" value="2"/>
                 <label for="role2" class="long">undergraduate</label>
@@ -92,6 +93,8 @@
 </html>
 
 <script>
+
+    <%--多选框默认值--%>
     function checkRadio(radioName,radioValue) {
         var rObj=document.getElementsByName(radioName);
         for(var i=0;i<rObj.length;i++){
@@ -104,4 +107,12 @@
     checkRadio("type",${user.userType});
     checkRadio("state",${user.userState});
     checkRadio("role",${user.userRole});
+
+    <%--textarea默认值--%>
+    var description=toText("${user.description}");
+    document.getElementById("description").value=description;
+    var detail=toText("${user.detail}");
+    document.getElementById("detail").value=detail;
+    var prospect=toText("${user.prospect}");
+    document.getElementById("prospect").value=prospect;
 </script>

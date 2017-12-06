@@ -9,6 +9,7 @@
 </head>
 <script type="text/javascript" charset="utf-8" src="<%=request.getContextPath() %>/statics/editor/kindeditor/kindeditor-all-min.js"></script>
 <script type="text/javascript" charset="utf-8" src="<%=request.getContextPath() %>/statics/editor/kindeditor/lang/zh-CN.js"></script>
+<script src="<%=request.getContextPath() %>/statics/js/transfer.js" type="text/javascript"></script>
 <script>
     var editor;
     <%--可定义options用于K.create()的第二个参数--%>
@@ -65,7 +66,7 @@
                 <input type="text" name="organization" id="organization" value="${project.organization}">
             </label>
             <label for="description"> <span>Description*</span>
-                <textarea name="description" id="description" cols="10" rows="3">${project.description}</textarea>
+                <textarea name="description" id="description" cols="10" rows="3"></textarea>
             </label>
 
             <label for="image"> <span>Image<br/>(scale 4:3)</span>
@@ -115,7 +116,7 @@
 
             <div class="multiple-choice">
                 <label for="refs">
-                    <span>Publications *</span>
+                    <span>Publications</span>
                     <input type="text" name="refs" id="refs">
                     <div id="checkbox-pre1"></div>
                 </label>
@@ -177,5 +178,6 @@
     display('checkbox','members','checkbox-pre');
     scanCheckbox(${oldPubList},"pub_");
     display('checkbox1','refs','checkbox-pre1');
-
+    var description=toText("${project.description}");
+    document.getElementById("description").value=description;
 </script>
