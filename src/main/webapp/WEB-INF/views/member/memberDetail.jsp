@@ -26,7 +26,7 @@
                                 <div class="phone">Tel: ${user.userPhone}</div>
                             </c:if>
                             <c:if test="${user.webUrl!=null && user.webUrl!=''}">
-                                <div class="web_page">Web page :${user.webUrl}</div>
+                                <div class="web_page">Web page: ${user.webUrl}</div>
                             </c:if>
 
                         </div>

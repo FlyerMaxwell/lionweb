@@ -18,8 +18,8 @@
                     <td colspan="2">
                         <div class="text">
                             <h2>${project.title}</h2>
-                            <h3>Participants:${project.authors}</h3>
-                            <h3>Sponsors:${project.organization}</h3>
+                            <h3>Participants: ${project.authors}</h3>
+                            <h3>Sponsors: ${project.organization}</h3>
 
                         </div>
                     </td>

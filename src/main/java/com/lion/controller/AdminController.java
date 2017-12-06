@@ -5,6 +5,7 @@ import com.lion.constant.UserConstant;
 import com.lion.entity.*;
 import com.lion.service.*;
 import com.lion.util.FileHandler;
+import com.lion.util.TextHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -130,7 +131,7 @@ public class AdminController {
                         newUser.setUserType(userType);
                         newUser.setUserState(userState);
                         newUser.setUserRole(userRole);
-                        newUser.setDescription(description);
+                        newUser.setDescription(TextHandler.toHtml(description));
                         newUser.setWebUrl(web.trim());
                         newUser.setProspect(prospect);
                         if(detail!=null){
