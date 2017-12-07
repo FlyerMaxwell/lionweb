@@ -26,7 +26,7 @@
     <!--<mvc:default-servlet-handler/>-->
     <mvc:resources mapping="/statics/**" location="/statics/"/>
     <!--<mvc:resources mapping="/images/**" location="file:D:/lion/news/image/"/>-->
-    <mvc:resources mapping="/resources/**" location="file:D:/lion/resource/"/>
+    <mvc:resources mapping="/resources/**" location="file:D:/lion/kindeditor/resource/"/>
     <!-- 页面视图解析器 -->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />

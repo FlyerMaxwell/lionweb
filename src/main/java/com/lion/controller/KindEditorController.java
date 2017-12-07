@@ -54,7 +54,7 @@ public class KindEditorController {
             FileUploadException {
         ServletContext application = request.getSession().getServletContext();
 //        String savePath = application.getRealPath("/") + "images/";
-        String savePath = ConfigConstant.RESOURCE_ROOT_PATH + "/resource/"+category+"/";
+        String savePath = ConfigConstant.RESOURCE_ROOT_PATH + "/kindeditor/resource/"+category+"/";
 
         // 文件保存目录URL
         String saveUrl = request.getContextPath() + "/resources/"+category+"/";
@@ -176,7 +176,7 @@ public class KindEditorController {
         ServletOutputStream out = response.getOutputStream();
         // 根目录路径，可以指定绝对路径，比如 /var/www/attached/
 //        String rootPath = application.getRealPath("/") + "images/";
-        String rootPath=ConfigConstant.RESOURCE_ROOT_PATH+"resource"+category+"/";
+        String rootPath=ConfigConstant.RESOURCE_ROOT_PATH+"kindeditor/resource"+category+"/";
         // 根目录URL，可以指定绝对路径，比如 http://www.yoursite.com/attached/
         String rootUrl = request.getContextPath() + "/resources/"+category+"/";
 //        String rootUrl="../../resource/showImage?imagePath="+rootPath;
