@@ -23,8 +23,8 @@
             allowImageUpload:true,
             allowFileManager:true,
             //上传图片和管理文件的java代码，放在jsp文件中？KindEditor的示例代码
-            uploadJson:'<%=request.getContextPath() %>/kindEditor/fileUpload',
-            fileManagerJson:'<%=request.getContextPath() %>/kindEditor/fileManager',
+            uploadJson:'<%=request.getContextPath() %>/kindEditor/fileUpload?category=project',
+            fileManagerJson:'<%=request.getContextPath() %>/kindEditor/fileManager?category=project',
             //图片上传或失去焦点后，将上传内容同步到textarea中
             afterUpload:function () {
                 this.sync();
@@ -34,8 +34,9 @@
             },
             items:[
                 'fontname','fontsize','forecolor','hilitecolor','/','bold','italic','underline',
-                'removeformat','/','justifyleft','justifycenter','justifyright','/','insertorderedlist',
-                'insertunorderedlist','link','/','emoticons','image','unlink'
+                'strikethrough','/','/','justifyleft','justifycenter','justifyright','lineheight',
+                '/','insertorderedlist','insertunorderedlist','link','unlink','/','removeformat',
+                'emoticons','map','baidumap','/','image','code','insertfile','preview'
             ]
         });
     });

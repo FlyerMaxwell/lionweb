@@ -50,24 +50,24 @@ public class KindEditorController {
 
     @RequestMapping(value = "/fileUpload", method = RequestMethod.POST)
     @ResponseBody
-    public Map<String, Object> fileUpload(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException,
+    public Map<String, Object> fileUpload(String category,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException,
             FileUploadException {
         ServletContext application = request.getSession().getServletContext();
 //        String savePath = application.getRealPath("/") + "images/";
-        String savePath = ConfigConstant.RESOURCE_ROOT_PATH + "/news/image/";
+        String savePath = ConfigConstant.RESOURCE_ROOT_PATH + "/resource/"+category+"/";
 
         // 文件保存目录URL
-        String saveUrl = request.getContextPath() + "/images/";
+        String saveUrl = request.getContextPath() + "/resources/"+category+"/";
 //        String saveUrl ="../../resource/showImage?imagePath="+savePath;
         // 定义允许上传的文件扩展名
         HashMap<String, String> extMap = new HashMap<String, String>();
         extMap.put("image", "gif,jpg,jpeg,png,bmp");
 //        extMap.put("flash", "swf,flv");
 //        extMap.put("media", "swf,flv,mp3,wav,wma,wmv,mid,avi,mpg,asf,rm,rmvb");
-//        extMap.put("file", "doc,docx,xls,xlsx,ppt,htm,html,txt,zip,rar,gz,bz2");
+        extMap.put("file", "pdf,doc,docx,xls,xlsx,ppt,htm,html,txt,zip,rar,gz,bz2");
 
         // 最大文件大小
-        long maxSize = 1000000;
+        long maxSize = 500*1024*1024;
 
         response.setContentType("text/html; charset=UTF-8");
 
@@ -126,7 +126,7 @@ public class KindEditorController {
 
             if (file.getSize() > maxSize) {
 
-                return getError("File size is too large!");
+                return getError("File size is too large!(<"+maxSize+"bytes");
 
             }
 
@@ -170,15 +170,15 @@ public class KindEditorController {
     }
 
     @RequestMapping(value = "/fileManager", method = RequestMethod.POST)
-    public void fileManager(HttpServletRequest request,
+    public void fileManager(String category, HttpServletRequest request,
                             HttpServletResponse response) throws ServletException, IOException {
         ServletContext application = request.getSession().getServletContext();
         ServletOutputStream out = response.getOutputStream();
         // 根目录路径，可以指定绝对路径，比如 /var/www/attached/
 //        String rootPath = application.getRealPath("/") + "images/";
-        String rootPath=ConfigConstant.RESOURCE_ROOT_PATH+"news/image";
+        String rootPath=ConfigConstant.RESOURCE_ROOT_PATH+"resource"+category+"/";
         // 根目录URL，可以指定绝对路径，比如 http://www.yoursite.com/attached/
-        String rootUrl = request.getContextPath() + "/images/";
+        String rootUrl = request.getContextPath() + "/resources/"+category+"/";
 //        String rootUrl="../../resource/showImage?imagePath="+rootPath;
         // 图片扩展名
         String[] fileTypes = new String[] { "gif", "jpg", "jpeg", "png", "bmp" };
