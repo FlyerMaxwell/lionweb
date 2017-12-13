@@ -20,6 +20,10 @@ public interface UserService {
 
     User getUserByEmail(String email);
 
+    User getFormer(Integer role,Long rank);
+
+    User getLatter(Integer role,Long rank);
+
     int deleteUser(Long id);
 
     void updateUserByUserId(User user);

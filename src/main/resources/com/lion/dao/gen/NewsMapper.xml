@@ -3,6 +3,7 @@
 <mapper namespace="com.lion.dao.gen.NewsMapper">
   <resultMap id="BaseResultMap" type="com.lion.entity.News">
     <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="rank" jdbcType="BIGINT" property="rank"/>
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
@@ -17,7 +18,7 @@
     <result column="description" jdbcType="LONGVARCHAR" property="description" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, user_name, status, create_time, update_time, title, image_url, text_url, last_modifier, 
+    id, rank, user_name, status, create_time, update_time, title, image_url, text_url, last_modifier,
     last_ip
   </sql>
   <sql id="Blob_Column_List">
@@ -36,11 +37,12 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.lion.entity.News">
-    insert into t_news (id, user_name, status, 
+    insert into t_news (id, rank, user_name, status,
       create_time, update_time, title, 
       image_url, text_url, last_modifier, 
       last_ip, description)
-    values (#{id,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=BIGINT}, #{rank,jdbcType=BIGINT},
+      #{userName,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{title,jdbcType=VARCHAR}, 
       #{imageUrl,jdbcType=VARCHAR}, #{textUrl,jdbcType=VARCHAR}, #{lastModifier,jdbcType=VARCHAR}, 
       #{lastIp,jdbcType=VARCHAR}, #{description,jdbcType=LONGVARCHAR})
@@ -50,6 +52,9 @@
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
+      </if>
+      <if test="rank !=null">
+        rank,
       </if>
       <if test="userName != null">
         user_name,
@@ -86,6 +91,9 @@
       <if test="id != null">
         #{id,jdbcType=BIGINT},
       </if>
+      <if test="rank != null">
+        #{rank,jdbcType=BIGINT},
+      </if>
       <if test="userName != null">
         #{userName,jdbcType=VARCHAR},
       </if>
@@ -121,6 +129,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.lion.entity.News">
     update t_news
     <set>
+      <if test="rank != null">
+        rank = #{rank,jdbcType=BIGINT},
+      </if>
       <if test="userName != null">
         user_name = #{userName,jdbcType=VARCHAR},
       </if>
@@ -156,7 +167,8 @@
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.lion.entity.News">
     update t_news
-    set user_name = #{userName,jdbcType=VARCHAR},
+    set rank = #{rank,jdbcType=BIGINT},
+      user_name = #{userName,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
@@ -170,7 +182,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.lion.entity.News">
     update t_news
-    set user_name = #{userName,jdbcType=VARCHAR},
+    set rank = #{rank, jdbcType=BIGINT},
+      user_name = #{userName,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},

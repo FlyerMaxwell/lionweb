@@ -5,6 +5,8 @@ import java.util.Date;
 public class News {
     private Long id;
 
+    private Long rank;
+
     private String userName;
 
     private Integer status;

@@ -41,6 +41,14 @@ public class UserServiceImpl implements UserService {
         return userDao.selectByEmail(email);
     }
 
+    public User getFormer(Integer role,Long rank) {
+        return userDao.selectFormer(role,rank);
+    }
+
+    public User getLatter(Integer role,Long rank) {
+        return userDao.selectLatter(role,rank);
+    }
+
     public int deleteUser(Long id) {
         return userDao.deleteByPrimaryKey(id);
     }

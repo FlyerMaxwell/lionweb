@@ -23,5 +23,9 @@ public interface UserDao extends UserMapper{
     User selectByUserName(@Param("username") String username);
 
     User selectByEmail(@Param("email") String email);
+
+    User selectFormer(@Param("role") Integer role,@Param("rank") Long rank);
+
+    User selectLatter(@Param("role") Integer role,@Param("rank") Long rank);
 }
 

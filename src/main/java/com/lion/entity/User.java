@@ -15,6 +15,8 @@ public class User {
     //用户属性（与数据库字段对应）
     private Long id;
 
+    private Long rank;
+
     private String userName;
 
     private String realName;
@@ -61,6 +63,14 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getRank() {
+        return rank;
+    }
+
+    public void setRank(Long rank) {
+        this.rank = rank;
     }
 
     public String getUserName() {
@@ -227,6 +237,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "userId=" + id +
+                "rank" + rank +
                 ", userName=" + userName +
                 ", password=" + password +
                 ", userEmail=" + userEmail +
@@ -238,5 +249,4 @@ public class User {
                 ", lastLoginTime=" + lastLoginTime +
                 ", lastIp=" + lastIp + "}";
     }
-
 }

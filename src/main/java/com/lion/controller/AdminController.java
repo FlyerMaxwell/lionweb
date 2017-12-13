@@ -144,6 +144,9 @@ public class AdminController {
                         newUser.setCreateTime(createTime);
                         newUser.setLastLoginTime(createTime);
                         userService.addUser(newUser);
+                        //根据写回的自增id设置初始rank值
+                        newUser.setRank(newUser.getId());
+                        userService.updateUserByUserId(newUser);
 
                         //添加用户登录日志
                         UserLoginLog userLoginLog = new UserLoginLog();
@@ -299,6 +302,37 @@ public class AdminController {
         List<Publication> publicationList=publicationService.listAllPublication();
         request.setAttribute("publications",publicationList);
         return "admin/publicationInfo";
+    }
+
+    //上移member
+    @RequestMapping(value = "upMember")
+    public String moveMemberUp(Long id){
+        User cur=userService.getUserByUserId(id);
+        User former=userService.getFormer(cur.getUserRole(),cur.getRank());
+        if(cur.getId()!=former.getId()){
+            Long temp=cur.getRank();
+            cur.setRank(former.getRank());
+            former.setRank(temp);
+            userService.updateUserByUserId(cur);
+            userService.updateUserByUserId(former);
+        }
+        return "redirect:/admin/memberInfo";
+    }
+
+    //下移member
+    @RequestMapping(value = "downMember")
+    public String moveMemberDown(Long id){
+        User cur=userService.getUserByUserId(id);
+        User latter=userService.getLatter(cur.getUserRole(),cur.getRank());
+        System.out.println(cur.getId()+" "+cur.getRank()+" "+latter.getId()+" "+latter.getRank());
+        if(cur.getId()!=latter.getId()){
+            Long temp=cur.getRank();
+            cur.setRank(latter.getRank());
+            latter.setRank(temp);
+            userService.updateUserByUserId(cur);
+            userService.updateUserByUserId(latter);
+        }
+        return "redirect:/admin/memberInfo";
     }
 
 }

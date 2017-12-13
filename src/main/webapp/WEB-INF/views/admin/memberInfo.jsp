@@ -66,6 +66,12 @@
                                             <span class="reset">
                                                 <a class="reset" href="#" onclick="confirmReset(${professor.id})">reset</a>
                                             </span>
+                                            <span class="up">
+                                                <a class="up" href="<%=request.getContextPath() %>/admin/upMember?id=${professor.id}">up</a>
+                                            </span>
+                                            <span class="down">
+                                                <a class="down" href="<%=request.getContextPath() %>/admin/downMember?id=${professor.id}">down</a>
+                                            </span>
                                         </c:if>
                                     </td>
                                 </tr>
@@ -106,6 +112,12 @@
                                             </span>
                                             <span class="reset">
                                                 <a class="reset" href="#" onclick="confirmReset(${graduate.id})">reset</a>
+                                            </span>
+                                            <span class="up">
+                                                <a class="up" href="<%=request.getContextPath() %>/admin/upMember?id=${graduate.id}">up</a>
+                                            </span>
+                                            <span class="down">
+                                                <a class="down" href="<%=request.getContextPath() %>/admin/downMember?id=${graduate.id}">down</a>
                                             </span>
                                         </c:if>
                                     </td>
@@ -148,6 +160,12 @@
                                             <span class="reset">
                                                 <a class="reset" href="#" onclick="confirmReset(${undergraduate.id})">reset</a>
                                             </span>
+                                            <span class="up">
+                                                <a class="up" href="<%=request.getContextPath() %>/admin/upMember?id=${undergraduate.id}">up</a>
+                                            </span>
+                                            <span class="down">
+                                                <a class="down" href="<%=request.getContextPath() %>/admin/downMember?id=${undergraduate.id}">down</a>
+                                            </span>
 
                                         </c:if>
                                     </td>
@@ -189,6 +207,12 @@
                                             </span>
                                             <span class="reset">
                                                 <a class="reset" href="#" onclick="confirmReset(${alumni.id})">reset</a>
+                                            </span>
+                                            <span class="up">
+                                                <a class="up" href="<%=request.getContextPath() %>/admin/upMember?id=${alumni.id}">up</a>
+                                            </span>
+                                            <span class="down">
+                                                <a class="down" href="<%=request.getContextPath() %>/admin/downMember?id=${alumni.id}">down</a>
                                             </span>
                                         </c:if>
                                     </td>

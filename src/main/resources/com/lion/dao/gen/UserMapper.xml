@@ -3,6 +3,7 @@
 <mapper namespace="com.lion.dao.gen.UserMapper">
   <resultMap id="BaseResultMap" type="com.lion.entity.User">
     <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="rank" jdbcType="BIGINT" property="rank"/>
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="real_name" jdbcType="VARCHAR" property="realName"/>
     <result column="admin_id" jdbcType="BIGINT" property="adminId" />
@@ -25,7 +26,7 @@
     <result column="last_ip" jdbcType="VARCHAR" property="lastIp" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, user_name, real_name, admin_id, admin_name, password,
+    id, rank, user_name, real_name, admin_id, admin_name, password,
     image_url, web_url, prospect, cv_url, description,
     detail, user_email, user_sex, user_phone, create_time, user_type, user_state, user_role, 
     last_login_time, last_ip
@@ -41,14 +42,14 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.lion.entity.User">
-    insert into t_user (id, user_name, real_name, admin_id,
+    insert into t_user (id, rank,user_name, real_name, admin_id,
       admin_name, password, image_url, 
       web_url, prospect, cv_url, description,
       detail, user_email, user_sex, 
       user_phone, create_time, user_type, 
       user_state, user_role, last_login_time, 
       last_ip)
-    values (#{id,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR},
+    values (#{id,jdbcType=BIGINT}, #{rank,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR},
       #{realName,jdbcType=VARCHAR}, #{adminId,jdbcType=BIGINT},
       #{adminName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
       #{imageUrl,jdbcType=VARCHAR}, #{webUrl,jdbcType=VARCHAR},
@@ -58,11 +59,15 @@
       #{userState,jdbcType=INTEGER}, #{userRole,jdbcType=INTEGER}, #{lastLoginTime,jdbcType=TIMESTAMP}, 
       #{lastIp,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.lion.entity.User">
+  <!--将生成的主键返回到传回的对象中-->
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.lion.entity.User">
     insert into t_user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
+      </if>
+      <if test="rank != null">
+        rank
       </if>
       <if test="userName != null">
         user_name,
@@ -129,6 +134,9 @@
       <if test="id != null">
         #{id,jdbcType=BIGINT},
       </if>
+      <if test="rank != null">
+        #{rank,jdbcType=BIGINT},
+      </if>
       <if test="userName != null">
         #{userName,jdbcType=VARCHAR},
       </if>
@@ -194,6 +202,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.lion.entity.User">
     update t_user
     <set>
+      <if test="rank != null">
+        rank = #{rank,jdbcType=BIGINT},
+      </if>
       <if test="userName != null">
         user_name = #{userName,jdbcType=VARCHAR},
       </if>
@@ -259,7 +270,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.lion.entity.User">
     update t_user
-    set user_name = #{userName,jdbcType=VARCHAR},
+    set rank= #{rank,jdbcType=BIGINT},
+      user_name = #{userName,jdbcType=VARCHAR},
       real_name = #{realName,jdbcType=VARCHAR},
       admin_id = #{adminId,jdbcType=BIGINT},
       admin_name = #{adminName,jdbcType=VARCHAR},
