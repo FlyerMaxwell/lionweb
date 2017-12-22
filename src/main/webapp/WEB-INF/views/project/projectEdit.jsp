@@ -115,6 +115,13 @@
                 </span>
             </div>
 
+            <label><span>Access *</span>
+                <input id="access0" type="radio" name="access" value="0" checked="checked"/>
+                <label for="access0">Public</label>
+                <input id="access1" type="radio" name="access" value="1"/>
+                <label for="access1">Group</label>
+            </label>
+
             <div class="multiple-choice">
                 <label for="refs">
                     <span>Publications</span>
@@ -181,4 +188,14 @@
     display('checkbox1','refs','checkbox-pre1');
     var description=toText("${project.description}");
     document.getElementById("description").value=description;
+
+    function checkRadio(radioName,radioValue) {
+        var rObj=document.getElementsByName(radioName);
+        for(var i=0;i<rObj.length;i++){
+            if(rObj[i].value==radioValue){
+                rObj[i].checked="checked";
+            }
+        }
+    }
+    checkRadio("access",${project.access})
 </script>

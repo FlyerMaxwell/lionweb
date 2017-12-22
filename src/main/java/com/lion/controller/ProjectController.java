@@ -83,6 +83,7 @@ public class ProjectController {
                                      @RequestParam(value = "members") List<Long> authorList,
                                      @RequestParam(value = "refs") List<Long> pubList,
                                      @RequestParam(value = "richText") String richText,
+                                     @RequestParam(value = "access") Integer access,
                                      HttpServletRequest request,
                                      RedirectAttributes redirectAttributes){
         if(title.trim().length()==0||authors.trim().length()==0||description.trim().length()==0||organization.trim().length()==0||
@@ -103,6 +104,7 @@ public class ProjectController {
         project.setLastIp(request.getRemoteAddr());
         project.setCreateTime(new Timestamp(new Date().getTime()));
         project.setUpdateTime(new Timestamp(new Date().getTime()));
+        project.setAccess(access);
         try {
             if (image != null && !image.isEmpty()) {
                 String filePath1 = FileHandler.uploadFile(basePath + "/image", image, request);
@@ -168,6 +170,7 @@ public class ProjectController {
                                       @RequestParam(value = "members") List<Long> authorList,
                                       @RequestParam(value = "refs") List<Long> publicationList,
                                       @RequestParam(value = "richText") String richText,
+                                      @RequestParam(value = "access") Integer access,
                                       HttpServletRequest request,
                                       RedirectAttributes redirectAttributes) {
         if(title.trim().length()==0||authors.trim().length()==0||description.trim().length()==0||organization.trim().length()==0||
@@ -186,6 +189,7 @@ public class ProjectController {
         project.setLastModifier(username);
         project.setLastIp(request.getRemoteAddr());
         project.setUpdateTime(new Timestamp(new Date().getTime()));
+        project.setAccess(access);
         try {
             if (image != null && !image.isEmpty()) {
                 FileHandler.deleteFile(project.getImageUrl());

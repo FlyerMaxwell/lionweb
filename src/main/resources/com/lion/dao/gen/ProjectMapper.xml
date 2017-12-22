@@ -11,6 +11,7 @@
     <result column="authors" jdbcType="VARCHAR" property="authors" />
     <result column="description" jdbcType="VARCHAR" property="description" />
     <result column="organization" jdbcType="VARCHAR" property="organization" />
+    <result column="access" jdbcType="INTEGER" property="access"/>
     <result column="image_url" jdbcType="VARCHAR" property="imageUrl" />
     <result column="text_url" jdbcType="VARCHAR" property="textUrl" />
     <result column="slide_url" jdbcType="VARCHAR" property="slideUrl" />
@@ -23,7 +24,7 @@
   </resultMap>
   <sql id="Base_Column_List">
     id, user_name, status, create_time, update_time, title, authors, description, organization, 
-    image_url, text_url, slide_url, video_url, last_modifier, last_ip
+    access, image_url, text_url, slide_url, video_url, last_modifier, last_ip
   </sql>
   <sql id="Blob_Column_List">
     rich_text
@@ -43,14 +44,14 @@
   <insert id="insert" parameterType="com.lion.entity.Project">
     insert into t_project (id, user_name, status, 
       create_time, update_time, title, 
-      authors, description, organization,
+      authors, description, organization, access
       image_url, text_url, slide_url, 
       video_url, last_modifier, last_ip, rich_text
       )
     values (#{id,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{title,jdbcType=VARCHAR}, 
       #{authors,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR}, 
-      #{imageUrl,jdbcType=VARCHAR}, #{textUrl,jdbcType=VARCHAR}, #{slideUrl,jdbcType=VARCHAR}, 
+      #{access,jdbcType=INTEGER}, #{imageUrl,jdbcType=VARCHAR}, #{textUrl,jdbcType=VARCHAR}, #{slideUrl,jdbcType=VARCHAR},
       #{videoUrl,jdbcType=VARCHAR}, #{lastModifier,jdbcType=VARCHAR}, #{lastIp,jdbcType=VARCHAR},
       #{richText,jdbcType=LONGVARCHAR}
       )
@@ -85,6 +86,9 @@
       </if>
       <if test="organization != null">
         organization,
+      </if>
+      <if test="access != null">
+        access,
       </if>
       <if test="richText != null">
         rich_text,
@@ -136,6 +140,9 @@
       <if test="organization != null">
         #{organization,jdbcType=VARCHAR},
       </if>
+      <if test="access != null">
+        #{access,jdbcType=INTEGER},
+      </if>
       <if test="richText != null">
         #{richText,jdbcType=LONGVARCHAR},
       </if>
@@ -186,6 +193,9 @@
       <if test="organization != null">
         organization = #{organization,jdbcType=VARCHAR},
       </if>
+      <if test="access != null">
+        access = #{access,jdbcType=INTEGER},
+      </if>
       <if test="richText != null">
         rich_text = #{richText,jdbcType=LONGVARCHAR},
       </if>
@@ -220,6 +230,7 @@
     authors = #{authors,jdbcType=VARCHAR},
     description = #{description,jdbcType=VARCHAR},
     organization = #{organization,jdbcType=VARCHAR},
+    access = #{access,jdbcType=INTEGER},
     rich_text = #{richText,jdbcType=LONGVARCHAR},
     image_url = #{imageUrl,jdbcType=VARCHAR},
     text_url = #{textUrl,jdbcType=VARCHAR},
@@ -239,6 +250,7 @@
       authors = #{authors,jdbcType=VARCHAR},
       description = #{description,jdbcType=VARCHAR},
       organization = #{organization,jdbcType=VARCHAR},
+      access = #{access,jdbcType=INTEGER},
       image_url = #{imageUrl,jdbcType=VARCHAR},
       text_url = #{textUrl,jdbcType=VARCHAR},
       slide_url = #{slideUrl,jdbcType=VARCHAR},

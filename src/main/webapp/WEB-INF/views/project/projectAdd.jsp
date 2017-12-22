@@ -99,6 +99,13 @@
                 <br/>
             </label>
 
+            <label><span>Access *</span>
+                <input id="access0" type="radio" name="access" value="0" checked="checked"/>
+                <label for="access0">Public</label>
+                <input id="access1" type="radio" name="access" value="1"/>
+                <label for="access1">Group</label>
+            </label>
+
             <div class="multiple-choice">
                 <label for="members">
                     <span>Members *</span>

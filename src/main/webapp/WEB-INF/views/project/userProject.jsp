@@ -37,6 +37,11 @@
                                     <div class="text">
                                         <div class="title">
                                             <a href="<%=request.getContextPath() %>/project/projectDetail?id=${project.id}">${project.title}</a>
+                                            <c:if test="${project.access == 1}">
+                                                <span class="access">
+                                                    Group
+                                                </span>
+                                            </c:if>
                                         </div>
                                         <div>${project.authors}</div>
                                         <div>${project.organization}</div>

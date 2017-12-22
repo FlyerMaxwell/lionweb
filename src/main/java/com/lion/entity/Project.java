@@ -21,6 +21,8 @@ public class Project {
 
     private String organization;
 
+    private Integer access;
+
     private String richText;
 
     private String imageUrl;
@@ -105,6 +107,14 @@ public class Project {
 
     public void setOrganization(String organization) {
         this.organization = organization == null ? null : organization.trim();
+    }
+
+    public Integer getAccess() {
+        return access;
+    }
+
+    public void setAccess(Integer access) {
+        this.access = access;
     }
 
     public String getRichText() {
