@@ -5,6 +5,8 @@ import java.util.Date;
 public class Publication {
     private Long id;
 
+    private Long rank;
+
     private String userName;
 
     private Integer status;
@@ -39,6 +41,14 @@ public class Publication {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getRank() {
+        return rank;
+    }
+
+    public void setRank(Long rank) {
+        this.rank = rank;
     }
 
     public String getUserName() {
@@ -152,4 +162,5 @@ public class Publication {
     public void setDescription(String description) {
         this.description = description;
     }
+
 }

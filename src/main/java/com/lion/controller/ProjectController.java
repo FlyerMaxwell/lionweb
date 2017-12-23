@@ -252,7 +252,7 @@ public class ProjectController {
         batchInsertProPub(publicationList,project,username,request);
 
         if(panel==null) {
-            redirectAttributes.addAttribute("username", project.getUserName());
+            redirectAttributes.addAttribute("username", username);
             return "redirect:/project/userProfile";
         }
         return "redirect:/admin/projectInfo";
