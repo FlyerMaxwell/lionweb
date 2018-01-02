@@ -1,6 +1,5 @@
 package com.lion.dao.gen;
 
-
 import com.lion.entity.Project;
 
 public interface ProjectMapper {

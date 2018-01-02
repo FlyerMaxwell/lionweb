@@ -23,5 +23,9 @@ public interface PublicationService {
 
     int deletePublication(Long id);
 
+    Publication getFormer(Long rank);
+
+    Publication getLatter(Long rank);
+
     Publication getPublicationById(Long id);
 }

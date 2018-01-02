@@ -324,7 +324,6 @@ public class AdminController {
     public String moveMemberDown(Long id){
         User cur=userService.getUserByUserId(id);
         User latter=userService.getLatter(cur.getUserRole(),cur.getRank());
-        System.out.println(cur.getId()+" "+cur.getRank()+" "+latter.getId()+" "+latter.getRank());
         if(cur.getId()!=latter.getId()){
             Long temp=cur.getRank();
             cur.setRank(latter.getRank());
@@ -333,6 +332,37 @@ public class AdminController {
             userService.updateUserByUserId(latter);
         }
         return "redirect:/admin/memberInfo";
+    }
+
+    //上移publication
+    @RequestMapping(value = "upPublication")
+    public String movePublicationUp(Long id){
+        Publication cur=publicationService.getPublicationById(id);
+        Publication former=publicationService.getFormer(cur.getRank());
+        if(cur.getId()!=former.getId()){
+            Long temp=cur.getRank();
+            cur.setRank(former.getRank());
+            former.setRank(temp);
+            publicationService.editPublication(cur);
+            publicationService.editPublication(former);
+        }
+        return "redirect:/admin/publicationInfo";
+    }
+
+    //下移publication
+    @RequestMapping(value = "downPublication")
+    public String movePublicationDown(Long id){
+        Publication cur=publicationService.getPublicationById(id);
+        Publication latter=publicationService.getLatter(cur.getRank());
+        System.out.println(cur.getId()+" "+cur.getRank()+" "+latter.getId()+" "+latter.getRank());
+        if(cur.getId()!=latter.getId()){
+            Long temp=cur.getRank();
+            cur.setRank(latter.getRank());
+            latter.setRank(temp);
+            publicationService.editPublication(cur);
+            publicationService.editPublication(latter);
+        }
+        return "redirect:/admin/publicationInfo";
     }
 
 }

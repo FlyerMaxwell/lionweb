@@ -19,4 +19,8 @@ public interface PublicationDao extends PublicationMapper{
 
     List<Publication> selectLatestPublication(@Param("num") int num);
 
+    Publication selectFormer(@Param("rank") Long rank);
+
+    Publication selectLatter(@Param("rank") Long rank);
+
 }

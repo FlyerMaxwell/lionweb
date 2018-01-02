@@ -5,6 +5,10 @@ import java.util.Date;
 public class Project {
     private Long id;
 
+    private Long rank;
+
+    private Long label;
+
     private String userName;
 
     private Integer status;
@@ -43,6 +47,22 @@ public class Project {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getRank() {
+        return rank;
+    }
+
+    public void setRank(Long rank) {
+        this.rank = rank;
+    }
+
+    public Long getLabel() {
+        return label;
+    }
+
+    public void setLabel(Long label) {
+        this.label = label;
     }
 
     public String getUserName() {

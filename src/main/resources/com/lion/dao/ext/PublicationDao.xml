@@ -4,13 +4,15 @@
     <resultMap id="BaseResultMap" type="com.lion.entity.Publication" extends="com.lion.dao.gen.PublicationMapper.BaseResultMap">
     </resultMap>
     <sql id="Base_Column_List">
-    id, user_name, status, create_time, update_time, title, authors, description,
+    id, rank, user_name, status, create_time, update_time, title, authors, description,
     organization, image_url, text_url, slide_url, video_url, last_modifier, last_ip
     </sql>
+
     <select id="selectAllPublication" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
         from t_publication
+        ORDER BY rank ASC
     </select>
 
     <select id="selectLatestPublication" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -25,5 +27,22 @@
         FROM t_publication pub
         LEFT JOIN t_publication_user pu ON pub.id=pu.pub_id
         WHERE pu.user_id=#{userId}
+    </select>
+
+    <select id="selectFormer" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM t_publication
+        WHERE (rank &lt; #{rank,jdbcType=BIGINT})
+        OR (rank=(SELECT MIN(rank) from t_publication))
+        order by rank desc limit 1;
+    </select>
+    <select id="selectLatter" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM t_publication
+        WHERE (rank &gt; #{rank,jdbcType=BIGINT})
+        OR (rank=(SELECT MAX(rank) from t_user ))
+        ORDER BY rank ASC limit 1;
     </select>
 </mapper>

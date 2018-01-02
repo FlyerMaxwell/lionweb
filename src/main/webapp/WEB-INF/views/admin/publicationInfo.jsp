@@ -58,6 +58,12 @@
                                         <span class="delete">
                                         <a class="delete" href="#" onclick="sure(${publication.id})">delete</a>
                                         </span>
+                                        <span class="up">
+                                            <a class="up" href="<%=request.getContextPath() %>/admin/upPublication?id=${publication.id}">up</a>
+                                        </span>
+                                        <span class="down">
+                                            <a class="down" href="<%=request.getContextPath() %>/admin/downPublication?id=${publication.id}">down</a>
+                                        </span>
                                     </c:if>
                                 </td>
                             </tr>

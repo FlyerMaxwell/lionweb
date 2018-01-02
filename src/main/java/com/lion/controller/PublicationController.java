@@ -126,7 +126,8 @@ public class PublicationController {
 
         //添加Publication
         publicationService.addNewPublication(publication);
-
+        publication.setRank(publication.getRank());
+        publicationService.editPublication(publication);
         //添加文章作者关联记录
         //TODO 一次插入多条效率更高，此处不是非常需要
         String[] temp=members.split(",");

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lion.dao.gen.LabelMapper">
+  <resultMap id="BaseResultMap" type="com.lion.entity.Label">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="rank" jdbcType="BIGINT" property="rank" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="last_modifier" jdbcType="VARCHAR" property="lastModifier" />
+    <result column="last_ip" jdbcType="VARCHAR" property="lastIp" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, rank, name, user_name, create_time, update_time, last_modifier, last_ip
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_label
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_label
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.lion.entity.Label">
+    insert into t_label (id, rank, name, 
+      user_name, create_time, update_time, 
+      last_modifier, last_ip)
+    values (#{id,jdbcType=BIGINT}, #{rank,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
+      #{userName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{lastModifier,jdbcType=VARCHAR}, #{lastIp,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lion.entity.Label">
+    insert into t_label
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="rank != null">
+        rank,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="lastModifier != null">
+        last_modifier,
+      </if>
+      <if test="lastIp != null">
+        last_ip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="rank != null">
+        #{rank,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifier != null">
+        #{lastModifier,jdbcType=VARCHAR},
+      </if>
+      <if test="lastIp != null">
+        #{lastIp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lion.entity.Label">
+    update t_label
+    <set>
+      <if test="rank != null">
+        rank = #{rank,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifier != null">
+        last_modifier = #{lastModifier,jdbcType=VARCHAR},
+      </if>
+      <if test="lastIp != null">
+        last_ip = #{lastIp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lion.entity.Label">
+    update t_label
+    set rank = #{rank,jdbcType=BIGINT},
+      name = #{name,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      last_modifier = #{lastModifier,jdbcType=VARCHAR},
+      last_ip = #{lastIp,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

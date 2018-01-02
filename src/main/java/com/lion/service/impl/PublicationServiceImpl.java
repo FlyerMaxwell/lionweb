@@ -41,6 +41,14 @@ public class PublicationServiceImpl implements PublicationService{
         return publicationDao.deleteByPrimaryKey(id);
     }
 
+    public Publication getFormer(Long rank) {
+        return publicationDao.selectFormer(rank);
+    }
+
+    public Publication getLatter(Long rank) {
+        return publicationDao.selectLatter(rank);
+    }
+
     public Publication getPublicationById(Long id) {
         return publicationDao.selectByPrimaryKey(id);
     }
