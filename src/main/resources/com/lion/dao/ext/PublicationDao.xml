@@ -42,7 +42,7 @@
         <include refid="Base_Column_List" />
         FROM t_publication
         WHERE (rank &gt; #{rank,jdbcType=BIGINT})
-        OR (rank=(SELECT MAX(rank) from t_user ))
+        OR (rank=(SELECT MAX(rank) from t_publication))
         ORDER BY rank ASC limit 1;
     </select>
 </mapper>

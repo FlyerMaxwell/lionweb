@@ -7,6 +7,7 @@ import com.lion.service.*;
 import com.lion.util.FileHandler;
 import com.lion.util.TextHandler;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -50,6 +51,9 @@ public class AdminController {
 
     @Autowired
     PublicationService publicationService;
+
+    @Autowired
+    LabelService labelService;
 
     @RequestMapping(value="memberInfo",method = RequestMethod.GET)
     public String memberInfo(HttpServletRequest request){
@@ -304,6 +308,14 @@ public class AdminController {
         return "admin/publicationInfo";
     }
 
+    //所有label
+    @RequestMapping(value="labelInfo")
+    public String labelPage(HttpServletRequest request){
+        List<Label> labels=labelService.listAllLabel();
+        request.setAttribute("labels",labels);
+        return "admin/labelInfo";
+    }
+
     //上移member
     @RequestMapping(value = "upMember")
     public String moveMemberUp(Long id){
@@ -354,7 +366,6 @@ public class AdminController {
     public String movePublicationDown(Long id){
         Publication cur=publicationService.getPublicationById(id);
         Publication latter=publicationService.getLatter(cur.getRank());
-        System.out.println(cur.getId()+" "+cur.getRank()+" "+latter.getId()+" "+latter.getRank());
         if(cur.getId()!=latter.getId()){
             Long temp=cur.getRank();
             cur.setRank(latter.getRank());
@@ -363,6 +374,36 @@ public class AdminController {
             publicationService.editPublication(latter);
         }
         return "redirect:/admin/publicationInfo";
+    }
+
+    //上移label
+    @RequestMapping(value = "upLabel")
+    public String moveLabelUp(Long id){
+        Label cur=labelService.getLabelById(id);
+        Label former=labelService.getFormer(cur.getRank());
+        if(cur.getId()!=former.getId()){
+            Long temp=cur.getRank();
+            cur.setRank(former.getRank());
+            former.setRank(temp);
+            labelService.editLabel(cur);
+            labelService.editLabel(former);
+        }
+        return "redirect:/admin/labelInfo";
+    }
+
+    //下移label
+    @RequestMapping(value = "downLabel")
+    public String moveLabelDown(Long id){
+        Label cur=labelService.getLabelById(id);
+        Label latter=labelService.getLatter(cur.getRank());
+        if(cur.getId()!=latter.getId()){
+            Long temp=cur.getRank();
+            cur.setRank(latter.getRank());
+            latter.setRank(temp);
+            labelService.editLabel(cur);
+            labelService.editLabel(latter);
+        }
+        return "redirect:/admin/labelInfo";
     }
 
 }

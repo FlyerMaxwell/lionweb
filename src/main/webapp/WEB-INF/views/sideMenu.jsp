@@ -47,11 +47,15 @@
                 <a href="<%=request.getContextPath() %>/admin/newsInfo">All News</a>
             </li>
             <li>
+                <a href="<%=request.getContextPath() %>/admin/labelInfo">All Directions</a>
+            </li>
+            <li>
                 <a href="<%=request.getContextPath() %>/admin/projectInfo">All Projects</a>
             </li>
             <li>
                 <a href="<%=request.getContextPath() %>/admin/publicationInfo">All Publications</a>
             </li>
+
         </ul>
     </c:if>
 </div>

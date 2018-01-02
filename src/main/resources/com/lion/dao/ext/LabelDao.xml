@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lion.dao.ext.LabelDao">
+    <resultMap id="BaseResultMap" type="com.lion.entity.Label" extends="com.lion.dao.gen.LabelMapper.BaseResultMap">
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    id, rank, name, user_name, create_time, update_time, last_modifier, last_ip
+    </sql>
+
+    <select id="selectAllLabel" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from t_label
+    </select>
+
+    <select id="selectFormer" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM t_label
+        WHERE (rank &lt; #{rank,jdbcType=BIGINT})
+        OR (rank=(SELECT MIN(rank) from t_label))
+        order by rank desc limit 1;
+    </select>
+    <select id="selectLatter" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM t_label
+        WHERE (rank &gt; #{rank,jdbcType=BIGINT})
+        OR (rank=(SELECT MAX(rank) from t_label ))
+        ORDER BY rank ASC limit 1;
+    </select>
+</mapper>
