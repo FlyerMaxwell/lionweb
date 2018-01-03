@@ -12,9 +12,10 @@
         select
         <include refid="Base_Column_List" />
         from t_label
+        ORDER BY rank DESC
     </select>
 
-    <select id="selectFormer" resultMap="BaseResultMap">
+    <select id="selectLatter" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List" />
         FROM t_label
@@ -22,7 +23,7 @@
         OR (rank=(SELECT MIN(rank) from t_label))
         order by rank desc limit 1;
     </select>
-    <select id="selectLatter" resultMap="BaseResultMap">
+    <select id="selectFormer" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List" />
         FROM t_label

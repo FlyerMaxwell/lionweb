@@ -82,5 +82,4 @@ public class LabelController {
         labelService.deleteLabel(id);
         return "redirect:/admin/labelInfo";
     }
-
 }

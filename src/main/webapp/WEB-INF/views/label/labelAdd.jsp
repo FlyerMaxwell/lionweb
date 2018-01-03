@@ -14,8 +14,16 @@
 <div id="body">
     <jsp:include page="../sideMenu.jsp" flush="true"></jsp:include>
     <div class="content">
-        <h2>Add New Label</h2>
-        <form method="POST" action="<%=request.getContextPath() %>/label/addLabelInfo"
+        <h2>Add New Direction</h2>
+        <form method="POST" action="<%=request.getContextPath() %>/label/addLabelInfo" enctype="multipart/form-data">
+            <label class="hint">
+                Fields with * are required,while other are optional
+            </label>
+            <label for="name"> <span>Name *</span>
+                <input type="text" name="name" id="name">
+            </label>
+            <input type="submit" value="" id="submit">
+        </form>
     </div>
 </div>
 <jsp:include page="../footer.jsp" flush="true"></jsp:include>

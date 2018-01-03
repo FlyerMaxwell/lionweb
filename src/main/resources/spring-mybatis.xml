@@ -18,6 +18,7 @@
         <property name="url" value="jdbc:mysql://localhost:3306/lion?serverTimezone=Asia/Shanghai"/>
         <property name="username" value="root"/>
         <property name="password" value="9R07WY1U42I3P5QO8E"/>
+        <!--<property name="password" value="7777777"/>-->
     </bean>
 
     <!--

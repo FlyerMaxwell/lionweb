@@ -5,7 +5,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, rank, label, user_name, status, create_time, update_time, title, authors, description, organization,
+        id, rank, label_id, user_name, status, create_time, update_time, title, authors, description, organization,
         access, image_url, text_url, slide_url, video_url, last_modifier, last_ip
     </sql>
     <sql id="Blob_Column_List">

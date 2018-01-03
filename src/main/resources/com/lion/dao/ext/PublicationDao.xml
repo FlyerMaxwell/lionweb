@@ -12,7 +12,7 @@
         select
         <include refid="Base_Column_List" />
         from t_publication
-        ORDER BY rank ASC
+        ORDER BY rank DESC
     </select>
 
     <select id="selectLatestPublication" parameterType="java.lang.Integer" resultMap="BaseResultMap">

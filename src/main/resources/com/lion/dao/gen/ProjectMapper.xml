@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.lion.entity.Project">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="rank" jdbcType="BIGINT" property="rank" />
-    <result column="label" jdbcType="BIGINT" property="label" />
+    <result column="label_id" jdbcType="BIGINT" property="labelId" />
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
@@ -25,7 +25,7 @@
     <result column="rich_text" jdbcType="LONGVARCHAR" property="richText" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, rank, label, user_name, status, create_time, update_time, title, authors, description, organization,
+    id, rank, label_id, user_name, status, create_time, update_time, title, authors, description, organization,
     access, image_url, text_url, slide_url, video_url, last_modifier, last_ip
   </sql>
   <sql id="Blob_Column_List">
@@ -44,13 +44,13 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.lion.entity.Project">
-    insert into t_project (id, rank, label, user_name, status,
+    insert into t_project (id, rank, label_id, user_name, status,
       create_time, update_time, title, 
       authors, description, organization, access
       image_url, text_url, slide_url, 
       video_url, last_modifier, last_ip, rich_text
       )
-    values (#{id,jdbcType=BIGINT}, #{rank,jdbcType=BIGINT}, #{label,jdbcType=BIGINT},
+    values (#{id,jdbcType=BIGINT}, #{rank,jdbcType=BIGINT}, #{labelId,jdbcType=BIGINT},
       #{userName,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{title,jdbcType=VARCHAR}, 
       #{authors,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR}, 
@@ -69,8 +69,8 @@
       <if test="rank != null">
         rank,
       </if>
-      <if test="label != null">
-        label,
+      <if test="labelId != null">
+        label_id,
       </if>
       <if test="userName != null">
         user_name,
@@ -128,8 +128,8 @@
       <if test="rank != null">
         #{rank,jdbcType=BIGINT},
       </if>
-      <if test="label != null">
-        #{label,jdbcType=BIGINT},
+      <if test="labelId != null">
+        #{labelId,jdbcType=BIGINT},
       </if>
       <if test="userName != null">
         #{userName,jdbcType=VARCHAR},
@@ -187,8 +187,8 @@
       <if test="rank != null">
         rank = #{rank,jdbcType=BIGINT},
       </if>
-      <if test="label != null">
-        label = #{label,jdbcType=BIGINT},
+      <if test="labelId != null">
+        label_id = #{labelId,jdbcType=BIGINT},
       </if>
       <if test="userName != null">
         user_name = #{userName,jdbcType=VARCHAR},
@@ -243,8 +243,8 @@
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.lion.entity.Project">
     update t_project
-    set rank = #{rank,jdbcType=rank},
-    label = #{label,jdbcType=label},
+    set rank = #{rank,jdbcType=BIGINT},
+    label_id = #{labelId,jdbcType=BIGINT},
     user_name = #{userName,jdbcType=VARCHAR},
     status = #{status,jdbcType=INTEGER},
     create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -266,7 +266,7 @@
   <update id="updateByPrimaryKey" parameterType="com.lion.entity.Project">
     update t_project
     set rank = #{rank,jdbcType=BIGINT},
-      label = #{label,jdbcType=BIGINT},
+      label_id = #{labelId,jdbcType=BIGINT},
       user_name = #{userName,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},

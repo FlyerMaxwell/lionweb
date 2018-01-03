@@ -15,14 +15,14 @@
     <jsp:include page="../sideMenu.jsp" flush="true"></jsp:include>
     <div class="content">
         <ul>
-            <span class="add">Add Label</span>
-            <a href="<%=request.getContextPath() %>/label/addLabel" class="add">+</a>
+            <span class="add">Add Direction</span>
+            <a href="<%=request.getContextPath() %>/label/addLabel?username=${username}" class="add">+</a>
         </ul>
         <div class="container">
             <table>
                 <c:choose>
                     <c:when test="${empty labels}">
-                        <div align="left">No Label!</div>
+                        <div align="left">No Direction!</div>
                     </c:when>
                     <c:otherwise>
                         <c:forEach items="${labels}" var="label">
@@ -34,12 +34,19 @@
                                     <c:if test="${username!=null&&userType==0}">
                                         <%--编辑操作--%>
                                         <span class="edit">
-                                        <a class="edit" href="<%=request.getContextPath() %>/label/editLabel?username=${username}&id=${label.id}">edit</a>
-                                    </span>
+                                            <a class="edit" href="<%=request.getContextPath() %>/label/editLabel?username=${username}&id=${label.id}">edit</a>
+                                        </span>
                                         <%--删除操作--%>
                                         <span class="delete">
-                                        <a class="delete" href="#" onclick="sure(${label.id})">delete</a>
-                                    </span>
+                                            <a class="delete" href="#" onclick="sure(${label.id})">delete</a>
+                                        </span>
+                                        <span class="up">
+                                            <a class="up" href="<%=request.getContextPath() %>/admin/upLabel?id=${label.id}">up</a>
+                                        </span>
+                                        <span class="down">
+                                            <a class="down" href="<%=request.getContextPath() %>/admin/downLabel?id=${label.id}">down</a>
+                                        </span>
+
                                     </c:if>
                                 </td>
                             </tr>
@@ -57,7 +64,7 @@
     function sure(itemId) {
         var conf=confirm("Confirm Deletion?");
         if(conf==true){
-            window.location.href="<%=request.getContextPath() %>/label/deleteLabelInfo?username=${username}&id="+itemId;
+            window.location.href="<%=request.getContextPath() %>/label/deleteLabelInfo?id="+itemId;
         }
     }
 </script>

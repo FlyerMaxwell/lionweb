@@ -7,7 +7,7 @@ public class Project {
 
     private Long rank;
 
-    private Long label;
+    private Long labelId;
 
     private String userName;
 
@@ -57,12 +57,12 @@ public class Project {
         this.rank = rank;
     }
 
-    public Long getLabel() {
-        return label;
+    public Long getLabelId() {
+        return labelId;
     }
 
-    public void setLabel(Long label) {
-        this.label = label;
+    public void setLabelId(Long labelId) {
+        this.labelId = labelId;
     }
 
     public String getUserName() {
