@@ -14,6 +14,8 @@ public interface ProjectService {
 
     List<Project> listProjectByUserId(Long userId);
 
+    List<Project> listProjectByLabelId(Long labelId);
+
     List<Project> listLatestPro(int num);
 
     int addNewProject(Project project);

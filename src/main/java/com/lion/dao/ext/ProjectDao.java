@@ -15,7 +15,7 @@ import java.util.List;
 public interface ProjectDao extends ProjectMapper{
     List<Project> selectAllProject();
 
-    List<Project> selectProjectByLabel(@Param("labelId") Long labelId);
+    List<Project> selectProjectByLabelId(@Param("labelId") Long labelId);
 
     List<Project> selectProjectByUserId(@Param("userId") Long userId);
 

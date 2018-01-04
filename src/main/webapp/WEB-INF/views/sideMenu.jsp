@@ -31,10 +31,10 @@
             <a href="<%=request.getContextPath() %>/news/userProfile?username=${username}">My News</a>
         </li>
         <li>
-            <a href="<%=request.getContextPath() %>/publication/userProfile?username=${username}">My Publication</a>
+            <a href="<%=request.getContextPath() %>/publication/userProfile?username=${username}">My Publications</a>
         </li>
         <li>
-            <a href="<%=request.getContextPath() %>/project/userProfile?username=${username}">My Project</a>
+            <a href="<%=request.getContextPath() %>/project/userProfile?username=${username}">My Projects</a>
         </li>
     </ul>
     <c:if test="${userType == 0}">

@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -295,8 +296,15 @@ public class AdminController {
     //所有projects
     @RequestMapping(value = "projectInfo")
     public String allProject(HttpServletRequest request){
-        List<Project> projectList=projectService.listAllProject();
-        request.setAttribute("projects",projectList);
+        List<Label> labelList=labelService.listAllLabel();
+        List<List<Project>> projectArray=new LinkedList<List<Project>>();
+        for(Label label:labelList){
+            List<Project> projects=projectService.listProjectByLabelId(label.getId());
+            projectArray.add(projects);
+        }
+        request.setAttribute("labels",labelList);
+        //List<Project> projectList=projectService.listAllProject();
+        request.setAttribute("projects",projectArray);
         return "admin/projectInfo";
     }
 
@@ -310,7 +318,7 @@ public class AdminController {
 
     //所有label
     @RequestMapping(value="labelInfo")
-    public String labelPage(HttpServletRequest request){
+    public String allLabel(HttpServletRequest request){
         List<Label> labels=labelService.listAllLabel();
         request.setAttribute("labels",labels);
         return "admin/labelInfo";

@@ -17,6 +17,13 @@
         <include refid="Base_Column_List" />
         from t_project
     </select>
+    
+    <select id="selectProjectByLabelId" resultMap="BaseResultMap">
+        SELECT 
+        <include refid="Base_Column_List"/>
+        from t_project WHERE label_id=#{labelId,jdbcType=BIGINT}
+        ORDER BY rank DESC
+    </select>
 
     <select id="selectLatestProject" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
