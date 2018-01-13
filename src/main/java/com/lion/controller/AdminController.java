@@ -110,7 +110,7 @@ public class AdminController {
                     if(userService.getUserByEmail(userEmail)==null) {
                         //添加用户
                         //TODO 路径配置
-                        String basePath = "D:/lion/member";
+                        String basePath = ConfigConstant.RESOURCE_ROOT_PATH+"member";
                         try {
                             if (image != null && !image.isEmpty()) {
                                 String filePath1 = FileHandler.uploadFile(basePath + "/"+username+"/image", image, request);
@@ -214,7 +214,7 @@ public class AdminController {
             return "error";
         }
         //TODO 路径配置
-        String basePath = "D:/lion/members";
+        String basePath = ConfigConstant.RESOURCE_ROOT_PATH+"members";
         try {
             if (image != null && !image.isEmpty()) {
                 FileHandler.deleteFile(updateUser.getImageUrl());
@@ -352,6 +352,36 @@ public class AdminController {
             userService.updateUserByUserId(latter);
         }
         return "redirect:/admin/memberInfo";
+    }
+
+    //上移project
+    @RequestMapping(value = "upProject")
+    public String moveProjectUp(Long id,Long labelId){
+        Project cur=projectService.getProjectById(id);
+        Project former=projectService.getFormer(labelId,cur.getRank());
+        if(cur.getId()!=former.getId()){
+            Long temp=cur.getRank();
+            cur.setRank(former.getRank());
+            former.setRank(temp);
+            projectService.editProject(cur);
+            projectService.editProject(former);
+        }
+        return "redirect:/admin/projectInfo";
+    }
+
+    //下移project
+    @RequestMapping(value = "downProject")
+    public String moveProjectDown(Long id,Long labelId){
+        Project cur=projectService.getProjectById(id);
+        Project latter=projectService.getLatter(labelId,cur.getRank());
+        if(cur.getId()!=latter.getId()){
+            Long temp=cur.getRank();
+            cur.setRank(latter.getRank());
+            latter.setRank(temp);
+            projectService.editProject(cur);
+            projectService.editProject(latter);
+        }
+        return "redirect:/admin/projectInfo";
     }
 
     //上移publication

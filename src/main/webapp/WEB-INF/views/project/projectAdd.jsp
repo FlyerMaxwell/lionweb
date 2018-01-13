@@ -65,6 +65,13 @@
             <label for="organization"> <span>Sponsor *</span>
                 <input type="text" name="organization" id="organization">
             </label>
+            <div>
+                <div>Direction *</div>
+                    <c:forEach items="${labels}" var="label">
+                        <input class="dir" id="label${label.id}" type="radio" name="label" value="${label.id}"/>
+                        <label class="dir" for="access${label.id}">${label.name}</label><br/>
+                    </c:forEach>
+            </div>
             <label for="description"> <span>Description*</span>
                 <textarea name="description" id="description" cols="10" rows="3"></textarea>
             </label>

@@ -766,9 +766,20 @@ body {
     padding: 3px 5px;
     width: 50px;
 }
+
 #body .content form > label > label{
     width:70px;
     display:inline-block;
+}
+#body .content form div{
+    color:#555;
+}
+#body .content form div input.dir{
+    margin-left: 130px;
+}
+#body .content form div label.dir{
+    width: fit-content;
+    display: inline-block;
 }
 #body .content form > label > label.long{
     width:80px;
@@ -860,6 +871,15 @@ table tr.member-title div {
     width: 98%;
 }
 
+table tr.project-title div {
+    background: #333;
+    border-radius: 1em;
+    padding: 5px 10px 5px 10px;
+    color: #FFF;
+    margin-top: 30px;
+    width: 98%;
+}
+
 #body td{
     vertical-align: top;
 }
@@ -915,6 +935,7 @@ table tr.member-title div {
     display: none;
 }
 #body .multiple-choice > span{
+    color: #555;
     width:528px;
     height:100px;
     margin-left: 130px;

@@ -16,7 +16,13 @@ public interface ProjectService {
 
     List<Project> listProjectByLabelId(Long labelId);
 
+    List<Project> listProjectByUserAndLabelId(Long userId,Long labelId);
+
     List<Project> listLatestPro(int num);
+
+    Project getFormer(Long labelId,Long rank);
+
+    Project getLatter(Long labelId,Long rank);
 
     int addNewProject(Project project);
 

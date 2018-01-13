@@ -24,40 +24,96 @@
                         </div>
                     </c:when>
                     <c:otherwise>
-                        <c:forEach items="${projects}" var="project">
-                            <tr class="list-display">
-                                <td class="pub-picture">
-                                    <img src="<%=request.getContextPath() %>/resource/showImage?imagePath=${project.imageUrl}&type=1">
-                                </td>
-                                <td class="text-display">
-                                    <div class="text">
-                                        <div class="title">
-                                            <a href="<%=request.getContextPath() %>/project/projectDetail?id=${project.id}">${project.title}</a>
-                                            <c:if test="${project.access == 1}">
-                                                <span class="access">
-                                                    Group
+                        <c:forEach items="${labels}" var="label" varStatus="status">
+                            <c:if test="${! empty projects[status.index]}">
+                                <tr class="project-title">
+                                    <td colspan="2"><div>${label.name}</div></td>
+                                </tr>
+                                <c:forEach items="${projects[status.index]}" var="project">
+                                    <tr class="list-display">
+                                        <td class="pub-picture">
+                                            <img src="<%=request.getContextPath() %>/resource/showImage?imagePath=${project.imageUrl}&type=1">
+                                        </td>
+                                        <td class="text-display">
+                                            <div class="text">
+                                                <div class="title">
+                                                    <a href="<%=request.getContextPath() %>/project/projectDetail?id=${project.id}">${project.title}</a>
+                                                    <c:if test="${project.access == 1}">
+                                                        <span class="access">
+                                                            Group
+                                                        </span>
+                                                    </c:if>
+                                                </div>
+                                                <div>Participants:${project.authors}</div>
+                                                <div>Sponsors:${project.organization}</div>
+                                            </div>
+
+                                            <c:if test="${username!=null&&userType==0}">
+                                                <%--编辑操作--%>
+                                                <span class="edit">
+                                                    <a class="edit"
+                                       href="<%=request.getContextPath() %>/project/editProject?username=${username}&panel=0&id=${project.id}">edit</a>
+                                                </span>
+                                                <%--删除操作--%>
+                                                <span class="delete">
+                                                    <a class="delete" href="#" onclick="sure(${project.id})">delete</a>
+                                                </span>
+                                                <%--在标签内上移project--%>
+                                                <span class="up">
+                                                    <a class="up" href="<%=request.getContextPath() %>/admin/upProject?labelId=${label.id}&id=${project.id}">up</a>
+                                                </span>
+                                                <%--在标签内下移project--%>
+                                                <span class="down">
+                                                    <a class="down" href="<%=request.getContextPath() %>/admin/downProject?labelId=${label.id}&id=${project.id}">down</a>
                                                 </span>
                                             </c:if>
-                                        </div>
-                                        <div>Participants:${project.authors}</div>
-                                        <div>Sponsors:${project.organization}</div>
-                                    </div>
+                                        </td>
 
-                                    <c:if test="${username!=null&&userType==0}">
-                                        <%--编辑操作--%>
-                                        <span class="edit">
-                                        <a class="edit" href="<%=request.getContextPath() %>/project/editProject?username=${username}&panel=0&id=${project.id}">edit</a>
-                                    </span>
-                                        <%--删除操作--%>
-                                        <span class="delete">
-                                            <a class="delete" href="#" onclick="sure(${project.id})">delete</a>
-                                        </span>
-                                    </c:if>
-                                </td>
-
-                            </tr>
+                                    </tr>
+                                </c:forEach>
+                            </c:if>
                         </c:forEach>
                     </c:otherwise>
+                    <%--<c:when test="${empty projects}">--%>
+                        <%--<div align="left">--%>
+                            <%--<span>No Project!</span>--%>
+                        <%--</div>--%>
+                    <%--</c:when>--%>
+                    <%--<c:otherwise>--%>
+                        <%--<c:forEach items="${projects}" var="project">--%>
+                            <%--<tr class="list-display">--%>
+                                <%--<td class="pub-picture">--%>
+                                    <%--<img src="<%=request.getContextPath() %>/resource/showImage?imagePath=${project.imageUrl}&type=1">--%>
+                                <%--</td>--%>
+                                <%--<td class="text-display">--%>
+                                    <%--<div class="text">--%>
+                                        <%--<div class="title">--%>
+                                            <%--<a href="<%=request.getContextPath() %>/project/projectDetail?id=${project.id}">${project.title}</a>--%>
+                                            <%--<c:if test="${project.access == 1}">--%>
+                                                <%--<span class="access">--%>
+                                                    <%--Group--%>
+                                                <%--</span>--%>
+                                            <%--</c:if>--%>
+                                        <%--</div>--%>
+                                        <%--<div>Participants:${project.authors}</div>--%>
+                                        <%--<div>Sponsors:${project.organization}</div>--%>
+                                    <%--</div>--%>
+
+                                    <%--<c:if test="${username!=null&&userType==0}">--%>
+                                        <%--&lt;%&ndash;编辑操作&ndash;%&gt;--%>
+                                        <%--<span class="edit">--%>
+                                        <%--<a class="edit" href="<%=request.getContextPath() %>/project/editProject?username=${username}&panel=0&id=${project.id}">edit</a>--%>
+                                    <%--</span>--%>
+                                        <%--&lt;%&ndash;删除操作&ndash;%&gt;--%>
+                                        <%--<span class="delete">--%>
+                                            <%--<a class="delete" href="#" onclick="sure(${project.id})">delete</a>--%>
+                                        <%--</span>--%>
+                                    <%--</c:if>--%>
+                                <%--</td>--%>
+
+                            <%--</tr>--%>
+                        <%--</c:forEach>--%>
+                    <%--</c:otherwise>--%>
                 </c:choose>
             </table>
         </div>

@@ -17,9 +17,9 @@
         <include refid="Base_Column_List" />
         from t_project
     </select>
-    
+
     <select id="selectProjectByLabelId" resultMap="BaseResultMap">
-        SELECT 
+        SELECT
         <include refid="Base_Column_List"/>
         from t_project WHERE label_id=#{labelId,jdbcType=BIGINT}
         ORDER BY rank DESC
@@ -32,11 +32,35 @@
         ORDER BY create_time DESC limit #{num}
     </select>
 
+    <select id="selectLatter" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM t_project
+        WHERE (label_id=#{labelId,jdbcType=BIGINT} AND rank &lt; #{rank,jdbcType=BIGINT})
+        OR (rank=(SELECT MIN(rank) from t_project WHERE label_id=#{labelId,jdbcType=BIGINT}))
+        order by rank desc limit 1;
+    </select>
+    <select id="selectFormer" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM t_project
+        WHERE (label_id=#{labelId,jdbcType=BIGINT} AND rank &gt; #{rank,jdbcType=BIGINT})
+        OR (rank=(SELECT MAX(rank) from t_project WHERE  label_id=#{labelId,jdbcType=BIGINT}))
+        ORDER BY rank ASC limit 1;
+    </select>
+
     <select id="selectProjectByUserId" parameterType="java.lang.Long" resultMap="BaseResultMap">
         SELECT pro.*
         FROM t_project pro
         LEFT JOIN t_project_user pu ON pro.id=pu.pro_id
         WHERE pu.user_id=#{userId}
+    </select>
+
+    <select id="selectProjectByUserAndLabelId" resultMap="BaseResultMap">
+        SELECT pro.*
+        FROM t_project pro
+        LEFT JOIN t_project_user pu on pro.id=pu.pro_id
+        WHERE pu.user_id=#{userId} AND pro.label_id=#{labelId}
     </select>
 
 

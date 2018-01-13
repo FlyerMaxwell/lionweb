@@ -30,8 +30,20 @@ public class ProjectServiceImpl implements ProjectService{
         return projectDao.selectProjectByLabelId(labelId);
     }
 
+    public List<Project> listProjectByUserAndLabelId(Long userId, Long labelId) {
+        return projectDao.selectProjectByUserAndLabelId(userId,labelId);
+    }
+
     public List<Project> listLatestPro(int num) {
         return projectDao.selectLatestProject(num);
+    }
+
+    public Project getFormer(Long labelId, Long rank) {
+        return projectDao.selectFormer(labelId,rank);
+    }
+
+    public Project getLatter(Long labelId, Long rank) {
+        return projectDao.selectLatter(labelId,rank);
     }
 
     public int addNewProject(Project project) {

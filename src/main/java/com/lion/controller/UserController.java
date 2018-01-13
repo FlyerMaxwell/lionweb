@@ -1,5 +1,6 @@
 package com.lion.controller;
 
+import com.lion.constant.ConfigConstant;
 import com.lion.entity.Project;
 import com.lion.entity.Publication;
 import com.lion.entity.User;
@@ -133,7 +134,7 @@ public class UserController {
 
 
         //TODO 路径配置
-        String basePath = "D:/lion/members";
+        String basePath = ConfigConstant.RESOURCE_ROOT_PATH+"members";
         try {
             if (cv != null && !cv.isEmpty()) {
                 FileHandler.deleteFile(updateUser.getCvUrl());
@@ -176,7 +177,7 @@ public class UserController {
                                 HttpServletRequest request,
                                 RedirectAttributes redirectAttributes){
         User updateUser=userService.getUserByUserName(username);
-        String basePath = "D:/lion/members";
+        String basePath = ConfigConstant.RESOURCE_ROOT_PATH+"members";
         try {
             if (image != null && !image.isEmpty()) {
                 FileHandler.deleteFile(updateUser.getImageUrl());

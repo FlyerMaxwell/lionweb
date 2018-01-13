@@ -21,49 +21,102 @@
                     </div>
                 </c:when>
                 <c:otherwise>
-                    <c:forEach items="${projects}" var="project">
-                        <c:if test="${project.access==0 || sessionScope.userType!=null}">
-                            <tr class="list-display">
-                                <td class="pro-picture">
-                                    <img src="<%=request.getContextPath() %>/resource/showImage?imagePath=${project.imageUrl}&type=1">
-                                </td>
-                                <td class="text-display">
-                                    <div class="text">
-                                        <div class="title">
-                                            <a href="<%=request.getContextPath() %>/project/projectDetail?id=${project.id}">${project.title}</a>
-                                            <c:if test="${project.access == 1}">
-                                                <span class="access">
-                                                    Group
-                                                </span>
-                                            </c:if>
-                                        </div>
-                                        <div>Participants:${project.authors}</div>
-                                        <div>Sponsors:${project.organization}</div>
-                                        <div>
-                                            <c:if test="${project.textUrl != ''}">
-                                                <span>
-                                                    <a class="download" href="<%=request.getContextPath() %>/resource/downloadFile?filePath=${project.textUrl}">PDF</a>
-                                                </span>
-                                            </c:if>
-                                            <c:if test="${project.slideUrl != ''}">
-                                                <span>
-                                                    <a class="download" href="<%=request.getContextPath() %>/resource/downloadFile?filePath=${project.slideUrl}">Slide</a>
-                                                </span>
-                                            </c:if>
-                                            <c:if test="${project.videoUrl != ''}">
-                                                <span>
-                                                    <a class="download" href="<%=request.getContextPath() %>/resource/downloadFile?filePath=${project.videoUrl}">Video</a>
-                                                </span>
-                                            </c:if>
-
-                                        </div>
-                                    </div>
-                                </td>
+                    <c:forEach items="${labels}" var="label" varStatus="status">
+                        <c:if test="${! empty projects[status.index]}">
+                            <tr class="project-title">
+                                <td colspan="2"><div>${label.name}</div></td>
                             </tr>
-                        </c:if>
+                            <c:forEach items="${projects[status.index]}" var="project">
+                                <tr class="list-display">
+                                    <td class="pub-picture">
+                                        <img src="<%=request.getContextPath() %>/resource/showImage?imagePath=${project.imageUrl}&type=1">
+                                    </td>
+                                    <td class="text-display">
+                                        <div class="text">
+                                            <div class="title">
+                                                <a href="<%=request.getContextPath() %>/project/projectDetail?id=${project.id}">${project.title}</a>
+                                                <c:if test="${project.access == 1}">
+                                                        <span class="access">
+                                                            Group
+                                                        </span>
+                                                </c:if>
+                                            </div>
+                                            <div>Participants:${project.authors}</div>
+                                            <div>Sponsors:${project.organization}</div>
+                                            <div>
+                                                <c:if test="${project.textUrl != ''}">
+                                                    <span>
+                                                        <a class="download" href="<%=request.getContextPath() %>/resource/downloadFile?filePath=${project.textUrl}">PDF</a>
+                                                    </span>
+                                                </c:if>
+                                                <c:if test="${project.slideUrl != ''}">
+                                                    <span>
+                                                        <a class="download" href="<%=request.getContextPath() %>/resource/downloadFile?filePath=${project.slideUrl}">Slide</a>
+                                                    </span>
+                                                </c:if>
+                                                <c:if test="${project.videoUrl != ''}">
+                                                    <span>
+                                                        <a class="download" href="<%=request.getContextPath() %>/resource/downloadFile?filePath=${project.videoUrl}">Video</a>
+                                                    </span>
+                                                </c:if>
+                                            </div>
+                                        </div>
+                                    </td>
 
+                                </tr>
+                            </c:forEach>
+                        </c:if>
                     </c:forEach>
                 </c:otherwise>
+                <%--<c:when test="${empty projects}">--%>
+                    <%--<div align="left">--%>
+                        <%--<span>No Project!</span>--%>
+                    <%--</div>--%>
+                <%--</c:when>--%>
+                <%--<c:otherwise>--%>
+                    <%--<c:forEach items="${projects}" var="project">--%>
+                        <%--<c:if test="${project.access==0 || sessionScope.userType!=null}">--%>
+                            <%--<tr class="list-display">--%>
+                                <%--<td class="pro-picture">--%>
+                                    <%--<img src="<%=request.getContextPath() %>/resource/showImage?imagePath=${project.imageUrl}&type=1">--%>
+                                <%--</td>--%>
+                                <%--<td class="text-display">--%>
+                                    <%--<div class="text">--%>
+                                        <%--<div class="title">--%>
+                                            <%--<a href="<%=request.getContextPath() %>/project/projectDetail?id=${project.id}">${project.title}</a>--%>
+                                            <%--<c:if test="${project.access == 1}">--%>
+                                                <%--<span class="access">--%>
+                                                    <%--Group--%>
+                                                <%--</span>--%>
+                                            <%--</c:if>--%>
+                                        <%--</div>--%>
+                                        <%--<div>Participants:${project.authors}</div>--%>
+                                        <%--<div>Sponsors:${project.organization}</div>--%>
+                                        <%--<div>--%>
+                                            <%--<c:if test="${project.textUrl != ''}">--%>
+                                                <%--<span>--%>
+                                                    <%--<a class="download" href="<%=request.getContextPath() %>/resource/downloadFile?filePath=${project.textUrl}">PDF</a>--%>
+                                                <%--</span>--%>
+                                            <%--</c:if>--%>
+                                            <%--<c:if test="${project.slideUrl != ''}">--%>
+                                                <%--<span>--%>
+                                                    <%--<a class="download" href="<%=request.getContextPath() %>/resource/downloadFile?filePath=${project.slideUrl}">Slide</a>--%>
+                                                <%--</span>--%>
+                                            <%--</c:if>--%>
+                                            <%--<c:if test="${project.videoUrl != ''}">--%>
+                                                <%--<span>--%>
+                                                    <%--<a class="download" href="<%=request.getContextPath() %>/resource/downloadFile?filePath=${project.videoUrl}">Video</a>--%>
+                                                <%--</span>--%>
+                                            <%--</c:if>--%>
+
+                                        <%--</div>--%>
+                                    <%--</div>--%>
+                                <%--</td>--%>
+                            <%--</tr>--%>
+                        <%--</c:if>--%>
+
+                    <%--</c:forEach>--%>
+                <%--</c:otherwise>--%>
             </c:choose>
         </table>
         </div>

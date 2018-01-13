@@ -116,7 +116,7 @@ public class NewsController {
                                RedirectAttributes redirectAttributes) {
         News news = newsService.getNewsById(id);
         //TODO路径配置
-        String basePath = "D:/lion/news";
+        String basePath = ConfigConstant.RESOURCE_ROOT_PATH+"news";
         news.setTitle(title);
         news.setDescription(description);
         news.setLastModifier(username);

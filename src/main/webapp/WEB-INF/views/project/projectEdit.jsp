@@ -66,6 +66,13 @@
             <label for="organization"> <span>Sponsor *</span>
                 <input type="text" name="organization" id="organization" value="${project.organization}">
             </label>
+            <div>
+                <div>Direction *</div>
+                <c:forEach items="${labels}" var="label">
+                    <input class="dir" id="label${label.id}" type="radio" name="label" value="${label.id}"/>
+                    <label class="dir" for="access${label.id}">${label.name}</label><br/>
+                </c:forEach>
+            </div>
             <label for="description"> <span>Description*</span>
                 <textarea name="description" id="description" cols="10" rows="3"></textarea>
             </label>
@@ -116,7 +123,7 @@
             </div>
 
             <label><span>Access *</span>
-                <input id="access0" type="radio" name="access" value="0" checked="checked"/>
+                <input id="access0" type="radio" name="access" value="0"/>
                 <label for="access0">Public</label>
                 <input id="access1" type="radio" name="access" value="1"/>
                 <label for="access1">Group</label>
@@ -197,5 +204,6 @@
             }
         }
     }
-    checkRadio("access",${project.access})
+    checkRadio("access",${project.access});
+    checkRadio("label",${project.labelId});
 </script>

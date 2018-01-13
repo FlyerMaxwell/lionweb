@@ -1,5 +1,6 @@
 package com.lion.controller;
 
+import com.lion.constant.ConfigConstant;
 import com.lion.entity.ProjectPublication;
 import com.lion.entity.Publication;
 import com.lion.entity.PublicationUser;
@@ -92,7 +93,7 @@ public class PublicationController {
         Publication publication=new Publication();
         publication.setUserName(username);
         //TODO 路径配置
-        String basePath="D:/lion/publication";
+        String basePath= ConfigConstant.RESOURCE_ROOT_PATH+"publication";
         publication.setTitle(title);
         publication.setAuthors(authors);
         publication.setDescription(TextHandler.toHtml(description));
@@ -174,7 +175,7 @@ public class PublicationController {
         }
         Publication publication=publicationService.getPublicationById(id);
         //TODO路径配置
-        String basePath="D:/lion/publication";
+        String basePath=ConfigConstant.RESOURCE_ROOT_PATH+"publication";
         publication.setTitle(title);
         publication.setAuthors(authors);
         publication.setDescription(TextHandler.toHtml(description));

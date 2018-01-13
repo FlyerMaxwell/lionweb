@@ -1,5 +1,6 @@
 package com.lion.controller;
 
+import com.lion.constant.ConfigConstant;
 import com.lion.entity.*;
 import com.lion.service.*;
 import com.lion.util.FileHandler;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -41,11 +43,20 @@ public class ProjectController {
     @Autowired
     PublicationService publicationService;
 
+    @Autowired
+    LabelService labelService;
+
     //显示project主页面
     @RequestMapping(value = "")
     public String projectPage(HttpServletRequest request){
-        List<Project> projects=projectService.listAllProject();
-        request.setAttribute("projects",projects);
+        List<Label> labelList=labelService.listAllLabel();
+        List<List<Project>> projectArray=new LinkedList<List<Project>>();
+        for(Label label:labelList){
+            List<Project> projects=projectService.listProjectByLabelId(label.getId());
+            projectArray.add(projects);
+        }
+        request.setAttribute("labels",labelList);
+        request.setAttribute("projects",projectArray);
         return "project/projectInfo";
     }
 
@@ -53,8 +64,14 @@ public class ProjectController {
     @RequestMapping(value ="userProfile",method = RequestMethod.GET)
     public String userProject(String username, HttpServletRequest request){
         User user=userService.getUserByUserName(username);
-        List<Project> projects=projectService.listProjectByUserId(user.getId());
-        request.setAttribute("projects",projects);
+        List<Label> labelList=labelService.listAllLabel();
+        List<List<Project>> projectArray=new LinkedList<List<Project>>();
+        for(Label label:labelList){
+            List<Project> projects=projectService.listProjectByUserAndLabelId(user.getId(),label.getId());
+            projectArray.add(projects);
+        }
+        request.setAttribute("labels",labelList);
+        request.setAttribute("projects",projectArray);
         request.setAttribute("user",user);
         return "project/userProject";
     }
@@ -63,10 +80,12 @@ public class ProjectController {
     @RequestMapping(value = "addProject")
     public String addProject(String username,HttpServletRequest request){
         List<User> users=userService.listAllUser();
+        List<Label> labels=labelService.listAllLabel();
         List<Publication> publications=publicationService.listAllPublication();
         request.setAttribute("users",users);
         request.setAttribute("publications",publications);
         request.setAttribute("username",username);
+        request.setAttribute("labels",labels);
         return "project/projectAdd";
     }
     //提交新project
@@ -84,6 +103,7 @@ public class ProjectController {
                                      @RequestParam(value = "refs") List<Long> pubList,
                                      @RequestParam(value = "richText") String richText,
                                      @RequestParam(value = "access") Integer access,
+                                     @RequestParam(value = "label") Long labelId,
                                      HttpServletRequest request,
                                      RedirectAttributes redirectAttributes){
         if(title.trim().length()==0||authors.trim().length()==0||description.trim().length()==0||organization.trim().length()==0||
@@ -94,7 +114,7 @@ public class ProjectController {
         Project project=new Project();
         project.setUserName(username);
         //TODO 路径配置
-        String basePath="D:/lion/project";
+        String basePath= ConfigConstant.RESOURCE_ROOT_PATH+"project";
         project.setTitle(title);
         project.setAuthors(authors);
         project.setDescription(TextHandler.toHtml(description));
@@ -105,6 +125,7 @@ public class ProjectController {
         project.setCreateTime(new Timestamp(new Date().getTime()));
         project.setUpdateTime(new Timestamp(new Date().getTime()));
         project.setAccess(access);
+        project.setLabelId(labelId);
         try {
             if (image != null && !image.isEmpty()) {
                 String filePath1 = FileHandler.uploadFile(basePath + "/image", image, request);
@@ -145,6 +166,7 @@ public class ProjectController {
     public String editProject(Long id,Integer panel,HttpServletRequest request){
         List<User> users=userService.listAllUser();
         List<Publication> publications=publicationService.listAllPublication();
+        List<Label> labels=labelService.listAllLabel();
         Project project=projectService.getProjectById(id);
         List<Long> oldAuthorList=projectUserService.listUserIdByProId(id);
         List<Long> oldPubList=projectPublicationService.listPubIdByProId(id);
@@ -154,6 +176,7 @@ public class ProjectController {
         request.setAttribute("oldAuthorList",oldAuthorList);
         request.setAttribute("oldPubList",oldPubList);
         request.setAttribute("panel",panel);
+        request.setAttribute("labels",labels);
         return "project/projectEdit";
     }
     //提交编辑后的project
@@ -171,6 +194,7 @@ public class ProjectController {
                                       @RequestParam(value = "refs") List<Long> publicationList,
                                       @RequestParam(value = "richText") String richText,
                                       @RequestParam(value = "access") Integer access,
+                                      @RequestParam(value = "label") Long labelId,
                                       HttpServletRequest request,
                                       RedirectAttributes redirectAttributes) {
         if(title.trim().length()==0||authors.trim().length()==0||description.trim().length()==0||organization.trim().length()==0||
@@ -180,7 +204,7 @@ public class ProjectController {
         }
         Project project=projectService.getProjectById(id);
         //TODO路径配置
-        String basePath="D:/lion/project";
+        String basePath=ConfigConstant.RESOURCE_ROOT_PATH+"project";
         project.setTitle(title);
         project.setAuthors(authors);
         project.setDescription(TextHandler.toHtml(description));
@@ -190,6 +214,7 @@ public class ProjectController {
         project.setLastIp(request.getRemoteAddr());
         project.setUpdateTime(new Timestamp(new Date().getTime()));
         project.setAccess(access);
+        project.setLabelId(labelId);
         try {
             if (image != null && !image.isEmpty()) {
                 FileHandler.deleteFile(project.getImageUrl());
