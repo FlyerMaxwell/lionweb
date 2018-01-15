@@ -10,7 +10,7 @@
 <div id="footer">
     <div>
         <p>
-            <span>Lab of Innovation on Networking</span>
+            <span>&copy; Lab of Innovation on Networking</span>
         </p>
         <%--社交账号链接添加处--%>
         <%--<ul>--%>

@@ -15,7 +15,7 @@
             <table>
                 <tr>
                     <td>
-                        <div>${news.description}</div>
+                        <div class="richText">${news.description}</div>
                     </td>
                 </tr>
                 <tr><td colspan="2"><br/></td> </tr>

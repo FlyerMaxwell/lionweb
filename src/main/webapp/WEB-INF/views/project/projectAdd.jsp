@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <title>LION</title>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/statics/css/style.css" type="text/css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/statics/editor/kindeditor/themes/default/default.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/statics/editor/kindeditor/themes/simple/simple.css">
     <link rel="shortcut icon" href="<%=request.getContextPath() %>/statics/images/favicon.ico" type="image/x-icon" />
 </head>
 <script type="text/javascript" charset="utf-8" src="<%=request.getContextPath() %>/statics/editor/kindeditor/kindeditor-all-min.js"></script>
@@ -19,6 +21,7 @@
     KindEditor.ready(function(K) {
         editor=window.editor = K.create("textarea[id='richText']", {
             resizeType: 1,
+            themeType:'simple',
             allowPreviewEmoticons:false,
             allowImageUpload:true,
             allowFileManager:true,

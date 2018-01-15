@@ -78,13 +78,17 @@ body {
 #header a.logo img {
     border: 0;
     display: block;
+    float: left;
+}
+#header img.school{
+    float: left;
 }
 #header h2{
     text-align: left;
     padding: 10px 0;
     margin: 0 70px;
     font-size: 2.5em;
-
+    float: left;
 }
 #header ul {
     margin: 0 auto;
@@ -534,6 +538,20 @@ body {
 }
 #body .content-display p a:hover {
     color: #333;
+}
+#body .content-display div.richText p{
+    color:#000;
+    line-height:20px;
+    padding:2px 0;
+}
+#body .content-display div.richText p a{
+    color:#000;
+    text-decoration: none;
+    font-weight: bold;
+}
+#body .content-display div.richText p a:hover{
+    color:#000;
+    text-decoration: underline;
 }
 #body .content-display .container li{
     list-style: none;

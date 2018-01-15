@@ -42,7 +42,7 @@
 
 <div id="header">
     <%--<a href="<%=request.getContextPath() %>/index" class="logo"><img src="<%=request.getContextPath() %>/statics/images/logo.png" alt=""></a>--%>
-    <%--<img src="<%=request.getContextPath() %>/statics/images/sjtu.jpg" alt="">--%>
+    <img class="school" src="<%=request.getContextPath() %>/statics/images/sjtu.png" width="400" alt="">
     <h2>Lab of Innovation on Networking</h2>
     <ul id="main-nav">
         <li>

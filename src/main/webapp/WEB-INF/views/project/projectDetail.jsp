@@ -55,7 +55,7 @@
                 </tr>
                 <tr>
                     <td colspan="2" class="richText">
-                        <div>${project.richText}</div>
+                        <div class="richText">${project.richText}</div>
                     </td>
                 </tr>
                 <tr><td colspan="2"><br/></td> </tr>

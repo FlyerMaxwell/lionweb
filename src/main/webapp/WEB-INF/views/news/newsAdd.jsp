@@ -8,6 +8,8 @@
     <link rel="shortcut icon" href="<%=request.getContextPath() %>/statics/images/favicon.ico" type="image/x-icon" />
 </head>
 <script type="text/javascript" charset="utf-8" src="<%=request.getContextPath() %>/statics/editor/kindeditor/kindeditor-all-min.js"></script>
+<link rel="stylesheet" href="<%=request.getContextPath() %>/statics/editor/kindeditor/themes/default/default.css">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/statics/editor/kindeditor/themes/simple/simple.css">
 <script type="text/javascript" charset="utf-8" src="<%=request.getContextPath() %>/statics/editor/kindeditor/lang/zh-CN.js"></script>
 <script>
     var editor;
@@ -19,6 +21,7 @@
     KindEditor.ready(function(K) {
         editor=window.editor = K.create("textarea[id='description']", {
             resizeType: 1,
+            themeType:'simple',
             allowPreviewEmoticons:false,
             allowImageUpload:true,
             allowFileManager:true,
