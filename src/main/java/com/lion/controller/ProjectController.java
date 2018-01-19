@@ -151,6 +151,9 @@ public class ProjectController {
 
         //添加Project
         projectService.addNewProject(project);
+        //根据写回的自增id设置初始rank值
+        project.setRank(project.getId());
+        projectService.editProject(project);
 
         //添加文章作者关联记录
         //TODO 一次插入多条效率更高，此处不是非常需要

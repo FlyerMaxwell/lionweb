@@ -127,7 +127,8 @@ public class PublicationController {
 
         //添加Publication
         publicationService.addNewPublication(publication);
-        publication.setRank(publication.getRank());
+        //根据写回的自增id设置初始rank值
+        publication.setRank(publication.getId());
         publicationService.editPublication(publication);
         //添加文章作者关联记录
         //TODO 一次插入多条效率更高，此处不是非常需要

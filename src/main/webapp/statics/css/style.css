@@ -546,7 +546,7 @@ body {
 }
 #body .content-display div.richText p a{
     color:#000;
-    text-decoration: none;
+    text-decoration: underline;
     font-weight: bold;
 }
 #body .content-display div.richText p a:hover{
@@ -598,7 +598,7 @@ body {
 }
 #body div.container a{
     color:#000;
-    text-decoration: none;
+    text-decoration: underline;
     font-weight:bold;
 }
 #body div.container a:hover{
