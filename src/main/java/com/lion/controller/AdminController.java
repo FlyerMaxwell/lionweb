@@ -214,7 +214,7 @@ public class AdminController {
             return "error";
         }
         //TODO 路径配置
-        String basePath = ConfigConstant.RESOURCE_ROOT_PATH+"members";
+        String basePath = ConfigConstant.RESOURCE_ROOT_PATH+"member";
         try {
             if (image != null && !image.isEmpty()) {
                 FileHandler.deleteFile(updateUser.getImageUrl());

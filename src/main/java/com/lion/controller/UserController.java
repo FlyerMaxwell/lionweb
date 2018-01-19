@@ -177,7 +177,7 @@ public class UserController {
                                 HttpServletRequest request,
                                 RedirectAttributes redirectAttributes){
         User updateUser=userService.getUserByUserName(username);
-        String basePath = ConfigConstant.RESOURCE_ROOT_PATH+"members";
+        String basePath = ConfigConstant.RESOURCE_ROOT_PATH+"member";
         try {
             if (image != null && !image.isEmpty()) {
                 FileHandler.deleteFile(updateUser.getImageUrl());
