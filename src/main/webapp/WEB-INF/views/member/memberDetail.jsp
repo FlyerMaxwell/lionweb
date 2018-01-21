@@ -84,6 +84,7 @@
                 </div>
                 <table>
                     <c:forEach items="${projects}" var="project">
+                        <c:if test="${project.access==0 || sessionScope.userType!=null}">
                         <tr>
                             <td class="pro-picture">
                                 <img src="<%=request.getContextPath() %>/resource/showImage?imagePath=${project.imageUrl}&type=1">
@@ -92,6 +93,11 @@
                                 <div class="text">
                                     <div>
                                         <a href="<%=request.getContextPath() %>/project/projectDetail?id=${project.id}">${project.title}</a>
+                                        <c:if test="${project.access == 1}">
+                                            <span class="access">
+                                                Group
+                                            </span>
+                                        </c:if>
                                     </div>
                                     <div>${project.authors}</div>
                                     <div>${project.organization}</div>
@@ -100,6 +106,7 @@
 
                             </td>
                         </tr>
+                        </c:if>
                     </c:forEach>
 
                 </table>
