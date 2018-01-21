@@ -27,6 +27,7 @@
                                 <td colspan="2"><div>${label.name}</div></td>
                             </tr>
                             <c:forEach items="${projects[status.index]}" var="project">
+                                <c:if test="${project.access==0 || sessionScope.userType!=null}">
                                 <tr class="list-display">
                                     <td class="pub-picture">
                                         <img src="<%=request.getContextPath() %>/resource/showImage?imagePath=${project.imageUrl}&type=1">
@@ -64,6 +65,7 @@
                                     </td>
 
                                 </tr>
+                                </c:if>
                             </c:forEach>
                         </c:if>
                     </c:forEach>

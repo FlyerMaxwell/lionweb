@@ -82,6 +82,7 @@
                 </div>
                 <table>
                     <c:forEach items="${projects}" var="project">
+                        <c:if test="${project.access==0 || sessionScope.userType!=null}">
                         <tr>
                             <td class="pro-picture">
                                 <img src="<%=request.getContextPath() %>/resource/showImage?imagePath=${project.imageUrl}&type=1">
@@ -98,6 +99,7 @@
 
                             </td>
                         </tr>
+                        </c:if>
                     </c:forEach>
 
                 </table>
