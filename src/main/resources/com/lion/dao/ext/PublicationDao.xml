@@ -29,7 +29,7 @@
         WHERE pu.user_id=#{userId}
     </select>
 
-    <select id="selectFormer" resultMap="BaseResultMap">
+    <select id="selectLatter" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List" />
         FROM t_publication
@@ -37,7 +37,7 @@
         OR (rank=(SELECT MIN(rank) from t_publication))
         order by rank desc limit 1;
     </select>
-    <select id="selectLatter" resultMap="BaseResultMap">
+    <select id="selectFormer" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List" />
         FROM t_publication
