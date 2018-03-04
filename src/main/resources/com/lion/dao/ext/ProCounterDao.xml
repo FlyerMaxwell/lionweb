@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lion.dao.ext.ProCounterDao">
+    <resultMap id="BaseResultMap" type="com.lion.entity.ProCounter" extends="com.lion.dao.gen.ProCounterMapper.BaseResultMap">
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, pro_id, counter
+    </sql>
+
+    <select id="selectCountByProId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM t_pro_counter
+        WHERE pro_id=#{proId,jdbcType=BIGINT}
+    </select>
+
+</mapper>

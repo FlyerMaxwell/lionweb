@@ -91,6 +91,10 @@
                 </table>
             </c:if>
         </div>
+        <div><br/></div>
+        <div><span class="pageView">Page View: ${count}</span> </div>
+        <div><br/></div>
+        <div><br/></div>
     </div>
 </div>
 <jsp:include page="../footer.jsp" flush="true"></jsp:include>

@@ -49,10 +49,17 @@
                         </div>
                     </td>
                 </tr>
-                <tr><td colspan="2"><br/></td> </tr>
+                <%--<tr><td colspan="2"><br/></td> </tr>--%>
+                <%--<tr><td colspan="2"><span class="pageView">Page View:${count}</span></td> </tr>--%>
+                <%--<tr><td colspan="2"><br/></td> </tr>--%>
 
             </table>
+
         </div>
+        <div><br/></div>
+        <div><span class="pageView" >Page View: ${count}</span> </div>
+        <div><br/></div>
+        <div><br/></div>
     </div>
 </div>
 <jsp:include page="../footer.jsp" flush="true"></jsp:include>

@@ -46,6 +46,9 @@ public class ProjectController {
     @Autowired
     LabelService labelService;
 
+    @Autowired
+    ProCounterService proCounterService;
+
     //显示project主页面
     @RequestMapping(value = "")
     public String projectPage(HttpServletRequest request){
@@ -310,6 +313,18 @@ public class ProjectController {
     public String projectDetail(Long id,HttpServletRequest request){
         Project project=projectService.getProjectById(id);
         request.setAttribute("project",project);
+
+        ProCounter counter=proCounterService.selectCountByProId(id);
+        if(counter==null){
+            counter=new ProCounter();
+            counter.setCounter(new Long(0));
+            counter.setProId(id);
+            proCounterService.addProCounter(counter);
+        }
+        counter.setCounter(counter.getCounter()+1);
+        proCounterService.updateProCounter(counter);
+        request.setAttribute("count",counter.getCounter());
+
         List<Long> publicationIds=projectPublicationService.listPubIdByProId(id);
         List<Publication> publications=new ArrayList<Publication>();
         for(Long pubId:publicationIds){

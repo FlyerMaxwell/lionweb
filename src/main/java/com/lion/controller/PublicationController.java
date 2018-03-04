@@ -1,14 +1,8 @@
 package com.lion.controller;
 
 import com.lion.constant.ConfigConstant;
-import com.lion.entity.ProjectPublication;
-import com.lion.entity.Publication;
-import com.lion.entity.PublicationUser;
-import com.lion.entity.User;
-import com.lion.service.ProjectPublicationService;
-import com.lion.service.PublicationService;
-import com.lion.service.PublicationUserService;
-import com.lion.service.UserService;
+import com.lion.entity.*;
+import com.lion.service.*;
 import com.lion.util.FileHandler;
 import com.lion.util.TextHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +38,9 @@ public class PublicationController {
 
     @Autowired
     ProjectPublicationService projectPublicationService;
+
+    @Autowired
+    PubCounterService pubCounterService;
 
     //显示publication主页面
     @RequestMapping(value = "")
@@ -262,6 +259,18 @@ public class PublicationController {
     public String publicationDetail(Long id,HttpServletRequest request){
         Publication publication=publicationService.getPublicationById(id);
         request.setAttribute("publication",publication);
+
+        PubCounter counter=pubCounterService.selectCountByPubId(id);
+        if(counter==null){
+            counter=new PubCounter();
+            counter.setCounter(new Long(0));
+            counter.setPubId(id);
+            pubCounterService.addPubCounter(counter);
+        }
+        counter.setCounter(counter.getCounter()+1);
+        pubCounterService.updatePubCounter(counter);
+        request.setAttribute("count",counter.getCounter());
+
         return "publication/publicationDetail";
     }
 

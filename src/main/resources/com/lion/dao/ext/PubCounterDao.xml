@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lion.dao.ext.PubCounterDao">
+    <resultMap id="BaseResultMap" type="com.lion.entity.PubCounter" extends="com.lion.dao.gen.PubCounterMapper.BaseResultMap">
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, pub_id, counter
+    </sql>
+
+    <select id="selectCountByPubId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM t_pub_counter
+        WHERE pub_id=#{pubId,jdbcType=BIGINT}
+    </select>
+
+</mapper>
