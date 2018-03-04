@@ -315,7 +315,8 @@ public class ProjectController {
         request.setAttribute("project",project);
 
         ProCounter counter=proCounterService.selectCountByProId(id);
-        if(counter==null){
+        //TODO project是否存在需优化判断
+        if(counter==null && project!=null){
             counter=new ProCounter();
             counter.setCounter(new Long(0));
             counter.setProId(id);

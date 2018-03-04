@@ -66,6 +66,10 @@
                                                 <span class="down">
                                                     <a class="down" href="<%=request.getContextPath() %>/admin/downProject?labelId=${label.id}&id=${project.id}">down</a>
                                                 </span>
+                                                <%--访问量--%>
+                                                <span class="pageView">
+                                                    View: ${project.count}
+                                                </span>
                                             </c:if>
                                         </td>
 

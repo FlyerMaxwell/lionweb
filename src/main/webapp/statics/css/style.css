@@ -635,6 +635,15 @@ body {
     background: #F44;
     font-weight:normal;
 }
+#body div.container span.view{
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    border-radius:5px;
+    padding: 1px 5px;
+    color: #000;
+    background: #FFF;
+    font-weight:normal;
+}
 /*#body div.container table tr td h3.category{*/
     /*border-bottom:#DDD 1px solid;*/
     /*font-size:1.5em;*/

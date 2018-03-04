@@ -64,6 +64,9 @@
                                         <span class="down">
                                             <a class="down" href="<%=request.getContextPath() %>/admin/downPublication?id=${publication.id}">down</a>
                                         </span>
+                                        <span class="pageView">
+                                            View: ${publication.count}
+                                        </span>
                                     </c:if>
                                 </td>
                             </tr>

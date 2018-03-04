@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -55,6 +56,12 @@ public class AdminController {
 
     @Autowired
     LabelService labelService;
+
+    @Autowired
+    ProCounterService proCounterService;
+
+    @Autowired
+    PubCounterService pubCounterService;
 
     @RequestMapping(value="memberInfo",method = RequestMethod.GET)
     public String memberInfo(HttpServletRequest request){
@@ -302,6 +309,18 @@ public class AdminController {
             List<Project> projects=projectService.listProjectByLabelId(label.getId());
             projectArray.add(projects);
         }
+
+        for(List<Project> projects:projectArray){
+            for(Project project:projects){
+                ProCounter counter=proCounterService.selectCountByProId(project.getId());
+                if(counter==null){
+                    project.setCount(new Long(0));
+                }
+                else{
+                    project.setCount(counter.getCounter());
+                }
+            }
+        }
         request.setAttribute("labels",labelList);
         //List<Project> projectList=projectService.listAllProject();
         request.setAttribute("projects",projectArray);
@@ -313,6 +332,15 @@ public class AdminController {
     public String allPublication(HttpServletRequest request){
         List<Publication> publicationList=publicationService.listAllPublication();
         request.setAttribute("publications",publicationList);
+        for(Publication publication:publicationList){
+            PubCounter counter=pubCounterService.selectCountByPubId(publication.getId());
+            if(counter==null){
+                publication.setCount(new Long(0));
+            }
+            else{
+                publication.setCount(counter.getCounter());
+            }
+        }
         return "admin/publicationInfo";
     }
 

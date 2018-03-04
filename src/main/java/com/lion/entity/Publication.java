@@ -35,6 +35,8 @@ public class Publication {
 
     private String lastIp;
 
+    private Long count;
+
     public Long getId() {
         return id;
     }
@@ -161,6 +163,14 @@ public class Publication {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Long getCount(){
+        return count;
+    }
+
+    public void setCount(Long count){
+        this.count=count;
     }
 
 }

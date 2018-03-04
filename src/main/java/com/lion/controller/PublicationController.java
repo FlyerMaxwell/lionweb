@@ -261,7 +261,8 @@ public class PublicationController {
         request.setAttribute("publication",publication);
 
         PubCounter counter=pubCounterService.selectCountByPubId(id);
-        if(counter==null){
+        //TODO publication是否存在需优化判断
+        if(counter==null && publication!=null){
             counter=new PubCounter();
             counter.setCounter(new Long(0));
             counter.setPubId(id);

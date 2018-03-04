@@ -41,6 +41,8 @@ public class Project {
 
     private String lastIp;
 
+    private Long count;
+
     public Long getId() {
         return id;
     }
@@ -191,6 +193,14 @@ public class Project {
 
     public void setLastIp(String lastIp) {
         this.lastIp = lastIp == null ? null : lastIp.trim();
+    }
+
+    public Long getCount(){
+        return count;
+    }
+
+    public void setCount(Long count){
+        this.count = count;
     }
 
 }
