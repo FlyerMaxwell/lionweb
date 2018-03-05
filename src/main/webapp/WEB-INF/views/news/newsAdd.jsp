@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="<%=request.getContextPath() %>/statics/css/style.css" type="text/css">
     <link rel="shortcut icon" href="<%=request.getContextPath() %>/statics/images/favicon.ico" type="image/x-icon" />
 </head>
-<script type="text/javascript" charset="utf-8" src="<%=request.getContextPath() %>/statics/editor/kindeditor/kindeditor-all-min.js"></script>
+<script type="text/javascript" charset="utf-8" src="<%=request.getContextPath() %>/statics/editor/kindeditor/kindeditor-all.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/statics/editor/kindeditor/themes/default/default.css">
 <link rel="stylesheet" href="<%=request.getContextPath() %>/statics/editor/kindeditor/themes/simple/simple.css">
 <script type="text/javascript" charset="utf-8" src="<%=request.getContextPath() %>/statics/editor/kindeditor/lang/zh-CN.js"></script>
