@@ -301,6 +301,7 @@ public class ProjectController {
         projectService.deleteProject(id);
         projectPublicationService.deleteRecordByProId(id);
         projectUserService.deleteRecordByProId(id);
+        proCounterService.deleteProCounter(id);
         if(panel==null) {
             redirectAttributes.addAttribute("username", username);
             return "redirect:/project/userProfile";

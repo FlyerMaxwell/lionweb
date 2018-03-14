@@ -13,4 +13,6 @@ import org.springframework.stereotype.Repository;
 public interface PubCounterDao extends PubCounterMapper{
 
     PubCounter selectCountByPubId(@Param("pubId")Long pubId);
+
+    int deleteByPubId(@Param("pubId") Long pubId);
 }

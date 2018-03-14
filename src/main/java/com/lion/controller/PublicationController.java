@@ -247,6 +247,7 @@ public class PublicationController {
         publicationService.deletePublication(id);
         publicationUserService.deleteRecordByPubId(id);
         projectPublicationService.deleteRecordByPubId(id);
+        pubCounterService.deletePubCounter(id);
         if(panel==null) {
             redirectAttributes.addAttribute("username", username);
             return "redirect:/publication/userProfile";

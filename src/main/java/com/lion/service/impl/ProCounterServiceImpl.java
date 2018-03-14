@@ -27,4 +27,8 @@ public class ProCounterServiceImpl implements ProCounterService{
     public int addProCounter(ProCounter proCounter) {
         return proCounterDao.insertSelective(proCounter);
     }
+
+    public int deleteProCounter(Long proId) {
+        return proCounterDao.deleteByProId(proId);
+    }
 }

@@ -15,4 +15,9 @@
         WHERE pro_id=#{proId,jdbcType=BIGINT}
     </select>
 
+    <delete id="deleteByProId" parameterType="java.lang.Long">
+        DELETE FROM t_pro_counter
+        WHERE pro_id=#{proId,jdbcType=BIGINT}
+    </delete>
+
 </mapper>

@@ -13,4 +13,6 @@ import org.springframework.stereotype.Repository;
 public interface ProCounterDao extends ProCounterMapper{
 
     ProCounter selectCountByProId(@Param("proId")Long proId);
+
+    int deleteByProId(@Param("proId") Long proId);
 }

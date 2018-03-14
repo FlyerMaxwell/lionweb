@@ -27,4 +27,8 @@ public class PubCounterServiceImpl implements PubCounterService{
     public int addPubCounter(PubCounter pubCounter) {
         return pubCounterDao.insertSelective(pubCounter);
     }
+
+    public int deletePubCounter(Long pubId) {
+        return pubCounterDao.deleteByPubId(pubId);
+    }
 }

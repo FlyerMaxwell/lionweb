@@ -13,4 +13,6 @@ public interface PubCounterService {
     int updatePubCounter(PubCounter pubCounter);
 
     int addPubCounter(PubCounter pubCounter);
+
+    int deletePubCounter(Long pubId);
 }

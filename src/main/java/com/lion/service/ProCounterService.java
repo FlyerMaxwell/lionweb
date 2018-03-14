@@ -13,4 +13,6 @@ public interface ProCounterService {
     int updateProCounter(ProCounter proCounter);
 
     int addProCounter(ProCounter proCounter);
+
+    int deleteProCounter(Long proId);
 }

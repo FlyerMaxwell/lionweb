@@ -15,4 +15,9 @@
         WHERE pub_id=#{pubId,jdbcType=BIGINT}
     </select>
 
+    <delete id="deleteByPubId" parameterType="java.lang.Long">
+        DELETE FROM t_pub_counter
+        WHERE pub_id=#{pubId,jdbcType=BIGINT}
+    </delete>
+
 </mapper>
