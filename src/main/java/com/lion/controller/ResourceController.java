@@ -56,10 +56,16 @@ public class ResourceController {
     @RequestMapping("/downloadFile")
     public ResponseEntity<byte[]> downloadFile(HttpServletRequest request,
                                                String filePath) throws Exception{
+
         //指定要下载的文件所在路径
         //String path = request.getServletContext().getRealPath(filePath);
         File file = new File(filePath);
         HttpHeaders headers = new HttpHeaders();
+
+        if (null == file || !file.exists()
+                || !file.getCanonicalFile().getParent().equals(new File(filePath).getCanonicalPath())) {
+            return null;
+        }
 
         //通知浏览器以下载的方式打开文件
         headers.setContentDispositionFormData("attachment", filePath);
