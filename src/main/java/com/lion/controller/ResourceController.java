@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author DJ
@@ -62,10 +64,24 @@ public class ResourceController {
         File file = new File(filePath);
         HttpHeaders headers = new HttpHeaders();
 
-        if (null == file || !file.exists()
-                || !file.getCanonicalFile().getParent().equals(new File(filePath).getCanonicalPath())) {
+        String pat1="\\.+";
+        Pattern r1=Pattern.compile(pat1);
+        Matcher m1=r1.matcher(filePath);
+        if(m1.find()){
             return null;
         }
+
+        String pat2="^/resources.*";
+        Pattern r2=Pattern.compile(pat2);
+        Matcher m2=r2.matcher(filePath);
+        if(!m2.find()){
+            return null;
+        }
+
+//        if (null == file || !file.exists()
+//                || !file.getCanonicalFile().getParent().equals(new File(filePath).getCanonicalPath())) {
+//            return null;
+//        }
 
         //通知浏览器以下载的方式打开文件
         headers.setContentDispositionFormData("attachment", filePath);
