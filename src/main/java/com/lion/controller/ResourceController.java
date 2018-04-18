@@ -35,6 +35,19 @@ public class ResourceController {
         }
         FileInputStream in;
         response.setContentType("application/octet-stream;charset=UTF-8");
+        String pat1="\\.+";
+        Pattern r1=Pattern.compile(pat1);
+        Matcher m1=r1.matcher(imagePath);
+        if(m1.find()){
+            return;
+        }
+
+        String pat2="^/resources.*";
+        Pattern r2=Pattern.compile(pat2);
+        Matcher m2=r2.matcher(imagePath);
+        if(!m2.find()){
+            return;
+        }
         try {
             // 图片读取路径
             in = new FileInputStream(imagePath);
