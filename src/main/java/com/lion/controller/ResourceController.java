@@ -35,14 +35,14 @@ public class ResourceController {
         }
         FileInputStream in;
         response.setContentType("application/octet-stream;charset=UTF-8");
-        String pat1="\\.+";
+        String pat1="(\\.\\.)+";
         Pattern r1=Pattern.compile(pat1);
         Matcher m1=r1.matcher(imagePath);
         if(m1.find()){
             return;
         }
 
-        String pat2="^/resources.*";
+        String pat2="^(/home/lion/lionweb/data).*";
         Pattern r2=Pattern.compile(pat2);
         Matcher m2=r2.matcher(imagePath);
         if(!m2.find()){
@@ -77,14 +77,14 @@ public class ResourceController {
         File file = new File(filePath);
         HttpHeaders headers = new HttpHeaders();
 
-        String pat1="\\.+";
+        String pat1="(\\.\\.)+";
         Pattern r1=Pattern.compile(pat1);
         Matcher m1=r1.matcher(filePath);
         if(m1.find()){
             return null;
         }
 
-        String pat2="^/resources.*";
+        String pat2="^(/home/lion/lionweb/data).*";
         Pattern r2=Pattern.compile(pat2);
         Matcher m2=r2.matcher(filePath);
         if(!m2.find()){
@@ -97,7 +97,8 @@ public class ResourceController {
 //        }
 
         //通知浏览器以下载的方式打开文件
-        headers.setContentDispositionFormData("attachment", filePath);
+        String[] filePaths=filePath.split("/");
+        headers.setContentDispositionFormData("attachment", filePaths[filePaths.length-1]);
 
         //定义以流的形式下载返回文件数据
         headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
